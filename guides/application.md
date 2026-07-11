@@ -12,6 +12,8 @@
 ## Architecture
 
 - local-first data는 사용자가 명시적으로 선택하지 않는 한 외부로 보내지 않는다.
+- desktop app은 개발 중 hot reload 경로와 독립 실행 bundle 경로를 분리하고, 자주 쓰는 local build는 repository 안의 예측 가능한 Git-ignored 경로에서 바로 열 수 있게 한다.
+- installer나 disk image처럼 느린 배포 산출물은 매 edit마다 만들지 않고 명시적인 release/bundle 명령에서만 생성한다.
 - external provider는 protocol/interface 뒤에 두고 mock과 real provider를 분리한다.
 - Release에서 fake data로 조용히 fallback하지 않는다.
 - credential은 client code나 repository에 넣지 않는다.
