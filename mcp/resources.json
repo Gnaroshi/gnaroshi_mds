@@ -1,0 +1,65 @@
+[
+  {
+    "uri": "gnaroshi://index",
+    "name": "gnaroshi-index",
+    "title": "Gnaroshi Guidance Index",
+    "description": "Canonical entry point and read order.",
+    "path": "README.md"
+  },
+  {
+    "uri": "gnaroshi://agents",
+    "name": "gnaroshi-agents",
+    "title": "Gnaroshi Agent Rules",
+    "description": "Repository-wide durable working agreements.",
+    "path": "AGENTS.md"
+  },
+  {
+    "uri": "gnaroshi://catalog/projects",
+    "name": "project-catalog",
+    "title": "Project Catalog",
+    "description": "Evidence-backed research, application, and web application classification.",
+    "path": "catalog/projects.md"
+  },
+  {
+    "uri": "gnaroshi://catalog/markdown-patterns",
+    "name": "markdown-patterns",
+    "title": "Used Markdown Patterns",
+    "description": "Markdown document types actually used across projects.",
+    "path": "catalog/markdown-patterns.md"
+  },
+  {
+    "uri": "gnaroshi://guides/research",
+    "name": "research-guide",
+    "title": "Research Guide",
+    "description": "Research source, evidence, privacy, and publishing rules.",
+    "path": "guides/research.md"
+  },
+  {
+    "uri": "gnaroshi://guides/application",
+    "name": "application-guide",
+    "title": "Application Guide",
+    "description": "Native, desktop, CLI, and local application guidance.",
+    "path": "guides/application.md"
+  },
+  {
+    "uri": "gnaroshi://guides/web-application",
+    "name": "web-application-guide",
+    "title": "Web Application Guide",
+    "description": "Web UI, API, content boundary, responsive, and release guidance.",
+    "path": "guides/web-application.md"
+  },
+  {
+    "uri": "gnaroshi://guides/ui-ux",
+    "name": "ui-ux-guide",
+    "title": "UI/UX Preferences",
+    "description": "Gnaroshi's durable simplicity, hierarchy, spacing, and responsive preferences.",
+    "path": "guides/ui-ux.md"
+  },
+  {
+    "uri": "gnaroshi://guides/image-assets",
+    "name": "image-asset-guide",
+    "title": "Raster Image and Icon Policy",
+    "description": "Raster-only default and Gnaroshi identity reference rules.",
+    "path": "guides/image-assets.md"
+  }
+]
