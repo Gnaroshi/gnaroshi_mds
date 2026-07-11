@@ -25,3 +25,10 @@ Reference: `identity/reference/gnaroshi-origin-2020.jpeg`
 - 16px/32px/64px thumbnail에서도 눈, 귀, 얼굴 덩어리가 구분됨
 - light/dark surface 모두에서 boundary가 사라지지 않음
 - 후보는 서로 다른 style과 material을 탐색하되 동일 identity를 유지함
+
+## Preferred direction
+
+- 현재 선택된 기준 asset은 `identity/candidates/07-cel-shaded.png`다.
+- 사용자가 다른 방향을 요청하지 않는 한 Gnaroshi 관련 icon refinement는 cel-shaded raster style을 따른다.
+- 유지할 특성은 굵고 통제된 outline, 단순한 2단계 명암, 큰 귀와 눈의 명확한 silhouette, 주황·청록 대비, 작은 크기 인식성이다.
+- 기존 PNG를 그대로 모든 product에 복사하지 말고, 대상 platform의 raster icon 규격과 safe area에 맞춰 별도 export한다.

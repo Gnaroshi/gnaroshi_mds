@@ -10,6 +10,15 @@
 
 `candidates/`에는 서로 다른 그림체와 디자인의 raster 후보를 둔다. 선택 전에는 모두 concept이며, 사용자가 선택한 후보만 이후 app icon size set과 production export로 발전시킨다.
 
+## Current selection
+
+- Selected on: 2026-07-12
+- Candidate: `07-cel-shaded.png`
+- Direction: cel-shaded animation
+- Status: Gnaroshi의 현재 선호 identity 방향이다. 아직 platform별 production icon set으로 가공한 최종 asset은 아니다.
+
+앞으로 Gnaroshi identity icon을 새로 만들거나 다듬을 때는 사용자가 다른 방향을 지정하지 않는 한 07번의 단순한 형태, 굵고 통제된 윤곽, 선명한 주황·청록 대비와 작은 크기 인식성을 기준으로 삼는다.
+
 평가 순서:
 
 1. 작은 크기 인식성
