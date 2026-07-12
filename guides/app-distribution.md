@@ -4,11 +4,11 @@
 
 - macOS privacy approval를 우회하거나 자동 승인하려 하지 않는다. 최초 접근, 새 보호 자원, entitlement 변화와 사용자가 reset한 TCC state는 system confirmation을 요구할 수 있다.
 - 반복 permission prompt를 줄이려면 bundle ID, signing team/identity, entitlements와 installed application path를 안정적으로 유지한다.
-- 로컬 app bundle을 매 build마다 ad-hoc 서명하지 않는다. 사용 가능한 동일 team의 `Apple Development` identity로 development bundle을 서명하고 예측 가능한 ignored output에서 `~/Applications` 같은 stable install location으로 설치한다.
+- 로컬 app bundle을 매 build마다 ad-hoc 서명하지 않는다. release와 같은 team의 identity를 우선하고 예측 가능한 ignored output에서 `~/Applications` 같은 stable install location으로 설치한다. Development와 release certificate의 team이 다르면 권한 민감 local package에는 local Keychain의 `Developer ID Application` identity를 사용할 수 있다. 이 빌드는 local-only이고 dirty provenance를 허용할 수 있지만 public artifact로 배포하지 않는다.
 - Release는 `Developer ID Application`, hardened runtime, timestamp, notarization과 stapling을 요구한다. Distribution build가 요구 조건을 충족하지 못하면 unsigned/ad-hoc release로 조용히 fallback하지 않는다.
 - Debug host, raw interpreter, `tauri dev`, `electron .`, `swift run`은 packaged app과 다른 code identity다. Privacy-sensitive workflow 검증은 signed installed development bundle로 수행한다.
 - Certificate, private key, notary credential, App Store Connect key와 updater private key는 Keychain 또는 GitHub Actions secret에만 둔다. Repository, manifest, log, CLI argument와 artifact에 넣지 않는다.
-- Signing identity 탐색은 exact class와 team을 검증한다. 다른 team의 development/distribution identity를 섞으면 permission continuity가 보장되지 않으므로 release gate에서 차단하거나 명시한다.
+- Signing identity 탐색은 exact class와 team을 검증한다. 같은 bundle ID를 다른 team으로 서명하면 permission continuity가 보장되지 않으므로, local permission build와 release는 같은 team을 사용하거나 전환 시 한 번의 system approval 가능성을 명시한다.
 
 Signing은 이미 승인된 permission을 안정된 application identity에 연결하는 수단이지 새 permission을 대신 승인하는 수단이 아니다.
 
