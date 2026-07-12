@@ -15,6 +15,7 @@
 - 여러 local repository가 고정된 parent 아래 함께 있는 개인용 app은 알려진 folder name과 구조를 검증해 자동 연결하고, 누락되거나 유효하지 않은 항목에만 manual setup을 요구한다.
 - desktop app은 개발 중 hot reload 경로와 독립 실행 bundle 경로를 분리하고, 자주 쓰는 local build는 repository 안의 예측 가능한 Git-ignored 경로에서 바로 열 수 있게 한다.
 - installer나 disk image처럼 느린 배포 산출물은 매 edit마다 만들지 않고 명시적인 release/bundle 명령에서만 생성한다.
+- macOS local build를 Spotlight나 app launcher에 노출할 때는 repository bundle symlink만 등록하지 않는다. Spotlight가 실제로 index하는 Applications 위치에 작은 real launcher bundle을 한 번 만들고 repository build를 열게 하며, `mdls`와 `mdfind` 결과를 확인한다.
 - external provider는 protocol/interface 뒤에 두고 mock과 real provider를 분리한다.
 - 다른 Gnaroshi application과 연결할 때는 [`app-integration.md`](app-integration.md)의 independent-app, manifest, typed-adapter와 degraded-mode contract를 적용한다.
 - Release에서 fake data로 조용히 fallback하지 않는다.
