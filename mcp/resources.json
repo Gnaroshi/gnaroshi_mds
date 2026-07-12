@@ -77,6 +77,13 @@
     "path": "guides/cross-repo-changes.md"
   },
   {
+    "uri": "gnaroshi://guides/app-distribution",
+    "name": "app-distribution-guide",
+    "title": "Application Distribution and Update Guide",
+    "description": "macOS signing, permission continuity, Git-derived versions, release manifests, and safe update channels.",
+    "path": "guides/app-distribution.md"
+  },
+  {
     "uri": "gnaroshi://guides/app-icons",
     "name": "app-icon-guide",
     "title": "Application Identity and Icon Guide",

@@ -22,7 +22,8 @@ ChatGPT web does not read local Codex MCP configuration. Connect the GitHub repo
 5. `gnaroshi://guides/ui-ux`
 6. `gnaroshi://guides/app-integration` for application ecosystem work
 7. `gnaroshi://guides/cross-repo-changes` for multi-repository or architecture changes
-8. `gnaroshi://guides/image-assets` and `gnaroshi://guides/app-icons` for visual work
+8. `gnaroshi://guides/app-distribution` for signing, packaging, version, and update work
+9. `gnaroshi://guides/image-assets` and `gnaroshi://guides/app-icons` for visual work
 
 ## Manual protocol check
 
