@@ -6,8 +6,10 @@
 
 1. `README.md`와 `catalog/projects.md`를 읽는다.
 2. 현재 작업을 research, application, web application 중 하나로 분류한다.
-3. 해당 `guides/` 문서와 `guides/ui-ux.md`, 이미지 작업이면 `guides/image-assets.md`를 읽는다.
-4. 대상 프로젝트의 자체 `AGENTS.md`와 문서를 더 구체적인 지침으로 적용한다.
+3. 해당 `guides/` 문서와 `guides/ui-ux.md`를 읽는다.
+4. application integration이면 `guides/app-integration.md`, multi-repository change이면 `guides/cross-repo-changes.md`를 읽는다.
+5. visual 작업이면 `guides/image-assets.md`와 `guides/app-icons.md`를 읽는다.
+6. 대상 프로젝트의 자체 `AGENTS.md`와 문서를 더 구체적인 지침으로 적용한다.
 
 ## 업데이트 원칙
 
@@ -15,6 +17,7 @@
 - 비밀, credential, 개인 연구 원문, private transcript, 자동 생성 로그, 일회성 작업 기록은 이 저장소로 가져오지 않는다.
 - 조사 결과 실제 사용한 문서 유형만 유지한다. 미래에 쓸 것이라는 이유만으로 빈 템플릿을 늘리지 않는다.
 - 프로젝트 고유 사실은 원래 프로젝트에 남기고, 여기에는 여러 프로젝트에 적용되는 규칙만 요약한다.
+- Cross-repository와 architecture change는 `guides/cross-repo-changes.md`의 baseline, preservation, compatibility, validation, rollback과 commit body를 사용한다.
 
 ## 사용자 경험
 
@@ -26,7 +29,8 @@
 
 ## 이미지
 
-- 사용자가 별도로 vector를 요청하지 않는 한 이미지 요청은 raster image 요청으로 해석한다.
-- 사용자가 명시적으로 요청하지 않는 한 SVG를 포함한 vector image를 절대 생성하지 않는다.
-- application/program icon의 identity reference는 `identity/reference/gnaroshi-origin-2020.jpeg`이다.
-- 새 icon은 reference의 역사와 핵심 인상만 계승하고 특정 게임의 logo, UI, trademark를 복제하지 않는다.
+- Full-color generated visual과 application/product identity는 사용자가 다른 format을 요청하지 않는 한 raster로 만든다.
+- Functional UI icon은 SF Symbols, Lucide 또는 일관된 custom monochrome vector system을 사용할 수 있고 모든 toolbar control을 mascot으로 만들지 않는다.
+- Menu-bar icon은 full-color mascot이 아니라 monochrome template asset을 사용한다.
+- Gnaroshi application identity의 approved base는 `identity/approved/gnaroshi-base-v1.png`이며 새 role variant는 base recognition을 유지한다.
+- 새 identity asset은 origin history와 핵심 인상만 계승하고 특정 게임의 logo, UI, trademark 또는 direct asset copy를 포함하지 않는다.

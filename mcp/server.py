@@ -12,13 +12,15 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 RESOURCE_FILE = ROOT / "mcp" / "resources.json"
 SERVER_NAME = "gnaroshi-guidance"
-SERVER_VERSION = "1.0.0"
+SERVER_VERSION = "1.1.0"
 DEFAULT_PROTOCOL_VERSION = "2025-06-18"
 INSTRUCTIONS = (
     "Start with gnaroshi://index, classify work as research, application, or web "
-    "application, then read the matching guide plus ui-ux and image-assets when "
-    "relevant. Project-local instructions are more specific. Reusable preferences "
-    "belong in gnaroshi_mds; never copy secrets or private research content."
+    "application, then read the matching guide plus ui-ux. For application ecosystem "
+    "work read app-integration; for multi-repository changes read cross-repo-changes; "
+    "for visual work read image-assets and app-icons. Project-local instructions are "
+    "more specific. Reusable preferences belong in gnaroshi_mds; never copy secrets "
+    "or private research content."
 )
 
 

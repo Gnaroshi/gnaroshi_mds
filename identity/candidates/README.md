@@ -2,7 +2,7 @@
 
 모든 후보는 `identity/reference/gnaroshi-origin-2020.jpeg`를 identity reference로 사용해 built-in image generation으로 만든 개별 PNG다. 특정 게임의 logo나 UI를 복제하지 않으며 text와 watermark를 포함하지 않는다.
 
-현재 선택은 **07번 cel-shaded animation**이다. 이 선택은 이후 refinement와 platform별 raster export의 기준이며, 나머지 후보는 탐색 기록으로 유지한다.
+Owner는 **07번 cel-shaded animation**을 final visual base로 선택했다. Source candidate는 그대로 유지하고 byte-identical copy를 `../approved/gnaroshi-base-v1.png`로 promote했다. 나머지 후보는 탐색 기록으로 유지한다.
 
 | ID | Direction | Preview |
 | --- | --- | --- |
