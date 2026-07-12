@@ -29,6 +29,15 @@ Approved application identity base: `identity/approved/gnaroshi-base-v1.png`
 - light/dark surface 모두에서 boundary가 사라지지 않음
 - 후보는 서로 다른 style과 material을 탐색하되 동일 identity를 유지함
 
+## Actual application screenshots
+
+- Project 또는 application evidence는 실제 executable이나 실제 repository UI component가 렌더링한 화면을 사용한다.
+- Private 운영 data가 필요한 화면은 실제 host, path, paper title, transcript 또는 process argument를 공개하지 않는다.
+- Privacy-safe demo fixture나 capture harness는 허용되지만 화면과 caption에서 `demo`임을 분명히 표시하고 실제 연구 성과나 운영 activity로 제시하지 않는다.
+- Empty, setup-only, error-only 상태는 해당 product의 핵심 user scenario를 설명하지 못하면 production project image로 사용하지 않는다.
+- Screenshot source commit, local dirty state, fixture source, capture command와 redaction boundary를 기록한다.
+- Crop, responsive encoding과 neutral letterbox는 허용되지만 plausible value를 합성하거나 fake terminal output을 만들지 않는다.
+
 ## Preferred direction
 
 - Owner-approved 기준 asset은 `identity/approved/gnaroshi-base-v1.png`이며 selection provenance와 hash는 `identity/approved/metadata.json`에 있다.
