@@ -12,3 +12,4 @@
 - Prefer simple interfaces that show purpose, prerequisites, order, current state, and next action clearly to a first-time user.
 - Avoid unnecessary text, decorative components, inconsistent padding or margins, and responsive clipping.
 - Unless the user explicitly asks for a vector image, interpret image-generation requests as raster and never generate SVG or another vector format.
+- Functional UI icons may use SF Symbols, Lucide, or a consistent custom monochrome vector system; the raster default is not a blanket rule for every toolbar control.

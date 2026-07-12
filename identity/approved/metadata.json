@@ -1,0 +1,23 @@
+{
+  "id": "gnaroshi-base-v1",
+  "sourceCandidate": "07-cel-shaded.png",
+  "selectedAt": "2026-07-12T05:22:34Z",
+  "sha256": "2056b9e5cf7e3464aaf9c108849f0ec43ac1fbacd427ce73a6441e2619c380f6",
+  "ownerApproved": true,
+  "style": "cel-shaded",
+  "usage": "Gnaroshi application identity family",
+  "restrictions": [
+    "Preserve the approved raster master and the original source candidate unchanged.",
+    "Do not add text, watermarks, franchise logos, official emblems, trademarks, or direct copies of existing game assets.",
+    "Do not claim that the selected design is owned by a game publisher.",
+    "Keep the base mascot recognizable and limit application role elements to approximately 25 percent of the visual identity.",
+    "Create platform exports and role variants as derivatives in separate files."
+  ],
+  "generationReferenceHistory": {
+    "originReference": "identity/reference/gnaroshi-origin-2020.jpeg",
+    "identityHistory": "The Gnaroshi name and visual history combine the impression of a small agile wild beast with a strong fantasy warrior presence.",
+    "candidateGeneration": "Generated as one of eleven raster identity candidates from the owner-created origin reference using a shared prompt that prohibited text, watermarks, franchise logos, official emblems, trademarks, and exact existing-character copies.",
+    "selection": "The owner selected identity/candidates/07-cel-shaded.png as the final visual base on 2026-07-12.",
+    "promotion": "identity/approved/gnaroshi-base-v1.png is a byte-identical copy of the retained source candidate."
+  }
+}

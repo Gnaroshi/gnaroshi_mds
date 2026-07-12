@@ -58,8 +58,29 @@
   {
     "uri": "gnaroshi://guides/image-assets",
     "name": "image-asset-guide",
-    "title": "Raster Image and Icon Policy",
-    "description": "Raster-only default and Gnaroshi identity reference rules.",
+    "title": "Image Generation and Identity Asset Policy",
+    "description": "Raster generation defaults and Gnaroshi identity asset rules.",
     "path": "guides/image-assets.md"
+  },
+  {
+    "uri": "gnaroshi://guides/app-integration",
+    "name": "app-integration-guide",
+    "title": "Application Integration Guide",
+    "description": "Independent application, Studio control-plane, manifest, adapter, transport, and degraded-mode rules.",
+    "path": "guides/app-integration.md"
+  },
+  {
+    "uri": "gnaroshi://guides/cross-repo-changes",
+    "name": "cross-repo-change-guide",
+    "title": "Cross-Repository Change Guide",
+    "description": "Baseline, preservation, compatibility, validation, rollback, commit, and PR rules for multi-repository changes.",
+    "path": "guides/cross-repo-changes.md"
+  },
+  {
+    "uri": "gnaroshi://guides/app-icons",
+    "name": "app-icon-guide",
+    "title": "Application Identity and Icon Guide",
+    "description": "Approved identity base, role variants, icon classes, shared palette, and export rules.",
+    "path": "guides/app-icons.md"
   }
 ]
