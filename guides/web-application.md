@@ -14,6 +14,14 @@
 - data가 없을 때 zero-filled dashboard를 보여주지 말고 첫 유효 행동 하나를 안내한다.
 - 중요한 content를 mobile에서 숨기지 않는다.
 - JavaScript와 image는 설명이나 상호작용에 필요할 때만 추가한다.
+- Project/application page는 실제 product screen이나 검증 artifact로 핵심 user scenario를 보여 준다. Demo fixture를 사용하면 public caption에서 demo임을 숨기지 않는다.
+
+## Identity color
+
+- Existing website interaction palette가 검증되어 있으면 Gnaroshi identity를 보인다는 이유만으로 전체 palette를 교체하지 않는다.
+- `identity-teal`과 `identity-orange`는 favicon, compact brand mark, ownership marker와 project evidence accent처럼 제한된 identity cue에 사용한다.
+- Status, focus, heatmap, chart와 semantic interaction color는 identity palette와 분리한다.
+- Website mascot mark는 approved raster base의 ears, eyes, face mass와 teal/orange contrast를 유지하고 16px/32px/64px에서 검증한다.
 
 ## Responsive acceptance
 
