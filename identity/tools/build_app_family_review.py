@@ -13,18 +13,12 @@ from PIL import Image, ImageDraw, ImageFont
 MASTER_SIZE = 2048
 SMALL_SIZES = (16, 32, 64, 128, 256)
 CANDIDATES = (
-    ("studio-c", "Gnaroshi Studio"),
-    ("studio-d", "Gnaroshi Studio"),
-    ("paperflow-c", "PaperFlow"),
-    ("paperflow-d", "PaperFlow"),
-    ("arxiv-discovery-c", "Arxiv Discovery"),
-    ("arxiv-discovery-d", "Arxiv Discovery"),
-    ("tr-gpu-monitor-c", "TR GPU Monitor"),
-    ("tr-gpu-monitor-d", "TR GPU Monitor"),
-    ("runshelf-c", "RunShelf"),
-    ("runshelf-d", "RunShelf"),
-    ("contentdeck-c", "ContentDeck"),
-    ("contentdeck-d", "ContentDeck"),
+    ("studio-p1", "Gnaroshi Studio"),
+    ("paperflow-p1", "PaperFlow"),
+    ("arxiv-discovery-p1", "Arxiv Discovery"),
+    ("tr-gpu-monitor-p1", "TR GPU Monitor"),
+    ("runshelf-p1", "RunShelf"),
+    ("contentdeck-p1", "ContentDeck"),
 )
 
 DARK = "#111923"
@@ -64,7 +58,7 @@ def normalize(candidate_dir: Path) -> dict[str, Image.Image]:
                 raise ValueError(f"candidate must be square: {path} is {source.size}")
             image = source.convert("RGB")
         if image.size != (MASTER_SIZE, MASTER_SIZE):
-            image = image.resize((MASTER_SIZE, MASTER_SIZE), Image.Resampling.LANCZOS)
+            image = image.resize((MASTER_SIZE, MASTER_SIZE), Image.Resampling.NEAREST)
             image.save(path, format="PNG", optimize=True)
         masters[candidate_id] = image
     return masters
@@ -97,7 +91,7 @@ def mask(size: int, shape: str) -> Image.Image:
 
 
 def icon(image: Image.Image, size: int, shape: str = "squircle") -> Image.Image:
-    resized = image.resize((size, size), Image.Resampling.LANCZOS)
+    resized = image.resize((size, size), Image.Resampling.NEAREST)
     result = Image.new("RGBA", (size, size), (0, 0, 0, 0))
     result.paste(resized, (0, 0), mask(size, shape))
     return result
@@ -108,29 +102,28 @@ def label(draw: ImageDraw.ImageDraw, xy: tuple[int, int], text: str, *, size: in
 
 
 def build_contact_sheet(masters: dict[str, Image.Image], output: Path) -> None:
-    width, row_height = 1600, 320
-    height = 110 + 6 * row_height + 50
+    width, row_height = 1600, 360
+    height = 110 + 3 * row_height + 50
     canvas = Image.new("RGBA", (width, height), DARK)
     draw = ImageDraw.Draw(canvas)
-    label(draw, (54, 34), "Gnaroshi app icon family — simplified round", size=36, fill=PAPER, bold=True)
-    label(draw, (55, 78), "C: direct role symbol · D: integrated role frame", size=18, fill=MUTED_DARK)
+    label(draw, (54, 34), "Gnaroshi app icon family — pixel P1", size=36, fill=PAPER, bold=True)
+    label(draw, (55, 78), "One fixed mascot template · one canonical role glyph · one key color per app", size=18, fill=MUTED_DARK)
 
-    for row in range(6):
+    for row in range(3):
         y = 110 + row * row_height
-        app = CANDIDATES[row * 2][1]
-        label(draw, (55, y + 12), app, size=24, fill=PAPER, bold=True)
         for col in range(2):
-            candidate_id = CANDIDATES[row * 2 + col][0]
+            candidate_id, app = CANDIDATES[row * 2 + col]
             x = 55 + col * 760
-            panel = (x, y + 50, x + 730, y + 300)
+            panel = (x, y + 22, x + 730, y + 338)
             draw.rounded_rectangle(panel, radius=24, fill=DARK_PANEL, outline=STROKE_DARK, width=2)
-            label(draw, (x + 24, y + 66), candidate_id, size=20, fill=PAPER, bold=True)
-            canvas.alpha_composite(icon(masters[candidate_id], 190, "squircle"), (x + 24, y + 96))
-            canvas.alpha_composite(icon(masters[candidate_id], 118, "circle"), (x + 252, y + 132))
-            canvas.alpha_composite(icon(masters[candidate_id], 118, "square"), (x + 407, y + 132))
-            label(draw, (x + 258, y + 258), "circle", size=16, fill=MUTED_DARK)
-            label(draw, (x + 425, y + 258), "square", size=16, fill=MUTED_DARK)
-            label(draw, (x + 558, y + 174), "C: direct symbol" if candidate_id.endswith("-c") else "D: integrated frame", size=17, fill=MUTED_DARK)
+            label(draw, (x + 24, y + 42), app, size=24, fill=PAPER, bold=True)
+            label(draw, (x + 24, y + 76), candidate_id, size=17, fill=MUTED_DARK)
+            canvas.alpha_composite(icon(masters[candidate_id], 210, "squircle"), (x + 24, y + 108))
+            canvas.alpha_composite(icon(masters[candidate_id], 128, "circle"), (x + 272, y + 150))
+            canvas.alpha_composite(icon(masters[candidate_id], 128, "square"), (x + 438, y + 150))
+            label(draw, (x + 285, y + 288), "circle", size=16, fill=MUTED_DARK)
+            label(draw, (x + 458, y + 288), "square", size=16, fill=MUTED_DARK)
+            label(draw, (x + 588, y + 198), "pixel P1", size=17, fill=MUTED_DARK)
     canvas.convert("RGB").save(output, format="PNG", optimize=True)
 
 
@@ -140,23 +133,22 @@ def build_surface_preview(masters: dict[str, Image.Image], output: Path, *, ligh
     foreground = INK if light else PAPER
     muted = MUTED_LIGHT if light else MUTED_DARK
     stroke = STROKE_LIGHT if light else STROKE_DARK
-    width, row_height = 1400, 235
-    height = 100 + 6 * row_height + 45
+    width, row_height = 1680, 340
+    height = 100 + 2 * row_height + 45
     canvas = Image.new("RGBA", (width, height), background)
     draw = ImageDraw.Draw(canvas)
     label(draw, (48, 30), f"App family — {'light' if light else 'dark'} surface", size=34, fill=foreground, bold=True)
     label(draw, (49, 72), "macOS-style squircle review mask", size=17, fill=muted)
-    for row in range(6):
+    for row in range(2):
         y = 100 + row * row_height
-        app = CANDIDATES[row * 2][1]
-        label(draw, (48, y + 92), app, size=22, fill=foreground, bold=True)
-        for col in range(2):
-            candidate_id = CANDIDATES[row * 2 + col][0]
-            x = 325 + col * 520
-            draw.rounded_rectangle((x, y + 18, x + 490, y + 216), radius=22, fill=panel_fill, outline=stroke, width=2)
-            canvas.alpha_composite(icon(masters[candidate_id], 170), (x + 16, y + 32))
-            label(draw, (x + 210, y + 82), candidate_id, size=22, fill=foreground, bold=True)
-            label(draw, (x + 210, y + 118), "direct role symbol" if candidate_id.endswith("-c") else "integrated role frame", size=16, fill=muted)
+        for col in range(3):
+            candidate_id, app = CANDIDATES[row * 3 + col]
+            x = 45 + col * 545
+            draw.rounded_rectangle((x, y + 18, x + 515, y + 318), radius=22, fill=panel_fill, outline=stroke, width=2)
+            canvas.alpha_composite(icon(masters[candidate_id], 220), (x + 18, y + 40))
+            label(draw, (x + 258, y + 108), app, size=20, fill=foreground, bold=True)
+            label(draw, (x + 258, y + 142), candidate_id, size=16, fill=muted)
+            label(draw, (x + 258, y + 178), "fixed pixel template", size=15, fill=muted)
     canvas.convert("RGB").save(output, format="PNG", optimize=True)
 
 

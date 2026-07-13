@@ -1,36 +1,32 @@
 # Gnaroshi application icon family review
 
-Status: **owner selection required**. The recommendation field is a review-quality screen only; no candidate is approved or selected by this document.
+Status: **owner selection required**. No P1 candidate is approved or selected by this document.
 
-This is the simplified C/D round. It replaces the first A/B round for active review without deleting its history. The new compositions make the mascot smaller, remove miniature decorative detail, and make the application role a larger single symbol or frame.
+Pixel P1 is a single coordinated family: one fixed mascot template, one fixed role-glyph position, one canonical glyph per application and one application key color. The prior A/B and C/D rounds are superseded for active review because their mascot scale, lighting, frame and role-object density were not consistent enough and several symbols were ambiguous.
 
-The candidates use the exact approved base identified in [`../approved/metadata.json`](../approved/metadata.json). Review binaries are intentionally ignored and must not be promoted to application icon sets, Electron/Tauri assets, favicons, menu-bar assets, website media, or package metadata without a separate owner decision.
+The exact approved base is recorded in [`../approved/metadata.json`](../approved/metadata.json). Review binaries are intentionally ignored and must not be promoted to application icon sets, Electron/Tauri assets, favicons, menu-bar assets, website media or package metadata without a separate owner decision.
 
 ## Review criteria
 
-- Role clarity: whether the app purpose can be inferred without a wordmark.
-- Base identity fidelity: whether the approved face, ears, four eyes, teeth, silhouette, cel shading, and teal/orange identity remain primary.
-- 32 px readability: whether the face remains readable and the role cue survives without competing with it.
-- Surface quality: whether the boundary and accents remain legible on dark and light review surfaces.
-- Recommended/rejected: a non-binding review-quality screen. `Recommended for owner review` means the candidate is coherent enough to compare; `Reject from this round` means it should not be promoted without revision.
+- Role clarity: identify the application role before reading its name.
+- Base identity fidelity: recognize the same ears, four eyes, teeth, face and orange/teal family.
+- 32px readability: both mascot and role glyph survive without blending together.
+- Family consistency: mascot, frame, background, role anchor and pixel scale do not change between apps.
+- Surface quality: boundary and key color remain legible on dark and light surfaces.
 
 ## Candidate record
 
-| Candidate ID | Application | Role clarity | Base identity fidelity | 32 px readability | Dark-mode quality | Light-mode quality | Recommended/rejected | Reason |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `studio-c` | Gnaroshi Studio | High | High | Face high; writing cue high | High | High | Recommended for owner review | One document-and-stylus symbol reads immediately and removes the miniature workspace decoration from the first round. |
-| `studio-d` | Gnaroshi Studio | Medium-high | High | Face high; hub cue medium | High | High | Recommended for owner review | The smaller mascot and broad connected frame express central coordination, though the hub is less specific than C's writing cue. |
-| `paperflow-c` | PaperFlow | High | High | Face high; flow cue high | High | High | Recommended for owner review | Three papers merging into one arrow communicate safe organized movement with one bold symbol. |
-| `paperflow-d` | PaperFlow | High | High | Face high; flow cue high | High | High | Recommended for owner review | The single paper on a broad ribbon makes the flow role primary while keeping the mascot recognizable. |
-| `arxiv-discovery-c` | Arxiv Discovery | High | High | Face high; discovery cue high | High | High | Recommended for owner review | A document and magnifier remain distinct at small size without using the arXiv logo. |
-| `arxiv-discovery-d` | Arxiv Discovery | High | High | Face high; scan cue high | High | High | Recommended for owner review | Broad scan corners and one paper create the clearest provider-style scanning treatment in the family. |
-| `tr-gpu-monitor-c` | TR GPU Monitor | High | High | Face high; GPU cue high | High | High | Recommended for owner review | The single chip and pulse are direct, vendor-neutral, and substantially simpler than the first round. |
-| `tr-gpu-monitor-d` | TR GPU Monitor | High | High | Face high; chip cue high | High | High | Recommended for owner review | The chip frame makes monitoring the dominant identity while the smaller mascot remains centered. |
-| `runshelf-c` | RunShelf | High | High | Face high; shelf cue high | High | High | Recommended for owner review | Three plain indexed blocks on one shelf avoid the previous fitness and chart ambiguity. |
-| `runshelf-d` | RunShelf | Medium-high | High | Face high; shelf cue medium-high | High | High | Recommended for owner review | The broad shelf frame is simple and coherent, although it can also read as a storage grid before the product context is known. |
-| `contentdeck-c` | ContentDeck | High | High | Face high; media cue high | High | High | Recommended for owner review | Loop, play, and subtitle strip form one direct media-learning symbol without resembling a provider logo. |
-| `contentdeck-d` | ContentDeck | High | High | Face high; media cue high | High | High | Recommended for owner review | The mascot inside the loop with a subtitle base is the most integrated treatment and stays simple at small sizes. |
+| Candidate ID | Application | Role clarity | Base identity fidelity | 32px readability | Dark/light quality | Review status | Reason |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `studio-p1` | Gnaroshi Studio | High: document + pencil | High: fixed template | Medium-high | High | Owner review | Direct writing/publishing cue; no generic gear or dashboard. |
+| `paperflow-p1` | PaperFlow | High: papers + one flow arrow | High: fixed template | Medium-high | High | Owner review | Shows organized paper movement without a Zotero or folder logo. |
+| `arxiv-discovery-p1` | Arxiv Discovery | High: document + magnifier | High: fixed template | Medium-high | High | Owner review | Discovery cue is direct and does not use the arXiv logo. |
+| `tr-gpu-monitor-p1` | TR GPU Monitor | High: GPU chip + pulse | High: fixed template | Medium-high | High | Owner review | Vendor-neutral telemetry cue; no server dashboard or terminal. |
+| `runshelf-p1` | RunShelf | Medium: flat run cards + shelf + dot | High: fixed template | Medium-low | High | Owner review | The server-like draft was replaced, but the shelf meaning is still the weakest at 32px. |
+| `contentdeck-p1` | ContentDeck | High: loop + play + subtitle | High: fixed template | Medium-high | High | Owner review | Playback, repetition and subtitles form one compact combined symbol. |
+
+The 16px exports primarily preserve family color and silhouette; application-role recognition starts at 32px and is reliable at 64px. Some generated glyph fills still contain more shade steps than the two-step production rule permits. After owner selection, the chosen master needs deterministic 64×64 grid quantization, palette cleanup and optical 16/32px exports before production use.
 
 ## Owner decision
 
-Record an explicit selection, rejection, or request for revision in a follow-up change. Selection must name the candidate ID and must not directly overwrite production icons; platform exports and application updates remain separate work.
+Review the P1 IDs together as a family. Record explicit selections, rejections or requested revisions by candidate ID. Selection still requires a later production-export change per application.

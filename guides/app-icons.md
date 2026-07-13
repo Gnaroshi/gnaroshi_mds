@@ -45,6 +45,50 @@ Source candidate와 approved base는 보존한다. Platform export나 role varia
 - Text, watermark, franchise logo, official emblem, trademark 또는 existing game asset의 direct copy를 넣지 않는다.
 - 특정 game publisher가 selected design을 소유한다고 주장하지 않는다.
 
+## Pixel application family
+
+Owner가 pixel direction을 선택한 Gnaroshi application family는 서로 다른 pixel illustration을 모은 것이 아니라 하나의 반복 가능한 icon system으로 만든다.
+
+### Shared grid and construction
+
+- 모든 master는 `64×64` logical pixel grid에서 설계하고 nearest-neighbor 방식으로만 큰 raster export를 만든다.
+- Anti-aliasing, sub-pixel stroke, blur, soft shadow, glow와 gradient를 사용하지 않는다.
+- 주요 silhouette과 role glyph에는 2 logical pixel을 기본 outline으로 사용한다. 1 pixel detail은 눈, 이빨 또는 꼭 필요한 내부 구분에만 제한한다.
+- Background, stepped frame, mascot anchor, face scale, ear position, outline value와 light direction은 family 전체에서 고정한다.
+- Approved base를 직접 pixel master의 raster reference로 사용한다. App마다 text description만으로 mascot을 다시 생성하지 않는다.
+- 먼저 한 개의 canonical pixel mascot master를 확정하고, 모든 app variant는 그 동일 master를 reference로 사용한다.
+- 16px/32px에서는 새로운 detail을 축소해 보존하려 하지 말고 optical small-size export에서 불필요한 detail을 제거한다.
+
+### Fixed composition
+
+- Mascot은 tile의 왼쪽 위 또는 중앙에 고정된 동일 anchor와 scale로 배치한다. App마다 pose, expression, crop 또는 시점을 바꾸지 않는다.
+- Role glyph는 한 개의 `20–24px` bounding box 안에서 같은 stroke와 corner language로 만든다.
+- Role glyph가 작아져 의미를 잃지 않게 mascot과 role 영역을 분리하고 두 요소 사이에 최소 3 logical pixel의 negative space를 둔다.
+- Tile border와 corner treatment는 모든 app에서 동일해야 한다. Key color만 바꾸어 frame geometry가 달라지지 않게 한다.
+- Icon은 mascot portrait가 아니라 application launcher로 읽혀야 한다. Mascot, role glyph, key-color field의 순서로 1초 안에 family와 app role을 구분할 수 있어야 한다.
+
+### Role glyph vocabulary and key colors
+
+Role glyph는 아래 canonical symbol에서 시작한다. 의미를 흐리는 장식, 두 번째 metaphor 또는 miniature interface를 추가하지 않는다.
+
+| Product | Canonical role glyph | Key color | Secondary color |
+| --- | --- | --- | --- |
+| Gnaroshi Studio | 한 장의 문서와 굵은 연필 | lavender `#B8A7F3` | mint `#8FD9C0` |
+| PaperFlow | 겹친 문서가 하나의 오른쪽 flow arrow로 합쳐지는 형태 | mint `#8FD9C0` | sky `#82C7EE` |
+| Arxiv Discovery | 문서와 큰 magnifying lens | sky `#82C7EE` | peach `#F2B58D` |
+| TR GPU Monitor | compact GPU chip과 한 줄의 telemetry pulse | soft coral `#E9948E` | aqua/teal `#3FA6A0` |
+| RunShelf | 한 선반 위의 세 개 indexed run block과 하나의 status dot | butter yellow `#E9D27A` | teal `#3FA6A0` |
+| ContentDeck | loop ring 안의 play triangle과 하나의 subtitle strip | peach `#F2B58D` | lavender `#B8A7F3` |
+
+- Studio에는 generic gear, dashboard grid 또는 command-center collage를 사용하지 않는다. Document와 pencil이 writing/publishing 역할을 직접 보여준다.
+- PaperFlow에는 Zotero logo나 generic folder를 사용하지 않는다. 여러 paper가 하나의 안전한 흐름으로 정리되는 방향성을 보여준다.
+- Arxiv Discovery에는 arXiv logo를 사용하지 않는다. Document와 magnifier가 discovery를 먼저 읽히게 한다.
+- TR GPU Monitor에는 vendor logo, server rack 또는 command line을 넣지 않는다. Chip과 pulse만 사용한다.
+- RunShelf에는 runner, fitness cue 또는 unreadable chart를 넣지 않는다. Shelf와 indexed blocks가 run indexing을 보여준다.
+- ContentDeck에는 provider logo나 player UI 전체를 넣지 않는다. Loop, play, subtitle을 하나의 결합 glyph로 만든다.
+
+Key color는 app role을 구분하는 identity color다. Available, success, warning, failed 같은 semantic state를 대신하지 않는다.
+
 ## Application role family
 
 | Product family | Identity role | Suitable secondary motif |

@@ -2,48 +2,51 @@
 
 ## Scope
 
-This review set explores role-specific application identity derivatives. It does not approve a candidate, alter a production icon, or define a platform export.
+The pixel P1 review set replaces the C/D round as the active owner-review set. It does not approve a candidate, alter a production icon, or define a platform export. Earlier A/B and C/D files remain review history only.
 
-The simplified C/D round responds to owner feedback on the first A/B round: the mascot occupied too much of the tile, the compositions read as character illustrations rather than application icons, and the small role objects did not identify the applications strongly enough.
-
-The exact generation reference was:
+The exact identity reference was:
 
 - approved base: `identity/approved/gnaroshi-base-v1.png`
 - source candidate: `identity/candidates/07-cel-shaded.png`
-- SHA-256: `2056b9e5cf7e3464aaf9c108849f0ec43ac1fbacd427ce73a6441e2619c380f6`
+- approved-base SHA-256: `2056b9e5cf7e3464aaf9c108849f0ec43ac1fbacd427ce73a6441e2619c380f6`
 - verified relationship: the approved base and retained source candidate are byte-identical
 
-Every candidate was created as an image edit with the approved base supplied as the raster reference input. The mascot was not recreated from a text description alone.
+The approved base was supplied as raster reference input to create one common pixel template. Each application candidate then used that same pixel template as its only raster reference. Applications were not generated as independent mascot illustrations.
 
-## Shared generation constraints
+## Shared pixel template
 
-- Preserve the approved face, head shape, ears, four eyes, teeth, expression, cel-shaded rendering, and orange/teal identity exactly enough to keep family recognition.
-- Reduce the mascot footprint to approximately 45–55 percent of the square instead of filling most of the tile.
-- Give the role treatment approximately 28–38 percent of the composition while keeping it to one combined symbol or frame.
-- Keep the role cue clear of the face, eyes, ears, teeth, and primary silhouette; it may read before the mascot when that improves application-role clarity.
-- Use a deep charcoal-blue or dark blue-gray background, never pure black.
-- Retain a strong silhouette, safe margin, and 32 px/64 px readability.
-- Use broad outlines, large shapes, and no more than two shading levels for role artwork.
-- Do not add text, watermarks, repository names, franchise logos, copied armor or emblems, neon, muddy color, excessive glow, miniature UI, card collages, or a busy scene.
-- Candidate C places one direct role symbol in the lower-right foreground.
-- Candidate D integrates one role frame behind or around the smaller mascot.
+- Review-only template: `identity/review/candidates/pixel-family-template.png`
+- Template SHA-256 before review normalization: `00831832c7861bdfb8e213a6e3bd6ff2e0f900be755baad07138d0183c83dd56`
+- Design target: `64×64` logical pixel grid
+- Current template source: generated `1254×1254` review raster, not yet a coordinate-quantized production grid
+- Fixed elements: mascot scale, upper-left anchor, four eyes, ears, teeth, orange/teal palette, deep charcoal background, stepped frame
+- Reserved element: one lower-right role-glyph area using one canonical glyph and one key color
 
-## Candidate prompts
+The first template attempt was rejected before it received a candidate ID because it filled the tile and did not preserve a usable role-glyph zone. A first RunShelf attempt was also rejected before ID assignment because its blocks read as server equipment rather than experiment records.
 
-| Candidate IDs | Product | Role treatment | Accents |
+## P1 candidate system
+
+| Candidate ID | Product | Canonical role glyph | Key color |
 | --- | --- | --- | --- |
-| `studio-c`, `studio-d` | Gnaroshi Studio | document and stylus; connected workspace hub frame | lavender, mint |
-| `paperflow-c`, `paperflow-d` | PaperFlow | papers merging into one flow arrow; one paper on a broad flow ribbon | mint, sky blue |
-| `arxiv-discovery-c`, `arxiv-discovery-d` | Arxiv Discovery | document with magnifier; document within scan corners | sky blue, peach |
-| `tr-gpu-monitor-c`, `tr-gpu-monitor-d` | TR GPU Monitor | GPU chip with one pulse; GPU chip frame | aqua, soft coral |
-| `runshelf-c`, `runshelf-d` | RunShelf | three indexed blocks on one shelf; one shelf frame | butter yellow, teal |
-| `contentdeck-c`, `contentdeck-d` | ContentDeck | loop/play with subtitle strip; loop frame with subtitle strip | peach, lavender |
+| `studio-p1` | Gnaroshi Studio | document and pencil | lavender `#B8A7F3` |
+| `paperflow-p1` | PaperFlow | stacked papers merging into one arrow | mint `#8FD9C0` |
+| `arxiv-discovery-p1` | Arxiv Discovery | document and magnifying lens | sky `#82C7EE` |
+| `tr-gpu-monitor-p1` | TR GPU Monitor | GPU chip and telemetry pulse | soft coral `#E9948E` |
+| `runshelf-p1` | RunShelf | three flat run cards on a shelf with one status dot | butter yellow `#E9D27A` |
+| `contentdeck-p1` | ContentDeck | loop, play, and subtitle strip | peach `#F2B58D` |
+
+Every role glyph uses the same lower-right anchor, similar visual mass, broad square-pixel outline and no text, vendor mark, repository name or miniature interface.
 
 ## Review files and tooling
 
-Candidate masters and rendered review PNGs live under ignored `identity/review/` paths until the owner selects a direction. The normalized review masters are 2048×2048 square PNGs. The generation originals remain outside the repository and are not overwritten.
+Candidate masters and rendered review PNGs live under ignored `identity/review/` paths until the owner selects a direction. The tool normalizes generated square sources to 2048×2048 with nearest-neighbor resampling and creates:
 
-Generate or refresh the review sheets with the bundled workspace Python runtime and Pillow:
+- `app-family-contact-sheet.png`
+- `app-family-dark-preview.png`
+- `app-family-light-preview.png`
+- `app-family-small-sizes.png`
+
+Refresh the sheets with:
 
 ```bash
 python3 identity/tools/build_app_family_review.py \
@@ -51,11 +54,4 @@ python3 identity/tools/build_app_family_review.py \
   --output-dir identity/review
 ```
 
-The tool validates the twelve current C/D masters, normalizes non-2048 square inputs to 2048×2048, and creates:
-
-- `app-family-contact-sheet.png`: squircle, circle, and square-mask comparison
-- `app-family-dark-preview.png`: dark-surface comparison
-- `app-family-light-preview.png`: light-surface comparison
-- `app-family-small-sizes.png`: 16, 32, 64, 128, and 256 px comparison on both surfaces
-
-The squircle is a review approximation. Production platform masks and optical corrections are separate work after owner selection.
+The squircle is a review approximation. Production masks, optical small-size corrections and platform exports are separate work after owner selection.

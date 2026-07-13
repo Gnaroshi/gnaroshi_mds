@@ -29,6 +29,16 @@ Approved application identity base: `identity/approved/gnaroshi-base-v1.png`
 - light/dark surface 모두에서 boundary가 사라지지 않음
 - 후보는 서로 다른 style과 material을 탐색하되 동일 identity를 유지함
 
+Pixel identity family는 style을 app마다 탐색하지 않는다. [`app-icons.md`](app-icons.md)의 shared `64×64` logical grid, canonical mascot master, fixed composition과 role-glyph vocabulary를 먼저 고정한 뒤 동일 system 안에서만 후보를 비교한다.
+
+Pixel master와 export에는 다음을 추가로 적용한다.
+
+- Hard pixel edge와 integer-aligned geometry를 유지한다.
+- Nearest-neighbor 이외의 resampling으로 master를 확대하지 않는다.
+- Review sheet에서 16px, 32px와 64px를 interpolation 없이 확인한다.
+- Production master의 source grid, scale factor, palette와 SHA-256을 metadata에 기록한다.
+- 실제 app screenshot, photograph, diagram, body text에는 pixelation filter를 적용하지 않는다.
+
 ## Actual application screenshots
 
 - Project 또는 application evidence는 실제 executable이나 실제 repository UI component가 렌더링한 화면을 사용한다.
@@ -42,6 +52,6 @@ Approved application identity base: `identity/approved/gnaroshi-base-v1.png`
 
 - Owner-approved 기준 asset은 `identity/approved/gnaroshi-base-v1.png`이며 selection provenance와 hash는 `identity/approved/metadata.json`에 있다.
 - `identity/candidates/07-cel-shaded.png`는 source candidate로 그대로 보존한다.
-- 사용자가 다른 방향을 요청하지 않는 한 Gnaroshi 관련 icon refinement는 cel-shaded raster style을 따른다.
-- 유지할 특성은 굵고 통제된 outline, 단순한 2단계 명암, 큰 귀와 눈의 명확한 silhouette, 주황·청록 대비, 작은 크기 인식성이다.
+- Gnaroshi application family와 website identity의 현재 owner-selected direction은 approved cel-shaded base를 pixel raster로 번역하는 것이다. Approved source 자체는 수정하지 않는다.
+- 유지할 특성은 굵고 통제된 pixel outline, 단순한 2단계 명암, 큰 귀와 눈의 명확한 silhouette, 주황·청록 대비, 작은 크기 인식성이다.
 - Role variant, functional icon, menu-bar template, shared palette와 platform export는 [`app-icons.md`](app-icons.md)를 따른다.
