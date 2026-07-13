@@ -2,58 +2,58 @@
 
 ## Scope
 
-The pixel P2 review set supersedes P1 for active owner review. P1 established a common pixel treatment but placed the mascot at the upper-left and treated every product role as a small lower-right attachment. Owner review found that composition off-center, weaker at small sizes and too generic for Arxiv Discovery, RunShelf and ContentDeck.
+The pixel P3 review set supersedes P2 for active owner review. P2B improved small-size role prominence, but owner review found that its abstract glyphs still did not communicate what any application actually does. The detached mascot crest also repeated more of the mascot than the role needed.
 
-P2 corrects the system without approving a candidate, altering a production icon or defining a platform export. Earlier A/B, C/D and P1 files remain review history only.
+P3 changes the visual grammar:
 
-The exact identity reference remains:
+- the application workflow is a large concrete foreground scene, not an abstract badge;
+- the mascot is a shared partial background layer, not a complete separate crest;
+- the foreground overlaps the mascot while preserving the large ears, helmet and cyan eyes as family recognition;
+- every role scene shows a real object undergoing the app's representative action.
+
+P3 does not approve a candidate, alter a production icon or define a platform export. Earlier A/B, C/D, P1 and P2 files remain review history only.
+
+## Exact identity reference
 
 - approved base: `identity/approved/gnaroshi-base-v1.png`
 - source candidate: `identity/candidates/07-cel-shaded.png`
 - approved-base SHA-256: `2056b9e5cf7e3464aaf9c108849f0ec43ac1fbacd427ce73a6441e2619c380f6`
 - verified relationship: the approved base and retained source candidate are byte-identical
 
-The approved base was supplied as raster reference input for the shared pixel construction. P2 app candidates were generated only by editing one of the two common P2 templates; the mascot was not independently described or regenerated for each app.
+The approved base and the P2 pixel treatment were supplied as raster references for one common P3 template. Every application candidate then edited that same template; applications were not generated as independent mascot illustrations.
 
-## Centered main reference
+## Shared P3 construction
 
-- Review-only reference: `identity/review/candidates/gnaroshi-main-p2.png`
-- Pre-normalization SHA-256: `add782d9ceda9898cfd2d3a94b8031b9161290190abe5943d5d3360a2586d99b`
-- Construction: mascot centered on the horizontal and vertical axes, no role object or empty panel
-- Purpose: define the neutral Gnaroshi family mark separately from application variants
+- Neutral review reference: `identity/review/candidates/gnaroshi-main-p3.png`
+- Overlap template: `identity/review/candidates/pixel-family-template-p3.png`
+- Template pre-normalization SHA-256: `50adeb4d372440b55fc54dbeefcecd4b40f524dbafcaa882d27001b76b3cd920`
+- Composition: large role workflow in the lower/front layer; matching mascot ears, helmet and eyes behind it
+- Fixed elements: deep charcoal background, stepped frame, mascot crop/anchor, orange/teal palette, pixel scale, outline and lighting
+- Variable elements: one concrete workflow subject and its approved role colors
 
-The main reference is not one of the 12 app candidates and is not a production selection.
+The generated sources are review rasters representing a `64×64` logical target. The review tool normalizes them to `2048×2048` with nearest-neighbor resampling. They are not coordinate-quantized production masters.
 
-## Shared P2 templates
+## P3 workflow vocabulary
 
-| Template | Review-only path | Pre-normalization SHA-256 | Fixed composition |
+| Candidate ID | Product | Concrete foreground workflow | Key colors |
 | --- | --- | --- | --- |
-| P2A `vertical-panel` | `identity/review/candidates/pixel-family-template-p2a.png` | `754f116111d967a6d04809d80128a4fae241aa130bfb247e42b05702e331f422` | large centered mascot above one common lower role panel |
-| P2B `role-first` | `identity/review/candidates/pixel-family-template-p2b.png` | `6419af499df1ae5ffcea7c69a0f9cbf64feb1b50baf04b07b4f8175bc619360b` | small centered mascot crest above one dominant central role emblem |
+| `studio-p3` | Gnaroshi Studio | research sheets enter a central authoring workbench where a pen creates a line that exits through a publish gate | lavender + mint |
+| `paperflow-p3` | PaperFlow | research papers move on a conveyor through a guarded sorter into indexed library drawers | mint + sky blue |
+| `arxiv-discovery-p3` | Arxiv Discovery | a radar sweep discovers one of several incoming research papers and passes it to a receiving slot | sky blue + peach |
+| `tr-gpu-monitor-p3` | TR GPU Monitor | a recognizable GPU card exposes live metric bars/pulse and connects to remote hosts | soft coral + teal/aqua |
+| `runshelf-p3` | RunShelf | experiment, metric trace and artifact evidence are retained as stacked run records in a ledger shelf | butter yellow + teal |
+| `contentdeck-p3` | ContentDeck | a media screen shows large subtitles while two boundary pins loop one selected learning segment | peach + lavender |
 
-Both templates share the deep charcoal background, stepped frame, orange/teal mascot palette, symmetric center axis, hard pixel edges and common outline language. Current generated sources are `1254×1254` review rasters representing a `64×64` logical target; they are normalized to `2048×2048` with nearest-neighbor resampling for review. They are not yet coordinate-quantized production masters.
-
-## P2 semantic vocabulary
-
-| Application | Candidate A | Candidate B | Product meaning encoded | Key colors |
-| --- | --- | --- | --- | --- |
-| Gnaroshi Studio | `studio-p2a` | `studio-p2b` | writing document + pencil + outward publish cue | lavender + mint |
-| PaperFlow | `paperflow-p2a` | `paperflow-p2b` | multiple papers following a guided path into an organized tray | mint + sky blue |
-| Arxiv Discovery | `arxiv-discovery-p2a` | `arxiv-discovery-p2b` | multiple incoming papers passing a scan gate and producing a discovery spark | sky blue + peach |
-| TR GPU Monitor | `tr-gpu-monitor-p2a` | `tr-gpu-monitor-p2b` | GPU hardware + live telemetry + remote nodes | soft coral + teal/aqua |
-| RunShelf | `runshelf-p2a` | `runshelf-p2b` | three experiment-run lanes from common start markers to indexed result markers | butter yellow + teal |
-| ContentDeck | `contentdeck-p2a` | `contentdeck-p2b` | dominant subtitle card + selected segment brackets + playback/loop cue | peach + lavender |
-
-The P2 vocabulary intentionally removes the P1 magnifying glass, generic run blocks and repeat-first ContentDeck symbol. It also avoids vendor logos, repository names, text, miniature dashboards and app-specific mascot poses.
+P3 intentionally rejects the P2 document-only Studio, abstract PaperFlow arrows, scan gate, run lanes and repeat-first ContentDeck symbol. It also avoids vendor logos, repository names, text, terminal content, provider marks and app-specific mascot poses.
 
 ## Review files and tooling
 
-Candidate masters and rendered review PNGs live under ignored `identity/review/` paths until the owner selects a direction. The tool normalizes square sources to `2048×2048` with nearest-neighbor resampling and creates:
+Candidate masters and rendered review PNGs live under ignored `identity/review/` paths until the owner selects a direction. The tool creates:
 
-- `app-family-contact-sheet.png`: centered main reference followed by A/B comparison per app
+- `app-family-contact-sheet.png`: centered neutral main plus six P3 workflow scenes
 - `app-family-dark-preview.png`
 - `app-family-light-preview.png`
-- `app-family-small-sizes.png`: main plus all 12 candidates at 16/32/64/128/256px
+- `app-family-small-sizes.png`: main plus P3 candidates at 16/32/64/128/256px
 
 Refresh the sheets with:
 
@@ -63,4 +63,4 @@ python3 identity/tools/build_app_family_review.py \
   --output-dir identity/review
 ```
 
-The squircle is a review approximation. Production selection still requires a deterministic `64×64` grid, palette cleanup, optical 16/32px exports and real platform mask verification.
+The squircle is a review approximation. Production selection still requires a deterministic `64×64` grid, simplified optical 16/32px masters, palette cleanup and real platform-mask verification.

@@ -1,41 +1,33 @@
 # Gnaroshi application icon family review
 
-Status: **owner selection required**. No P2 candidate is approved, recommended as final or selected by this document.
+Status: **owner selection required**. No P3 candidate is approved, recommended as final or selected by this document.
 
-Pixel P2 compares two coherent composition families while keeping each family internally fixed:
+P3 uses one `overlap-workflow` family: the role workflow occupies the foreground and a partial shared mascot remains behind it. It replaces P2's detached complete crest and abstract role glyphs after owner feedback that the icons still required an explanation before their product roles could be understood.
 
-- A / `vertical-panel`: the centered mascot remains prominent and the role glyph sits in a common panel below the face.
-- B / `role-first`: the same family identity becomes a smaller centered crest and the role glyph becomes the dominant launcher subject.
-
-P2 replaces the P1 upper-left mascot and lower-right attachment composition. It also replaces ambiguous single-function metaphors with product-purpose glyphs. The exact approved base is recorded in [`../approved/metadata.json`](../approved/metadata.json). Review binaries are intentionally ignored and must not be promoted to app icon sets, Electron/Tauri assets, favicons, menu-bar assets, website media or package metadata without explicit owner selection.
+The exact approved base is recorded in [`../approved/metadata.json`](../approved/metadata.json). Review binaries are intentionally ignored and must not be promoted to app icon sets, Electron/Tauri assets, favicons, menu-bar assets, website media or package metadata without explicit owner selection.
 
 ## Review criteria
 
-- Role clarity: identify the application purpose before reading its name.
-- Base identity fidelity: recognize the same ears, four eyes, teeth, face and orange/teal family.
-- 32px readability: the role glyph leads while the mascot remains a recognizable family crest.
-- Family consistency: background, frame, mascot treatment, role container, outline and pixel scale do not change inside A or B.
+- Workflow clarity: recognize the principal object and action before reading the app name.
+- Product distinction: do not confuse PaperFlow organization with Arxiv discovery, or ContentDeck study with generic repeat playback.
+- Base fidelity: the same large ears, helmet, cyan eyes and teal/orange family remain behind every workflow.
+- 32px readability: the workflow subject leads; unnecessary secondary detail may disappear without changing its broad meaning.
+- Family consistency: background, frame, mascot crop, overlap depth, pixel treatment and lighting remain stable.
 - Surface quality: boundary and key color remain legible on dark and light surfaces.
 
 ## Candidate record
 
-| Candidate ID | Application | Role clarity | Base fidelity | 32px readability | Dark/light quality | Review status | Reason |
+| Candidate ID | Application | Workflow clarity | Base fidelity | 32px readability | Dark/light quality | Review status | Reason |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `studio-p2a` | Gnaroshi Studio | High | High | Medium-high | High | Owner review | Centered mascot plus document, pencil and publish cue; writing remains explicit. |
-| `studio-p2b` | Gnaroshi Studio | High | High | High | High | Owner review | The larger document/pencil silhouette leads before the crest. |
-| `paperflow-p2a` | PaperFlow | High | High | Medium-high | High | Owner review | Multiple papers visibly converge into an organized tray rather than a generic folder. |
-| `paperflow-p2b` | PaperFlow | High | High | High | High | Owner review | Large guided flow and tray remain distinct from discovery scanning. |
-| `arxiv-discovery-p2a` | Arxiv Discovery | High | High | Medium-high | High | Owner review | Incoming papers cross a scan gate; no generic magnifier or arXiv logo. |
-| `arxiv-discovery-p2b` | Arxiv Discovery | High | High | High | High | Owner review | Scan gate and discovery spark dominate at small sizes. |
-| `tr-gpu-monitor-p2a` | TR GPU Monitor | High | High | Medium-high | High | Owner review | GPU, telemetry and remote nodes are combined without vendor branding. |
-| `tr-gpu-monitor-p2b` | TR GPU Monitor | High | High | High | High | Owner review | The GPU silhouette leads and retains the remote-status cue. |
-| `runshelf-p2a` | RunShelf | Medium-high | High | Medium-high | High | Owner review | Start-to-result lanes express experiment runs; owner should confirm that the bracket reads as an index rather than sliders. |
-| `runshelf-p2b` | RunShelf | Medium-high | High | High | High | Owner review | Large lanes and distinct result markers improve the previous block/shelf metaphor, but still require owner semantic validation. |
-| `contentdeck-p2a` | ContentDeck | High | High | Medium-high | High | Owner review | Subtitle card is primary; segment brackets and loop are secondary. |
-| `contentdeck-p2b` | ContentDeck | High | High | High | High | Owner review | Dominant subtitle card prevents the icon from reading as generic repeat playback. |
+| `studio-p3` | Gnaroshi Studio | Medium-high | High | Medium-high | High | Owner review | Central workbench and pen show authoring; incoming research and outgoing publish rays add coordination, though this is the densest role scene. |
+| `paperflow-p3` | PaperFlow | High | High | Medium | High | Owner review | Papers visibly travel through a sorter into library drawers; the 32px optical master should remove chart marks and retain paper/sorter/drawer masses. |
+| `arxiv-discovery-p3` | Arxiv Discovery | High | High | High | High | Owner review | Radar sweep, multiple incoming papers and one discovered result distinguish discovery from organization. |
+| `tr-gpu-monitor-p3` | TR GPU Monitor | High | High | High | High | Owner review | GPU hardware, live metrics and remote-host link remain distinct at 32px without vendor branding. |
+| `runshelf-p3` | RunShelf | Medium-high | High | Medium-high | High | Owner review | Flask, metric trace, artifact cube and stacked records show experiment memory rather than launch; owner should confirm the experiment metaphor matches the product voice. |
+| `contentdeck-p3` | ContentDeck | High | High | High | High | Owner review | Actual media frame, dominant subtitles and bounded timeline loop read as caption-segment practice rather than repeat alone. |
 
-The 16px views are identity and color checks; role recognition is evaluated primarily at 32px and 64px. Generated glyph fills still contain more shade steps than the two-step production rule permits, and the review rasters are not exact coordinate-quantized `64×64` masters. Those are post-selection production tasks, not reasons to auto-select a candidate now.
+The 16px views are family-color checks, not full workflow tests. At 32px, PaperFlow and Studio retain their main foreground masses but need deterministic optical simplification after selection. The review rasters still contain extra shade steps and are not exact coordinate-quantized `64×64` masters.
 
 ## Owner decision
 
-Review A and B as complete families, then record explicit selections, rejections or revision requests by candidate ID. The owner may select one composition family for every app or request a specific semantic refinement before production export. No production repository changes occur in this review step.
+Record explicit selection, rejection or revision by P3 candidate ID. Semantic approval comes before palette/grid cleanup or any production export. No production repository changes occur in this review step.
