@@ -13,18 +13,18 @@ from PIL import Image, ImageDraw, ImageFont
 MASTER_SIZE = 2048
 SMALL_SIZES = (16, 32, 64, 128, 256)
 CANDIDATES = (
-    ("studio-a", "Gnaroshi Studio"),
-    ("studio-b", "Gnaroshi Studio"),
-    ("paperflow-a", "PaperFlow"),
-    ("paperflow-b", "PaperFlow"),
-    ("arxiv-discovery-a", "Arxiv Discovery"),
-    ("arxiv-discovery-b", "Arxiv Discovery"),
-    ("tr-gpu-monitor-a", "TR GPU Monitor"),
-    ("tr-gpu-monitor-b", "TR GPU Monitor"),
-    ("runshelf-a", "RunShelf"),
-    ("runshelf-b", "RunShelf"),
-    ("contentdeck-a", "ContentDeck"),
-    ("contentdeck-b", "ContentDeck"),
+    ("studio-c", "Gnaroshi Studio"),
+    ("studio-d", "Gnaroshi Studio"),
+    ("paperflow-c", "PaperFlow"),
+    ("paperflow-d", "PaperFlow"),
+    ("arxiv-discovery-c", "Arxiv Discovery"),
+    ("arxiv-discovery-d", "Arxiv Discovery"),
+    ("tr-gpu-monitor-c", "TR GPU Monitor"),
+    ("tr-gpu-monitor-d", "TR GPU Monitor"),
+    ("runshelf-c", "RunShelf"),
+    ("runshelf-d", "RunShelf"),
+    ("contentdeck-c", "ContentDeck"),
+    ("contentdeck-d", "ContentDeck"),
 )
 
 DARK = "#111923"
@@ -112,8 +112,8 @@ def build_contact_sheet(masters: dict[str, Image.Image], output: Path) -> None:
     height = 110 + 6 * row_height + 50
     canvas = Image.new("RGBA", (width, height), DARK)
     draw = ImageDraw.Draw(canvas)
-    label(draw, (54, 34), "Gnaroshi app icon family — owner review", size=36, fill=PAPER, bold=True)
-    label(draw, (55, 78), "Each candidate: macOS-style squircle, circular mask, square tile", size=18, fill=MUTED_DARK)
+    label(draw, (54, 34), "Gnaroshi app icon family — simplified round", size=36, fill=PAPER, bold=True)
+    label(draw, (55, 78), "C: direct role symbol · D: integrated role frame", size=18, fill=MUTED_DARK)
 
     for row in range(6):
         y = 110 + row * row_height
@@ -130,7 +130,7 @@ def build_contact_sheet(masters: dict[str, Image.Image], output: Path) -> None:
             canvas.alpha_composite(icon(masters[candidate_id], 118, "square"), (x + 407, y + 132))
             label(draw, (x + 258, y + 258), "circle", size=16, fill=MUTED_DARK)
             label(draw, (x + 425, y + 258), "square", size=16, fill=MUTED_DARK)
-            label(draw, (x + 558, y + 174), "A: foreground" if candidate_id.endswith("-a") else "B: background", size=17, fill=MUTED_DARK)
+            label(draw, (x + 558, y + 174), "C: direct symbol" if candidate_id.endswith("-c") else "D: integrated frame", size=17, fill=MUTED_DARK)
     canvas.convert("RGB").save(output, format="PNG", optimize=True)
 
 
@@ -156,7 +156,7 @@ def build_surface_preview(masters: dict[str, Image.Image], output: Path, *, ligh
             draw.rounded_rectangle((x, y + 18, x + 490, y + 216), radius=22, fill=panel_fill, outline=stroke, width=2)
             canvas.alpha_composite(icon(masters[candidate_id], 170), (x + 16, y + 32))
             label(draw, (x + 210, y + 82), candidate_id, size=22, fill=foreground, bold=True)
-            label(draw, (x + 210, y + 118), "foreground role marker" if candidate_id.endswith("-a") else "background role emblem", size=16, fill=muted)
+            label(draw, (x + 210, y + 118), "direct role symbol" if candidate_id.endswith("-c") else "integrated role frame", size=16, fill=muted)
     canvas.convert("RGB").save(output, format="PNG", optimize=True)
 
 

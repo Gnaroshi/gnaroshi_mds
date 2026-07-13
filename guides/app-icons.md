@@ -38,7 +38,10 @@ Source candidate와 approved base는 보존한다. Platform export나 role varia
 
 - 큰 귀, 날카로운 눈, 넓은 얼굴/이빨, 강한 중심 silhouette와 teal/orange 대비가 즉시 인식되어야 한다.
 - Role element가 얼굴, 눈, 귀 또는 주요 silhouette를 가리지 않는다.
-- Role element는 전체 visual identity의 약 25% 이하를 권장한다.
+- App role variant는 복잡한 character illustration이 아니라 작은 크기에서 용도가 구분되는 application icon으로 읽혀야 한다.
+- Mascot이 tile을 가득 채우지 않게 약 45–60% footprint를 starting point로 삼고 충분한 negative space를 둔다. 정확한 면적 비율보다 얼굴·귀·네 눈·이빨의 recognition을 우선한다.
+- Role treatment는 한 개의 결합된 symbol 또는 frame으로 제한하고 약 25–40% 안에서 application purpose가 읽히는 크기로 조정한다. 여러 miniature prop, 작은 UI control, card collage로 역할을 설명하지 않는다.
+- Role treatment가 mascot보다 먼저 보일 수는 있지만 얼굴, 눈, 귀, 이빨 또는 family silhouette를 가리거나 다른 character처럼 보이게 만들면 안 된다.
 - Text, watermark, franchise logo, official emblem, trademark 또는 existing game asset의 direct copy를 넣지 않는다.
 - 특정 game publisher가 selected design을 소유한다고 주장하지 않는다.
 
@@ -53,7 +56,7 @@ Source candidate와 approved base는 보존한다. Platform export나 role varia
 | RunShelf | experiment runs, shelves, indexed results | shelf line, indexed block, run marker |
 | ContentDeck / `content-looper` | playback, looping, subtitles, learning | loop arc, play cue, compact subtitle strip |
 
-Secondary motif는 logo collage가 아니라 작은 role cue다. Base mascot의 pose와 expression을 무리하게 바꿔 family recognition을 잃지 않는다.
+Secondary motif는 logo collage가 아니라 하나의 굵고 단순한 role cue다. 작은 크기에서 의미가 사라지는 가는 선, 세부 pictogram, miniature interface를 피한다. Base mascot의 pose와 expression을 무리하게 바꿔 family recognition을 잃지 않는다.
 
 ## Shared palette
 
