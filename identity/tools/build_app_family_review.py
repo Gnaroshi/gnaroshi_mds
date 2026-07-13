@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Normalize P3 app-family candidates and build non-production review sheets."""
+"""Validate deterministic P4 pixel masters and build review sheets."""
 
 from __future__ import annotations
 
@@ -12,14 +12,15 @@ from PIL import Image, ImageDraw, ImageFont
 
 MASTER_SIZE = 2048
 SMALL_SIZES = (16, 32, 64, 128, 256)
-MAIN_REFERENCE = ("gnaroshi-main-p3", "Gnaroshi main/default", "centered neutral identity")
+SOURCE_SIZE = 64
+MAIN_REFERENCE = ("gnaroshi-main-p4", "Gnaroshi main/default", "centered ears-and-eyes identity")
 CANDIDATES = (
-    ("studio-p3", "Gnaroshi Studio", "research → authoring workbench → publish"),
-    ("paperflow-p3", "PaperFlow", "papers → safe sorter → library drawers"),
-    ("arxiv-discovery-p3", "Arxiv Discovery", "incoming papers discovered by radar scan"),
-    ("tr-gpu-monitor-p3", "TR GPU Monitor", "remote GPU hardware and live telemetry"),
-    ("runshelf-p3", "RunShelf", "experiment metrics and artifacts stored as run records"),
-    ("contentdeck-p3", "ContentDeck", "media subtitles and bounded segment practice"),
+    ("studio-p4", "Gnaroshi Studio", "connected work → authoring hub → publish"),
+    ("paperflow-p4", "PaperFlow", "papers → safe sorter → indexed library"),
+    ("arxiv-discovery-p4", "Arxiv Discovery", "radar discovers incoming research papers"),
+    ("tr-gpu-monitor-p4", "TR GPU Monitor", "remote GPU hardware and live telemetry"),
+    ("runshelf-p4", "RunShelf", "experiment metric and artifact stored as run records"),
+    ("contentdeck-p4", "ContentDeck", "media subtitles and bounded segment practice"),
 )
 
 DARK = "#111923"
@@ -52,16 +53,21 @@ def normalize(candidate_dir: Path) -> dict[str, Image.Image]:
     masters: dict[str, Image.Image] = {}
     required = (MAIN_REFERENCE[0],) + tuple(candidate_id for candidate_id, _, _ in CANDIDATES)
     for candidate_id in required:
+        source_path = candidate_dir / "p4-64" / f"{candidate_id}.png"
         path = candidate_dir / f"{candidate_id}.png"
+        if not source_path.is_file():
+            raise FileNotFoundError(f"missing 64px source master: {source_path}")
         if not path.is_file():
             raise FileNotFoundError(f"missing candidate: {path}")
+        with Image.open(source_path) as source:
+            if source.size != (SOURCE_SIZE, SOURCE_SIZE):
+                raise ValueError(f"source master must be 64x64: {source_path} is {source.size}")
+            source_master = source.convert("RGB")
         with Image.open(path) as source:
-            if source.width != source.height:
-                raise ValueError(f"candidate must be square: {path} is {source.size}")
             image = source.convert("RGB")
-        if image.size != (MASTER_SIZE, MASTER_SIZE):
-            image = image.resize((MASTER_SIZE, MASTER_SIZE), Image.Resampling.NEAREST)
-            image.save(path, format="PNG", optimize=True)
+        expected = source_master.resize((MASTER_SIZE, MASTER_SIZE), Image.Resampling.NEAREST)
+        if image.size != (MASTER_SIZE, MASTER_SIZE) or image.tobytes() != expected.tobytes():
+            raise ValueError(f"review export is not a nearest-neighbor copy of its 64px source: {path}")
         masters[candidate_id] = image
     return masters
 
@@ -107,8 +113,8 @@ def build_contact_sheet(masters: dict[str, Image.Image], output: Path) -> None:
     height = 215 + 3 * row_height + 45
     canvas = Image.new("RGBA", (width, height), DARK)
     draw = ImageDraw.Draw(canvas)
-    label(draw, (50, 28), "Gnaroshi app icon family — pixel P3", size=38, fill=PAPER, bold=True)
-    label(draw, (51, 76), "Concrete workflow foreground · partial mascot behind · one shared overlap system", size=19, fill=MUTED_DARK)
+    label(draw, (50, 28), "Gnaroshi app icon family — pixel P4", size=38, fill=PAPER, bold=True)
+    label(draw, (51, 76), "Deterministic 64px masters · shared ears-and-eyes band · functional role first", size=19, fill=MUTED_DARK)
     canvas.alpha_composite(icon(masters[MAIN_REFERENCE[0]], 112), (52, 102))
     label(draw, (184, 125), MAIN_REFERENCE[1], size=21, fill=PAPER, bold=True)
     label(draw, (184, 160), MAIN_REFERENCE[2], size=16, fill=MUTED_DARK)
@@ -140,7 +146,7 @@ def build_surface_preview(masters: dict[str, Image.Image], output: Path, *, ligh
     height = 105 + rows * row_height + 40
     canvas = Image.new("RGBA", (width, height), background)
     draw = ImageDraw.Draw(canvas)
-    label(draw, (48, 28), f"App family P3 — {'light' if light else 'dark'} surface", size=34, fill=foreground, bold=True)
+    label(draw, (48, 28), f"App family P4 — {'light' if light else 'dark'} surface", size=34, fill=foreground, bold=True)
     label(draw, (49, 72), "macOS-style squircle review mask · no production selection", size=17, fill=muted)
     for index, (candidate_id, app, role) in enumerate(CANDIDATES):
         row, col = divmod(index, columns)
@@ -160,7 +166,7 @@ def build_small_sizes(masters: dict[str, Image.Image], output: Path) -> None:
     height = 110 + len(items) * row_height + 40
     canvas = Image.new("RGBA", (width, height), "#DDE4EB")
     draw = ImageDraw.Draw(canvas)
-    label(draw, (45, 28), "App family P3 — small-size review", size=34, fill=INK, bold=True)
+    label(draw, (45, 28), "App family P4 — small-size review", size=34, fill=INK, bold=True)
     label(draw, (46, 72), "16 / 32 / 64 / 128 / 256 px · nearest-neighbor · light and dark", size=17, fill=MUTED_LIGHT)
     for row, (candidate_id, app, role) in enumerate(items):
         y = 110 + row * row_height
@@ -191,7 +197,10 @@ def main() -> None:
     build_surface_preview(masters, args.output_dir / "app-family-dark-preview.png", light=False)
     build_surface_preview(masters, args.output_dir / "app-family-light-preview.png", light=True)
     build_small_sizes(masters, args.output_dir / "app-family-small-sizes.png")
-    print(f"validated {len(CANDIDATES)} P3 workflow candidates plus centered main reference at {MASTER_SIZE}x{MASTER_SIZE}")
+    print(
+        f"validated {len(CANDIDATES)} P4 candidates plus centered main reference: "
+        f"true {SOURCE_SIZE}x{SOURCE_SIZE} sources and nearest-neighbor {MASTER_SIZE}x{MASTER_SIZE} exports"
+    )
 
 
 if __name__ == "__main__":

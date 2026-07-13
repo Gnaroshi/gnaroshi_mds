@@ -29,7 +29,7 @@ Approved application identity base: `identity/approved/gnaroshi-base-v1.png`
 - light/dark surface 모두에서 boundary가 사라지지 않음
 - 후보는 서로 다른 style과 material을 탐색하되 동일 identity를 유지함
 
-Pixel identity family는 style을 app마다 탐색하지 않는다. [`app-icons.md`](app-icons.md)의 shared `64×64` logical grid, centered canonical mascot master, fixed overlap-workflow composition과 role-subject vocabulary를 먼저 고정한 뒤 동일 system 안에서만 후보를 비교한다.
+Pixel identity family는 style을 app마다 탐색하지 않는다. [`app-icons.md`](app-icons.md)의 actual `64×64` raster grid, canonical ears-and-eyes identity band, fixed composition과 simplified role-subject vocabulary를 먼저 고정한 뒤 동일 system 안에서만 후보를 비교한다.
 
 Pixel master와 export에는 다음을 추가로 적용한다.
 
@@ -37,6 +37,7 @@ Pixel master와 export에는 다음을 추가로 적용한다.
 - Nearest-neighbor 이외의 resampling으로 master를 확대하지 않는다.
 - Review sheet에서 16px, 32px와 64px를 interpolation 없이 확인한다.
 - Production master의 source grid, scale factor, palette와 SHA-256을 metadata에 기록한다.
+- Generated raster는 concept reference로 남길 수 있지만 artificial/generated look가 지적된 pixel family의 active master로 승격하지 않는다. Active master는 deterministic source/tool로 같은 bytes를 다시 만들 수 있어야 한다.
 - 실제 app screenshot, photograph, diagram, body text에는 pixelation filter를 적용하지 않는다.
 
 ## Actual application screenshots
