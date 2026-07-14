@@ -2,7 +2,7 @@
 
 ## Scope
 
-Pixel P5 supersedes P4 for active owner review. P4 fixed the generated-raster problem, but owner review identified three remaining system failures:
+Pixel P5 supersedes P4 and was owner-approved for production on 2026-07-14. P4 fixed the generated-raster problem, but owner review identified three remaining system failures:
 
 - four cyan eye shapes floated as unrelated decorations instead of reading as one intentional gaze;
 - app artwork touched the mascot layer without a strong boundary;
@@ -10,7 +10,7 @@ Pixel P5 supersedes P4 for active owner review. P4 fixed the generated-raster pr
 
 P5 uses one `hero-instrument` scheme. Every app has the same ear-and-visor canopy and the same bordered pro-instrument plate. The only changing elements are one role color and one representative work instrument with a visible action or result.
 
-P5 does not approve a candidate, alter a production icon or define platform exports. P1–P4 remain review history only.
+P1–P4 remain review history only. P5 canonical 2048px masters are exported to `identity/approved/apps/`; each application still owns its deterministic platform exports.
 
 ## Reference model
 
@@ -66,17 +66,17 @@ The icon test is `object + action/result`, not repository name association.
 
 | Candidate ID | 64px source SHA-256 |
 | --- | --- |
-| `gnaroshi-main-p5` | `546913ec65e1e2883ed17fb68513f710b6273b5c2bef7d9f36dfb8b75846bbcc` |
-| `studio-p5` | `c28d93f21951e028d1509ea921a2c15d1de4b7beb4b48a790327f82c88ecc49d` |
-| `paperflow-p5` | `03f0d6d368545af2ba04446395d9626a016a319613afda1d3d3ef10ca83bf708` |
-| `arxiv-discovery-p5` | `2a8b42bfed74068f10ddae974a0f9a42f347f4806b671e9e255fae0252babdaf` |
-| `tr-gpu-monitor-p5` | `09489c4d7886685cdb6e3b50217c1d5aa35e6aaf61ad7c18fc7ca6339d5a0a47` |
-| `runshelf-p5` | `aa86a80de3939904b4564a0d09846fb217fd74cb805a2d7cff4126399533837c` |
-| `contentdeck-p5` | `8baee1beb9ab67fe2a1b246ee6cceca5f4268ecc1ead08be2fe53468bd0dab96` |
+| `gnaroshi-main-p5` | `81853cd37db6fc592d0d966da1f949c0a246ed2bc197e5f94dd624c69fda164c` |
+| `studio-p5` | `693a04561d423c59c7f01352b7599b38ea6506506bb2a3507b344fa7fbfc7ed7` |
+| `paperflow-p5` | `dbfe1e609aeeeae5788dcb4ce227b65446d469bf3ececcc51d9cc8bfd8627aa2` |
+| `arxiv-discovery-p5` | `5f03aef0733536fe2fd411450c4f3e49393df98b53412b325e76803c04e9de0a` |
+| `tr-gpu-monitor-p5` | `b87db0f137cf08ed6778520a09daf57902d371867d0664689cc2f8758ca7f8ec` |
+| `runshelf-p5` | `80d78ebfee755ccecb9927c176f0dc7d4c7e2521ce89eb9979aea343d954a390` |
+| `contentdeck-p5` | `6db90777b602fdee3ce86d833db8d9f39d515e8d33b7b1ff87eea2f904711703` |
 
 ## Refresh review files
 
-Candidate binaries and review PNGs remain under ignored `identity/review/` paths until owner selection.
+Candidate binaries and review PNGs remain under ignored `identity/review/` paths. The approved exports are generated separately into the tracked canonical directory.
 
 ```bash
 python3 identity/tools/build_app_family_p5.py \
@@ -87,4 +87,13 @@ python3 identity/tools/build_app_family_review.py \
   --output-dir identity/review
 ```
 
-The sheets cover square, circular and approximate macOS squircle masks at 16/32/64/128/256px on light and dark surfaces. Production work remains blocked on explicit selection by candidate ID.
+The sheets cover square, circular and approximate macOS squircle masks at 16/32/64/128/256px on light and dark surfaces.
+
+## Export approved masters
+
+```bash
+python3 identity/tools/promote_app_family_p5.py \
+  --output-dir identity/approved/apps
+```
+
+This command exports only the owner-approved P5 IDs and refreshes their SHA-256 metadata. It does not update any application repository.
