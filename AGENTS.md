@@ -8,8 +8,9 @@
 2. 현재 작업을 research, application, web application 중 하나로 분류한다.
 3. 해당 `guides/` 문서와 `guides/ui-ux.md`를 읽는다.
 4. application integration이면 `guides/app-integration.md`, multi-repository change이면 `guides/cross-repo-changes.md`를 읽는다.
-5. visual 작업이면 `guides/image-assets.md`와 `guides/app-icons.md`를 읽는다.
-6. 대상 프로젝트의 자체 `AGENTS.md`와 문서를 더 구체적인 지침으로 적용한다.
+5. application signing, packaging, version 또는 update 작업이면 `guides/app-distribution.md`를 읽는다.
+6. visual 작업이면 `guides/image-assets.md`와 `guides/app-icons.md`를 읽는다.
+7. 대상 프로젝트의 자체 `AGENTS.md`와 문서를 더 구체적인 지침으로 적용한다.
 
 ## 업데이트 원칙
 
