@@ -17,6 +17,7 @@ Studio와 연결되는 application은 versioned manifest를 app bundle 또는 ex
 - manifest schema version
 - stable application ID와 display name
 - application version과 minimum compatible Studio version
+- release version과 Git commit/build provenance
 - bundle ID 또는 fixed executable identity
 - 제공 capability: launch, status, command, handoff, deep link, local service
 - 각 capability의 contract version과 read/write classification
@@ -25,8 +26,12 @@ Studio와 연결되는 application은 versioned manifest를 app bundle 또는 ex
 - JSON status command의 fixed subcommand 정보
 - data sensitivity와 redaction level
 - degraded-mode behavior
+- health contract version, freshness window와 fixed recent-activity command
+- signed-release와 source-checkout update channel
 
 Manifest에 credential, token, local secret, user content, raw shell string, mutable runtime state, private path를 넣지 않는다. Unknown major manifest version은 fail closed하고 optional unknown field만 무시한다.
+
+Tracked manifest의 semantic version은 release source와 일치해야 한다. Release asset으로 manifest를 publish할 때 commit SHA, commit count, build time, artifact checksum과 signing/notarization state는 generated provenance에 기록하고 tracked source에 임의의 current HEAD를 하드코딩하지 않는다.
 
 ## Typed adapters and provider interfaces
 
@@ -60,6 +65,19 @@ CLI가 있는 application은 fixed status subcommand와 machine-readable JSON을
 - Empty, unavailable, permission-limited와 stale을 healthy/idle로 합치지 않는다.
 - Error는 stable code와 redacted message를 사용하고 credential, raw command, private path를 echo하지 않는다.
 - Status command는 canonical data나 remote state를 변경하지 않는다.
+
+## Health and recent activity
+
+- Health는 status와 별도 의미를 가진 versioned read-only contract다. App availability, required prerequisite, permission limitation, freshness, blocker와 next valid action을 구분한다.
+- Health가 cache를 사용하면 observed time, generated time, freshness threshold와 stale 판정을 포함한다. 만료된 healthy 결과를 현재 healthy로 재사용하지 않는다.
+- Recent activity는 owning application이 이미 관측하고 보존한 safe summary만 제공한다. Studio가 private database, localStorage, workspace file 또는 SSH state를 직접 읽어 recent를 재구성하지 않는다.
+- Recent item은 stable opaque ID, type, occurred time, short label, actionability와 safe resource reference만 포함한다. Private path, content body, URL credential, raw command, host identity와 secret-bearing process argument를 제외한다.
+- Recent가 비어 있음, provider unavailable과 permission blocked를 같은 상태로 합치지 않는다.
+- Manifest는 fixed recent-activity subcommand와 timeout/limit을 선언할 수 있다. UI는 bounded limit을 사용하고 provider가 더 많은 record를 반환하면 거부한다.
+
+## Update channels
+
+Update discovery와 installation은 capability negotiation 대상이며 health/status 권한에서 추론하지 않는다. Signing, version provenance, source checkout과 signed release channel은 [`app-distribution.md`](app-distribution.md)를 따른다.
 
 ## Deep links
 
