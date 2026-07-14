@@ -18,6 +18,7 @@ Source candidate와 approved base는 보존한다. Platform export나 role varia
 - Application role에 맞는 작은 variant element를 추가할 수 있다.
 - PNG master를 보존하고 ICNS, asset catalog, Windows ICO/PNG, web PNG 등 platform requirement에 맞춰 export한다.
 - Platform mask, safe area, corner treatment와 small-size optical correction은 export마다 검증한다.
+- Website favicon과 compact brand mark도 full-color product identity에 포함한다. 기존 interaction palette는 유지하고 mascot의 teal/orange는 제한된 ownership cue로 적용할 수 있다.
 
 ### Functional UI icons
 
