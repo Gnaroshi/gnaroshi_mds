@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate deterministic P4 pixel masters and build review sheets."""
+"""Validate deterministic P5 hero-instrument masters and build review sheets."""
 
 from __future__ import annotations
 
@@ -13,14 +13,15 @@ from PIL import Image, ImageDraw, ImageFont
 MASTER_SIZE = 2048
 SMALL_SIZES = (16, 32, 64, 128, 256)
 SOURCE_SIZE = 64
-MAIN_REFERENCE = ("gnaroshi-main-p4", "Gnaroshi main/default", "centered ears-and-eyes identity")
+SOURCE_SUBDIR = "p5-64"
+MAIN_REFERENCE = ("gnaroshi-main-p5", "Gnaroshi main/default", "centered ears-and-visor identity")
 CANDIDATES = (
-    ("studio-p4", "Gnaroshi Studio", "connected work → authoring hub → publish"),
-    ("paperflow-p4", "PaperFlow", "papers → safe sorter → indexed library"),
-    ("arxiv-discovery-p4", "Arxiv Discovery", "radar discovers incoming research papers"),
-    ("tr-gpu-monitor-p4", "TR GPU Monitor", "remote GPU hardware and live telemetry"),
-    ("runshelf-p4", "RunShelf", "experiment metric and artifact stored as run records"),
-    ("contentdeck-p4", "ContentDeck", "media subtitles and bounded segment practice"),
+    ("studio-p5", "Gnaroshi Studio", "sources → editorial console → published work"),
+    ("paperflow-p5", "PaperFlow", "paper → guarded sorter → indexed slots"),
+    ("arxiv-discovery-p5", "Arxiv Discovery", "research radar acquires incoming papers"),
+    ("tr-gpu-monitor-p5", "TR GPU Monitor", "GPU hardware reports live remote telemetry"),
+    ("runshelf-p5", "RunShelf", "run records retain metric, status, and artifact"),
+    ("contentdeck-p5", "ContentDeck", "subtitled media practices one bounded segment"),
 )
 
 DARK = "#111923"
@@ -53,7 +54,7 @@ def normalize(candidate_dir: Path) -> dict[str, Image.Image]:
     masters: dict[str, Image.Image] = {}
     required = (MAIN_REFERENCE[0],) + tuple(candidate_id for candidate_id, _, _ in CANDIDATES)
     for candidate_id in required:
-        source_path = candidate_dir / "p4-64" / f"{candidate_id}.png"
+        source_path = candidate_dir / SOURCE_SUBDIR / f"{candidate_id}.png"
         path = candidate_dir / f"{candidate_id}.png"
         if not source_path.is_file():
             raise FileNotFoundError(f"missing 64px source master: {source_path}")
@@ -113,8 +114,8 @@ def build_contact_sheet(masters: dict[str, Image.Image], output: Path) -> None:
     height = 215 + 3 * row_height + 45
     canvas = Image.new("RGBA", (width, height), DARK)
     draw = ImageDraw.Draw(canvas)
-    label(draw, (50, 28), "Gnaroshi app icon family — pixel P4", size=38, fill=PAPER, bold=True)
-    label(draw, (51, 76), "Deterministic 64px masters · shared ears-and-eyes band · functional role first", size=19, fill=MUTED_DARK)
+    label(draw, (50, 28), "Gnaroshi app icon family — pixel P5", size=38, fill=PAPER, bold=True)
+    label(draw, (51, 76), "Hero instrument · one bordered role plate · shared ears-and-visor canopy", size=19, fill=MUTED_DARK)
     canvas.alpha_composite(icon(masters[MAIN_REFERENCE[0]], 112), (52, 102))
     label(draw, (184, 125), MAIN_REFERENCE[1], size=21, fill=PAPER, bold=True)
     label(draw, (184, 160), MAIN_REFERENCE[2], size=16, fill=MUTED_DARK)
@@ -146,7 +147,7 @@ def build_surface_preview(masters: dict[str, Image.Image], output: Path, *, ligh
     height = 105 + rows * row_height + 40
     canvas = Image.new("RGBA", (width, height), background)
     draw = ImageDraw.Draw(canvas)
-    label(draw, (48, 28), f"App family P4 — {'light' if light else 'dark'} surface", size=34, fill=foreground, bold=True)
+    label(draw, (48, 28), f"App family P5 — {'light' if light else 'dark'} surface", size=34, fill=foreground, bold=True)
     label(draw, (49, 72), "macOS-style squircle review mask · no production selection", size=17, fill=muted)
     for index, (candidate_id, app, role) in enumerate(CANDIDATES):
         row, col = divmod(index, columns)
@@ -166,7 +167,7 @@ def build_small_sizes(masters: dict[str, Image.Image], output: Path) -> None:
     height = 110 + len(items) * row_height + 40
     canvas = Image.new("RGBA", (width, height), "#DDE4EB")
     draw = ImageDraw.Draw(canvas)
-    label(draw, (45, 28), "App family P4 — small-size review", size=34, fill=INK, bold=True)
+    label(draw, (45, 28), "App family P5 — small-size review", size=34, fill=INK, bold=True)
     label(draw, (46, 72), "16 / 32 / 64 / 128 / 256 px · nearest-neighbor · light and dark", size=17, fill=MUTED_LIGHT)
     for row, (candidate_id, app, role) in enumerate(items):
         y = 110 + row * row_height
@@ -198,7 +199,7 @@ def main() -> None:
     build_surface_preview(masters, args.output_dir / "app-family-light-preview.png", light=True)
     build_small_sizes(masters, args.output_dir / "app-family-small-sizes.png")
     print(
-        f"validated {len(CANDIDATES)} P4 candidates plus centered main reference: "
+        f"validated {len(CANDIDATES)} P5 candidates plus centered main reference: "
         f"true {SOURCE_SIZE}x{SOURCE_SIZE} sources and nearest-neighbor {MASTER_SIZE}x{MASTER_SIZE} exports"
     )
 

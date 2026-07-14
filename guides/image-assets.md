@@ -29,7 +29,7 @@ Approved application identity base: `identity/approved/gnaroshi-base-v1.png`
 - light/dark surface 모두에서 boundary가 사라지지 않음
 - 후보는 서로 다른 style과 material을 탐색하되 동일 identity를 유지함
 
-Pixel identity family는 style을 app마다 탐색하지 않는다. [`app-icons.md`](app-icons.md)의 actual `64×64` raster grid, canonical ears-and-eyes identity band, fixed composition과 simplified role-subject vocabulary를 먼저 고정한 뒤 동일 system 안에서만 후보를 비교한다.
+Pixel identity family는 style을 app마다 탐색하지 않는다. [`app-icons.md`](app-icons.md)의 actual `64×64` raster grid, canonical ears-and-visor canopy, bordered hero-instrument plate, fixed perspective와 role vocabulary를 먼저 고정한 뒤 동일 system 안에서만 후보를 비교한다.
 
 Pixel master와 export에는 다음을 추가로 적용한다.
 

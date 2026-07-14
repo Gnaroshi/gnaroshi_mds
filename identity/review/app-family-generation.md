@@ -2,17 +2,21 @@
 
 ## Scope
 
-Pixel P4 supersedes P3 for active owner review. P3 made each workflow more concrete, but review still found three structural problems: the raster scenes looked AI-generated, the partly hidden face looked accidental, and the mascot competed with the application role.
+Pixel P5 supersedes P4 for active owner review. P4 fixed the generated-raster problem, but owner review identified three remaining system failures:
 
-P4 changes the construction rather than asking an image model for another variation:
+- four cyan eye shapes floated as unrelated decorations instead of reading as one intentional gaze;
+- app artwork touched the mascot layer without a strong boundary;
+- the six foregrounds shared pixel rendering but not a common object scale, container, perspective or semantic construction.
 
-- every active source master is drawn directly on a deterministic `64×64` grid;
-- one identical `ears + four cyan eyes` band is the only mascot fragment used by app variants;
-- no nose, mouth, teeth, cheek, body or half-hidden face remains;
-- the lower 60–75% is reserved for a small number of large, functional role shapes;
-- the `2048×2048` review export is a nearest-neighbor copy of the 64px source.
+P5 uses one `hero-instrument` scheme. Every app has the same ear-and-visor canopy and the same bordered pro-instrument plate. The only changing elements are one role color and one representative work instrument with a visible action or result.
 
-P4 does not approve a candidate, alter a production icon or define platform exports. P1–P3 remain review history only.
+P5 does not approve a candidate, alter a production icon or define platform exports. P1–P4 remain review history only.
+
+## Reference model
+
+P5 uses reusable principles from the [Apple Human Interface Guidelines for app icons](https://developer.apple.com/design/human-interface-guidelines/app-icons/): one core idea, centered primary content, minimal shapes, clear foreground edges and consistent cross-platform recognition.
+
+It does not copy Motion, Keynote, Final Cut Pro or any other Apple artwork. No Apple clapperboard, lectern, hardware silhouette, color wheel, material, trademark or proprietary asset appears in P5. The adopted pattern is the general `representative instrument + visible result` relationship, not any specific icon.
 
 ## Exact identity reference
 
@@ -21,50 +25,61 @@ P4 does not approve a candidate, alter a production icon or define platform expo
 - approved-base SHA-256: `2056b9e5cf7e3464aaf9c108849f0ec43ac1fbacd427ce73a6441e2619c380f6`
 - verified relationship: approved base and retained source candidate are byte-identical
 
-The approved raster remains the identity reference for ear shape, four-eye arrangement, teal/orange recognition and attitude. P4 deliberately extracts those features into a compact band; it does not regenerate the mascot from a prompt.
+The approved raster remains the reference for large ear shape, angular gaze and orange/teal recognition. P5 does not regenerate the mascot from a prompt.
 
-## Deterministic construction
+## Fixed P5 construction
 
-- source tool: `identity/tools/build_app_family_p4.py`
-- source directory: `identity/review/candidates/p4-64/`
+- source tool: `identity/tools/build_app_family_p5.py`
+- source directory: `identity/review/candidates/p5-64/`
 - review exports: `identity/review/candidates/*.png`
 - grid: actual `64×64` RGB PNG
 - export: `2048×2048`, nearest-neighbor only
-- common pixels: background, stepped frame, orange ears, inner ears, brows and four cyan eyes
-- variable pixels: one role composition and its assigned pastel colors
-- prohibited effects: anti-aliasing, gradients, blur, glow, soft shadows and sub-pixel strokes
+- no image-generation model used
+- no anti-aliasing, gradients, blur, glow, soft shadow or sub-pixel stroke
 
-Because the source is code-defined, rerunning the tool with the same Pillow behavior produces the same source bytes. The review builder rejects an export that is not an exact nearest-neighbor expansion of its corresponding 64px master.
+Every application reuses the same coordinates for:
 
-## P4 role vocabulary
+1. deep charcoal tile and stepped outer frame;
+2. orange ears and dark visor canopy;
+3. four one-pixel cyan eye slits inside the visor;
+4. black separation outline;
+5. app-color outer rim and inner highlight;
+6. dark front-facing instrument surface;
+7. lower base/shadow and safe area.
 
-| Candidate ID | Product | Primary reading | Large functional shapes | Key colors |
+The review builder rejects an export that is not an exact nearest-neighbor expansion of its corresponding 64px source.
+
+## Role semantics
+
+The icon test is `object + action/result`, not repository name association.
+
+| Candidate ID | Product | Representative instrument | Visible action/result | Why this is the role rather than the name |
 | --- | --- | --- | --- | --- |
-| `studio-p4` | Gnaroshi Studio | connected work enters an authoring/control hub and leaves through publish output | hub, pen nib, input/output nodes | lavender + mint |
-| `paperflow-p4` | PaperFlow | papers pass through a safe sorter into an indexed library | paper stack, funnel/check, library drawers | mint + sky blue |
-| `arxiv-discovery-p4` | Arxiv Discovery | a radar sweep finds incoming research papers | radar field, highlighted sweep, papers | sky blue + peach |
-| `tr-gpu-monitor-p4` | TR GPU Monitor | a remote dual-fan GPU reports live telemetry | GPU card, metric bars/pulse, remote nodes | soft coral + teal |
-| `runshelf-p4` | RunShelf | an experiment result becomes a stored run record | stacked records, experiment flask, metric/artifact trace | butter yellow + teal |
-| `contentdeck-p4` | ContentDeck | subtitled media repeats one bounded study segment | media frame, subtitle block, loop boundary | peach + lavender |
+| `studio-p5` | Gnaroshi Studio | editorial manuscript console | source tabs enter, a pen edits, publish output leaves | combines coordination, authoring and publishing instead of showing a generic studio panel |
+| `paperflow-p5` | PaperFlow | guarded document sorter | one paper becomes ordered indexed slots | shows safe library organization instead of a decorative paper or flowing line |
+| `arxiv-discovery-p5` | Arxiv Discovery | research radar scope | incoming paper blips cross a sweep and one result is acquired | shows active discovery instead of a magnifier or isolated document |
+| `tr-gpu-monitor-p5` | TR GPU Monitor | dual-fan GPU instrument | live telemetry crosses the hardware and remote state remains attached | shows monitored hardware and status without a vendor logo or command line |
+| `runshelf-p5` | RunShelf | stacked run-record archive | a run retains metric curve, status and artifact marker | shows durable experiment evidence rather than a literal furniture shelf |
+| `contentdeck-p5` | ContentDeck | subtitle-study player | media, subtitle and bounded A–B segment coexist in one instrument | shows language practice rather than play or repeat alone |
 
 ## Source checksums
 
 | Candidate ID | 64px source SHA-256 |
 | --- | --- |
-| `gnaroshi-main-p4` | `9fb7e6f18445c639dab97bc32877463562bb85a06bb379f3c2150ddf0e6aefb8` |
-| `studio-p4` | `bde68273bcbe7cae84a678aa93fc3891901b2df8661e3a288659f114e8588a95` |
-| `paperflow-p4` | `c15f9ae949a9e77841a4674a70de659f1e5b76e863c983ee8c9f8e3eaa08e84b` |
-| `arxiv-discovery-p4` | `944a41c4a17fb65b5c498ed77b7f6adade32e826e2a803c1e0a1d49791507668` |
-| `tr-gpu-monitor-p4` | `2fb719c394aafe8a0d1bd6617ef551bf3494d536b85d3b4daf7c5b8ea8af5b9c` |
-| `runshelf-p4` | `74a9c14478bf7eb61012a0f7cae8195919636416c95931b3241f7437dc6d1921` |
-| `contentdeck-p4` | `13aaad8925929e58cb0e488118c33f9d92720b9403379a80fe4e6b93a815f789` |
+| `gnaroshi-main-p5` | `546913ec65e1e2883ed17fb68513f710b6273b5c2bef7d9f36dfb8b75846bbcc` |
+| `studio-p5` | `c28d93f21951e028d1509ea921a2c15d1de4b7beb4b48a790327f82c88ecc49d` |
+| `paperflow-p5` | `03f0d6d368545af2ba04446395d9626a016a319613afda1d3d3ef10ca83bf708` |
+| `arxiv-discovery-p5` | `2a8b42bfed74068f10ddae974a0f9a42f347f4806b671e9e255fae0252babdaf` |
+| `tr-gpu-monitor-p5` | `09489c4d7886685cdb6e3b50217c1d5aa35e6aaf61ad7c18fc7ca6339d5a0a47` |
+| `runshelf-p5` | `aa86a80de3939904b4564a0d09846fb217fd74cb805a2d7cff4126399533837c` |
+| `contentdeck-p5` | `8baee1beb9ab67fe2a1b246ee6cceca5f4268ecc1ead08be2fe53468bd0dab96` |
 
 ## Refresh review files
 
 Candidate binaries and review PNGs remain under ignored `identity/review/` paths until owner selection.
 
 ```bash
-python3 identity/tools/build_app_family_p4.py \
+python3 identity/tools/build_app_family_p5.py \
   --output-dir identity/review/candidates
 
 python3 identity/tools/build_app_family_review.py \
@@ -72,4 +87,4 @@ python3 identity/tools/build_app_family_review.py \
   --output-dir identity/review
 ```
 
-The review sheets show square, circular and approximate macOS squircle masks at 16/32/64/128/256px on light and dark surfaces. Production work remains blocked on explicit selection by candidate ID.
+The sheets cover square, circular and approximate macOS squircle masks at 16/32/64/128/256px on light and dark surfaces. Production work remains blocked on explicit selection by candidate ID.
