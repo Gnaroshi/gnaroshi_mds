@@ -52,3 +52,13 @@ Owner-selected pixel direction은 content를 retro-game interface로 바꾸는 t
 - 긴 번역, Dynamic Type 또는 browser zoom, 실제 content 길이를 사용한다.
 - wrap과 reflow가 우선이며 data table/code처럼 필요한 경우에만 명시적 scroll을 사용한다.
 - screenshot 또는 실제 runtime으로 clipping, overlap, overflow를 확인한다.
+
+## Settings and form alignment
+
+- 설정 화면은 label/detail 영역과 control 영역의 공통 column을 정의하고 모든 row가 같은 축을 사용한다.
+- picker, text field, slider, stepper처럼 값을 편집하는 control은 같은 너비와 시작 위치를 공유한다.
+- boolean 값은 임의 위치의 labelled checkbox로 두지 않고 공통 control column의 같은 축에 switch로 정렬한다.
+- 한 기능에 종속된 세부 control은 parent toggle 바로 아래에 두고 기능이 꺼져 있으면 숨기거나 명확히 비활성화한다.
+- preview, reset, open, verify 같은 command button은 값 편집 row와 섞지 않고 별도 action 영역으로 분리한다.
+- 좁은 viewport에서는 label-over-control로 reflow하되 label, 설명, control의 의미 순서를 유지한다.
+- 서로 다른 section에서 같은 의미의 설정은 같은 row component와 interaction pattern을 재사용한다.
