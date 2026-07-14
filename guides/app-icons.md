@@ -37,10 +37,77 @@ Source candidate와 approved base는 보존한다. Platform export나 role varia
 ## Base mascot preservation
 
 - 큰 귀, 날카로운 눈, 넓은 얼굴/이빨, 강한 중심 silhouette와 teal/orange 대비가 즉시 인식되어야 한다.
-- Role element가 얼굴, 눈, 귀 또는 주요 silhouette를 가리지 않는다.
-- Role element는 전체 visual identity의 약 25% 이하를 권장한다.
+- Approved full identity에서는 base의 얼굴, 눈, 귀와 주요 silhouette를 보존한다. Compact pixel launcher family에서는 완전한 얼굴을 어색하게 자르거나 가리지 않고 양쪽 큰 귀와 visor 안의 네 개 eye slit만 deliberate identity canopy로 추출할 수 있다. 이때 role이 없는 main mark도 같은 canopy를 tile 정중앙에 배치할 수 있다.
+- App role variant는 복잡한 character illustration이 아니라 작은 크기에서 용도가 구분되는 application icon으로 읽혀야 한다.
+- 기본 Gnaroshi icon은 mascot을 수평·수직 중심축에 두며 이유 없이 한쪽 구석으로 밀지 않는다.
+- App variant에서 snout, teeth, cheek, chest 또는 armor 일부만 잘린 채 남기지 않는다. 완전한 mascot portrait를 쓰지 않으면 ears-and-visor canopy만 사용하고 나머지 얼굴은 명시적으로 제거한다.
+- 네 eye는 서로 떨어진 장식 점이나 별처럼 두지 않는다. 하나의 dark visor/socket 안에서 같은 각도와 optical weight의 좁은 cyan slit으로 설계한다.
+- Role treatment는 tile 전면의 약 60–75%를 차지하고 한 개의 hero instrument와 최대 한 개의 action/result cue로 구성한다. 실제 user action과 outcome을 보여주되 miniature illustration이나 여러 작은 prop을 모은 장면으로 만들지 않는다.
+- Role subject가 먼저 보여야 한다. Identity canopy는 orange ear silhouette와 restrained cyan visor로 family를 표시하며 role object의 outline이나 key color와 경쟁하지 않는다.
 - Text, watermark, franchise logo, official emblem, trademark 또는 existing game asset의 direct copy를 넣지 않는다.
 - 특정 game publisher가 selected design을 소유한다고 주장하지 않는다.
+
+## Pixel application family
+
+Owner가 pixel direction을 선택한 Gnaroshi application family는 서로 다른 pixel illustration을 모은 것이 아니라 하나의 반복 가능한 icon system으로 만든다.
+
+### Reference design model
+
+P5 family는 Apple의 개별 app artwork를 복제하지 않고 [Apple Human Interface Guidelines의 app icon 원칙](https://developer.apple.com/design/human-interface-guidelines/app-icons/)을 reusable rule로 해석한다.
+
+- App의 essence를 한 개의 simple, unique core idea로 압축한다.
+- Primary content를 중심에 두고 platform mask의 safe area 안에 유지한다.
+- Fine detail과 UI screenshot 대신 최소한의 filled shape와 clearly defined foreground edge를 사용한다.
+- Foreground, middle, background의 깊이를 단순하게 유지하고 family 전체에서 같은 material과 perspective를 반복한다.
+- 이름을 연상시키는 사물만 그리지 않고 사용자가 다루는 representative instrument와 그 결과를 보여준다.
+
+Gnaroshi에서는 이를 `hero-instrument` scheme으로 부른다. 각 app은 같은 bordered instrument plate 안에 한 개의 대표 도구/작업물과 한 개의 action 또는 result cue만 둔다. Apple의 clapperboard, lectern, color wheel, hardware silhouette 또는 다른 proprietary artwork를 직접 복제하지 않는다.
+
+### Shared grid and construction
+
+- 모든 master는 처음부터 실제 `64×64` raster pixel grid에서 설계하고 nearest-neighbor 방식으로만 큰 raster export를 만든다.
+- Anti-aliasing, sub-pixel stroke, blur, soft shadow, glow와 gradient를 사용하지 않는다.
+- 주요 silhouette과 role glyph에는 2 logical pixel을 기본 outline으로 사용한다. 1 pixel detail은 눈, 이빨 또는 꼭 필요한 내부 구분에만 제한한다.
+- Background, stepped frame, identity-canopy anchor, ear/visor position, role-plate geometry, outline value와 light direction은 family 전체에서 고정한다.
+- Approved base를 직접 pixel master의 raster reference로 사용한다. App마다 text description만으로 mascot을 다시 생성하지 않는다.
+- 먼저 한 개의 canonical ears-and-visor canopy와 한 개의 bordered instrument plate를 확정하고, 모든 app variant는 그 동일 pixel coordinates를 재사용한다.
+- Image generation은 role metaphor를 탐색하는 concept 단계에만 사용할 수 있다. Owner가 artificial/generated look를 지적한 뒤의 active pixel master는 generated large raster를 축소한 결과가 아니라 좌표, palette와 layer가 결정론적으로 재현되는 `64×64` source여야 한다.
+- 16px/32px에서는 새로운 detail을 축소해 보존하려 하지 말고 optical small-size export에서 불필요한 detail을 제거한다.
+
+### Fixed composition
+
+- Base/default icon의 mascot은 tile 정중앙에 둔다. Role variant도 공통 수직 중심축을 유지하며 app마다 좌우 corner로 이동시키지 않는다.
+- Current role family는 `hero-instrument` composition을 사용한다. 같은 orange ear + dark visor canopy를 tile 뒤쪽 상단에 두고, 모든 app에서 같은 크기의 bordered role plate가 아래쪽 전면을 차지한다.
+- Identity canopy에는 nose, mouth, teeth, cheek, body, armor torso 또는 잘린 face edge를 넣지 않는다. Visor가 네 eye slit을 하나의 intentional mark로 묶어 floating facial fragment처럼 보이지 않게 한다.
+- Role plate는 mascot과 app subject 사이에 최소 2px outer outline, 2px app-color rim과 dark inner surface를 둔다. 이 border는 mascot과 role을 시각적으로 분리하는 동시에 family의 공통 container가 된다.
+- Hero instrument는 동일한 front-facing perspective, `32–38px` bounding box, 2px outer outline, 1px internal separator와 같은 visual center를 사용한다. App의 representative work object와 action/result를 한 개의 결합된 silhouette로 단순화한다.
+- Tile border, background, canopy, role plate, object anchor와 light direction은 family 전체에서 동일해야 한다. App별로 바꿀 수 있는 것은 key color와 hero-instrument geometry뿐이다.
+- 16px/32px optical export에서는 role subject의 visual mass와 contrast가 mascot보다 커야 한다. 64px 이상에서는 role action과 mascot family가 함께 읽혀야 한다.
+- Icon은 mascot portrait, AI illustration이나 rebus puzzle이 아니라 application launcher로 읽혀야 한다. 이름을 가린 32px 비교에서 foreground만 보고 대표 workflow를 말할 수 없거나 AI-generated scene처럼 보이면 geometry를 줄이고 다시 설계한다.
+
+### Role glyph vocabulary and key colors
+
+Role glyph는 아래 canonical symbol에서 시작한다. 의미를 흐리는 장식, 두 번째 metaphor 또는 miniature interface를 추가하지 않는다.
+
+| Product | Hero instrument and visible result | Key color | Common result color |
+| --- | --- | --- | --- |
+| Gnaroshi Studio | editorial console: source tabs enter one manuscript surface, a pen edits it, and one publish output leaves | lavender `#B8A7F3` | identity teal `#3FA6A0` |
+| PaperFlow | guarded paper sorter: one paper enters and emerges as ordered indexed slots | mint `#8FD9C0` | identity teal `#3FA6A0` |
+| Arxiv Discovery | research radar: incoming paper blips cross one sweep and one result is acquired | sky blue `#82C7EE` | identity teal `#3FA6A0` |
+| TR GPU Monitor | dual-fan GPU instrument: hardware surface carries one live telemetry trace and remote state | soft coral `#E9948E` | identity teal `#3FA6A0` |
+| RunShelf | indexed run archive: stacked run records retain a metric trace, status and artifact marker | butter yellow `#E9D27A` | identity teal `#3FA6A0` |
+| ContentDeck | study player: media, dominant subtitle and bounded A–B segment coexist in one frame | peach `#F2B58D` | identity teal `#3FA6A0` |
+
+- Studio에는 generic document icon, gear, dashboard grid 또는 command-center collage를 사용하지 않는다. Central workbench, connected work와 author/publish action이 함께 보여야 한다.
+- PaperFlow에는 Zotero logo, generic folder, download arrow나 빈 tray만 사용하지 않는다. Paper가 분류되어 library record로 정돈되는 action을 보여준다.
+- Arxiv Discovery에는 arXiv logo, generic magnifier나 scan gate 하나만 사용하지 않는다. 여러 paper가 radar sweep 안에서 발견되는 action을 보여준다.
+- TR GPU Monitor에는 vendor logo, server rack 또는 command line을 넣지 않는다. Chip, telemetry와 remote status를 하나의 굵은 glyph로 결합한다.
+- RunShelf에는 runner, fitness cue, server block, slider lane 또는 unreadable chart를 넣지 않는다. Experiment와 metric evidence가 durable indexed record로 남는 관계를 보여준다.
+- ContentDeck에는 provider logo, repeat glyph 하나 또는 player UI 전체를 넣지 않는다. Media frame 안의 subtitle와 bounded segment practice가 한 scene으로 읽혀야 한다.
+
+Role glyph는 icon 안의 설명문이 아니다. 각 glyph는 product promise를 한 개의 결합된 silhouette로 압축하고, 이름을 가린 32px 비교에서도 다른 app과 혼동되지 않아야 한다.
+
+Key color는 app role을 구분하는 identity color다. Available, success, warning, failed 같은 semantic state를 대신하지 않는다.
 
 ## Application role family
 
@@ -53,7 +120,7 @@ Source candidate와 approved base는 보존한다. Platform export나 role varia
 | RunShelf | experiment runs, shelves, indexed results | shelf line, indexed block, run marker |
 | ContentDeck / `content-looper` | playback, looping, subtitles, learning | loop arc, play cue, compact subtitle strip |
 
-Secondary motif는 logo collage가 아니라 작은 role cue다. Base mascot의 pose와 expression을 무리하게 바꿔 family recognition을 잃지 않는다.
+Secondary motif는 logo collage가 아니라 하나의 굵고 단순한 role cue다. 작은 크기에서 의미가 사라지는 가는 선, 세부 pictogram, miniature interface를 피한다. Base mascot의 pose와 expression을 무리하게 바꿔 family recognition을 잃지 않는다.
 
 ## Shared palette
 
@@ -103,6 +170,6 @@ Pure black을 기본 canvas로 사용하지 않는다. Surface hierarchy는 spac
 - Raster master와 generation/selection metadata를 보존한다.
 - 16px, 32px, 64px, 128px와 platform launcher size에서 확인한다.
 - Light/dark background, platform mask, grayscale/menu-bar context를 구분해 검증한다.
-- 한 중심 subject, safe margin, no text/watermark, readable eyes/ears/face mass를 유지한다.
+- 한 중심 subject, safe margin, no text/watermark, readable ear/visor canopy와 hero instrument를 유지한다.
 - Role variants를 한 화면에 놓고 base recognition, role distinction, saturation balance를 비교한다.
 - App icon, functional UI icon, menu-bar template을 서로의 export로 재사용하지 않는다.
