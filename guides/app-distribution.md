@@ -54,7 +54,7 @@ Tracked manifest에는 secret, token, local checkout path 또는 mutable latest 
 - Source checkout path는 tracked manifest가 아니라 user-private local settings에만 저장하고 expected repository owner/name과 canonical path를 검증한다.
 - Source checkout은 verified repository remote와 clean/dirty state를 먼저 확인한다.
 - 자동 동작은 fixed `git fetch --prune origin`까지로 제한한다. Fetch는 현재 branch, worktree와 file을 변경하지 않는다.
-- 자동 fetch는 inherited environment를 clear하고 fixed executable, non-interactive credential policy, protocol/TLS/redirect policy와 isolated system/global config를 사용한다. Repository-discovery variable, executable path, askpass, proxy 또는 process-level Git config가 command를 바꾸지 못하게 한다.
+- 자동 fetch는 inherited environment를 clear하고 fixed executable, non-interactive credential policy, disabled repository hooks/fsmonitor/executable filters, protocol/TLS/redirect policy와 isolated system/global config를 사용한다. Repository-discovery variable, executable path, askpass, proxy 또는 process-level Git config가 command를 바꾸거나 refresh만으로 executable을 실행하지 못하게 한다.
 - 표시용 `remote.origin.url`만 검증하지 않는다. Automatic fetch는 exact HTTPS host/repository를 요구하고, applicable `url.*.insteadOf`, include, `core.sshCommand`, remote upload/proxy override, URL-scoped HTTP proxy/TLS/redirect override가 identity를 바꿀 수 있으면 fail closed한다.
 - `current`는 bounded-age successful fetch evidence, canonical repository identity, expected remote branch와 remote-tracking commit을 함께 검증할 때만 사용한다. `FETCH_HEAD` timestamp나 다른 remote의 동일 commit만으로 freshness를 주장하지 않는다.
 - Merge, rebase, reset, checkout, pull, dependency install, build와 app replacement는 preview와 명시적 승인 뒤에 별도 단계로 수행한다.
