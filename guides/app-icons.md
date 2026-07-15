@@ -37,7 +37,7 @@ Source candidate와 approved base는 보존한다. Platform export나 role varia
 ## Base mascot preservation
 
 - 큰 귀, 날카로운 눈, 넓은 얼굴/이빨, 강한 중심 silhouette와 teal/orange 대비가 즉시 인식되어야 한다.
-- Approved full identity에서는 base의 얼굴, 눈, 귀와 주요 silhouette를 보존한다. Compact pixel launcher family에서는 완전한 얼굴을 어색하게 자르거나 가리지 않고 양쪽 큰 귀와 visor 안의 네 개 eye slit만 deliberate identity canopy로 추출할 수 있다. 이때 role이 없는 main mark도 같은 canopy를 tile 정중앙에 배치할 수 있다.
+- Approved full identity에서는 base의 얼굴, 눈, 귀와 주요 silhouette를 보존한다. Website homepage mark, browser favicon, touch icon과 manifest icon은 항상 이 full-face identity를 사용하며 얼굴 덩어리와 이빨까지 남겨야 한다. Compact pixel launcher family에서는 완전한 얼굴을 어색하게 자르거나 가리지 않고 양쪽 큰 귀와 visor 안의 네 개 eye slit만 deliberate identity canopy로 추출할 수 있지만, 이 canopy를 website의 primary identity나 role이 없는 global main mark로 승격하지 않는다.
 - App role variant는 복잡한 character illustration이 아니라 작은 크기에서 용도가 구분되는 application icon으로 읽혀야 한다.
 - 기본 Gnaroshi icon은 mascot을 수평·수직 중심축에 두며 이유 없이 한쪽 구석으로 밀지 않는다.
 - App variant에서 snout, teeth, cheek, chest 또는 armor 일부만 잘린 채 남기지 않는다. 완전한 mascot portrait를 쓰지 않으면 ears-and-visor canopy만 사용하고 나머지 얼굴은 명시적으로 제거한다.

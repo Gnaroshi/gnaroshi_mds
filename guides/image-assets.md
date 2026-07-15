@@ -31,6 +31,8 @@ Approved application identity base: `identity/approved/gnaroshi-base-v1.png`
 
 Pixel identity family는 style을 app마다 탐색하지 않는다. [`app-icons.md`](app-icons.md)의 actual `64×64` raster grid, canonical ears-and-visor canopy, bordered hero-instrument plate, fixed perspective와 role vocabulary를 먼저 고정한 뒤 동일 system 안에서만 후보를 비교한다.
 
+Website의 homepage mark, favicon, touch icon과 manifest icon은 pixel application role family와 분리한다. 이 primary identity에는 approved mascot의 전체 얼굴, 귀, 눈, 얼굴 덩어리와 이빨이 보여야 하며 ears-and-visor canopy만 남긴 축약형으로 대체하지 않는다.
+
 Pixel master와 export에는 다음을 추가로 적용한다.
 
 - Hard pixel edge와 integer-aligned geometry를 유지한다.
