@@ -12,6 +12,19 @@
 
 Signing은 이미 승인된 permission을 안정된 application identity에 연결하는 수단이지 새 permission을 대신 승인하는 수단이 아니다.
 
+## Local development delivery contract
+
+- Packaged desktop application의 동작이나 UI를 바꾼 작업은 사용자가 source-only 또는 development-server 검증만 명시하지 않는 한 source build 성공만으로 완료하지 않는다. 현재 source HEAD를 signed application으로 만들고 stable install location에 교체 설치한 뒤 실제 설치본의 provenance를 확인해야 한다.
+- 개발자가 실행하는 repository binary, target/build bundle과 사용자가 Spotlight, Dock 또는 Finder에서 여는 installed bundle을 구분한다. 사용자-facing 검증과 handoff에는 installed bundle을 사용하고 build output을 열어 변경 반영을 대신하지 않는다.
+- 교체 전 실행 중인 installed application을 탐지한다. 미저장 작업 가능성이 있으면 강제 종료하지 않고 사용자에게 저장·종료를 요청한 뒤 같은 작업에서 설치를 재개한다. 종료 대기 때문에 설치하지 못했다면 변경이 Spotlight에 반영됐다고 보고하지 않는다.
+- 교체 설치는 stable bundle ID, signing team/identity, entitlements와 install path를 유지하고 가능한 경우 atomic replacement를 사용한다. 기존 승인을 보존하기 위해 매 작업마다 app을 다른 path에서 실행하거나 launcher bundle을 새 identity로 재생성하지 않는다.
+- 설치 뒤에는 최소한 installed bundle의 source commit/build provenance, `codesign --verify --deep --strict`, bundle/team identity, launcher target과 Spotlight index를 확인한다. 사용자가 바로 확인해야 하는 작업이면 새 installed bundle을 한 번 실행해 실제 launch target도 확인한다.
+- `/Applications`의 Spotlight용 launcher가 별도 bundle이면 stable launcher identity와 path를 유지하고 stable installed application만 연다. Launcher가 가리키는 target, `mdls`와 `mdfind` 결과를 갱신·검증하며 ephemeral repository path 또는 symlink 자체를 검색 결과로 의존하지 않는다.
+- 반복 build·install 때문에 동일한 Desktop/Documents/Downloads, network volume, camera, microphone 또는 automation permission을 다시 요구하면 먼저 code identity, entitlement diff, install path와 launcher target drift를 defect로 조사한다. 편의를 위해 TCC database를 reset·편집하거나 permission prompt를 자동 승인하지 않는다.
+- 새 protected resource, entitlement, signing team 또는 designated requirement가 실제로 바뀌면 macOS가 새 승인을 요구할 수 있다. 이를 숨기지 않고 변화 이유와 한 번 필요한 사용자 action을 명시한다.
+
+로컬 전달의 완료 증거는 public release 완료를 의미하지 않는다. Notarization, stapling, signed updater와 release artifact 검증은 아래 release rule을 별도로 충족해야 한다.
+
 ## Git-derived version provenance
 
 - 사용자-facing version은 SemVer이며 source, package metadata, app bundle과 integration manifest가 같은 값을 사용한다.

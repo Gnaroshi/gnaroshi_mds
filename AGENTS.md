@@ -27,6 +27,7 @@
 - 불필요한 문구, 설명을 위한 설명, 장식용 component를 넣지 않는다.
 - padding과 margin은 공통 spacing token을 사용하며 임의 값과 불균형한 여백을 만들지 않는다.
 - 반응형 크기에서 component, text, control이 잘리지 않게 wrap, reflow, scroll, min/max constraint를 명시하고 최소 viewport에서 검증한다.
+- Packaged desktop application을 변경한 작업은 source-only 요청이 아니라면 signed stable install과 실제 Spotlight/launcher 반영까지 완료한다. 실행 중 app에 미저장 상태가 있을 수 있으면 강제 종료하지 말고 안전한 종료 뒤 같은 작업에서 설치를 재개하며, 자세한 조건은 `guides/app-distribution.md`를 따른다.
 
 ## 이미지
 
