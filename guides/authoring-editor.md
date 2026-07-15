@@ -12,6 +12,12 @@
 - Source serializer는 routine body edit 때문에 frontmatter key order, quoting, whitespace 또는 line ending을 정규화하지 않는다. 구조 변경이 필요한 metadata action만 schema-aware serialization을 사용하고 preview/diff를 제공한다.
 - Focus mode는 title, source/preview mode, saved state, Save, blocking error와 exit을 유지한다. 주변 workflow navigation은 숨길 수 있지만 canonical write boundary는 숨기지 않는다.
 - Editor 탈출, indentation과 other keyboard 도움은 실제 behavior와 일치해야 하며 persistent body copy로 공간을 차지하지 않는다. Help/Guide 또는 accessible description으로 제공하고 visually-hidden utility가 production CSS에서 실제로 숨겨지는지 검증한다.
+- Selectable document의 기본 surface는 읽을 수 있는 Preview 또는 사용자가 마지막으로 명시한 mode를 우선한다. Edit/Source는 명시적인 action이며 Preview parsing failure가 source edit, save 또는 Recovery를 막지 않는다.
+- Structured record가 JSON/YAML source를 가질 때 routine workflow는 raw source editor가 아니라 사람이 읽는 field, state, relationship, current/proposed diff와 explicit Apply를 제공한다. Raw source는 `Source` 또는 `Technical details` escape hatch로 유지한다.
+- Structured Apply는 schema validation, exact target identity, duplicate/idempotency, expected-current-content와 stale selection을 확인한다. Pending/success/error를 같은 component에 유지하고 source record, target record와 Recovery 중 무엇이 보존됐는지 명시한다.
+- Translation처럼 두 document의 관계를 편집하는 surface는 source/target locale·title·availability, missing/stale/conflict와 양쪽 Preview/Edit action을 먼저 보여준다. Pair status update는 document content save 및 publish와 분리하고 raw pair source는 escape hatch로 둔다.
+- Published source를 authoring할 때 source Save, public projection Preview, private checkpoint와 Publish를 하나의 짧은 workflow boundary로 구분한다. `Save changes`가 자동 공개를 뜻하지 않게 current public/source state와 다음 publish action을 같은 맥락에 둔다.
+- Markdown canonical source와 renderer는 [CommonMark](https://spec.commonmark.org/spec) block/inline precedence를 기본으로 하고 필요한 GFM/math/approved MDX 확장만 명시적으로 추가한다. Source, Preview, public renderer가 서로 다른 비명시적 dialect를 사용하지 않게 fixture로 검증한다.
 
 ## Screenshots and images
 

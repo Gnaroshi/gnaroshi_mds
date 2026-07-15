@@ -109,6 +109,17 @@ Owner-selected pixel direction은 content를 retro-game interface로 바꾸는 t
 - wrap과 reflow가 우선이며 data table/code처럼 필요한 경우에만 명시적 scroll을 사용한다.
 - screenshot 또는 실제 runtime으로 clipping, overlap, overflow를 확인한다.
 
+## Resizable workspace surfaces
+
+- Sidebar/content, master/detail, editor/inspector와 editor/preview처럼 사용자가 작업 폭을 선택해야 하는 경계는 재사용 가능한 resizable pane primitive를 사용한다. 화면별 absolute width와 ad-hoc pointer handler를 반복하지 않는다.
+- Divider는 focus 가능한 `separator` widget으로 구현하고 orientation, current/min/max value와 대상 pane을 accessible name으로 제공한다. Pointer뿐 아니라 Arrow key, 큰 step, min/max 이동과 collapse/expand를 keyboard로 제공한다.
+- Drag 시작 시 pointer capture와 text-selection 방지를 사용하고 종료/cancel/lost capture에서 모두 정리한다. Divider를 끌다가 문서 text가 선택되거나 resize cursor가 app 전체에 남지 않게 한다.
+- 합리적인 pane별 minimum, maximum과 primary content minimum을 동시에 적용한다. Persisted size가 현재 usable viewport를 벗어나면 안전하게 clamp하되 사용자의 저장값을 불필요하게 잃지 않는다.
+- Double-click reset, explicit collapse/expand와 local persistence를 제공한다. Collapsed pane은 시각적으로만 0px이 아니라 focus와 accessibility tree에서도 제외하고, expand control은 계속 접근 가능해야 한다.
+- Narrow window의 Split은 preview를 화면 밖으로 밀지 않는다. Side-by-side에서 stacked로 전환하거나 명시적 방향 선택을 제공하고 현재 정책을 짧게 표시한다. 두 pane은 독립 scroll을 유지한다.
+- Route, document, mode와 focus 전환은 mounted editor identity, cursor, selection, undo history, scroll과 유효 pane state를 보존한다. Focus mode가 주변 pane을 숨겨도 canonical save/error boundary를 unmount하지 않는다.
+- Component test에는 clamp, malformed persistence, keyboard direction, separator semantics와 collapse state를 포함한다. Showcase에는 실제 drag 가능한 nested pane fixture를 두고 normal, minimum과 wide runtime에서 pointer/keyboard/reset/persistence를 다시 검증한다.
+
 ## Settings and form alignment
 
 - 설정 화면은 label/detail 영역과 control 영역의 공통 column을 정의하고 모든 row가 같은 축을 사용한다.
@@ -138,3 +149,5 @@ Owner-selected pixel direction은 content를 retro-game interface로 바꾸는 t
 - [Primer: Forms](https://primer.style/product/ui-patterns/forms/), [Navigation](https://primer.style/product/ui-patterns/navigation/), [Notification messaging](https://primer.style/product/ui-patterns/notification-messaging/)
 - [GitHub Docs writing best practices](https://docs.github.com/en/contributing/writing-for-github-docs/best-practices-for-github-docs)와 [basic Markdown writing](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
 - [Zotero: Adding items and metadata by identifier](https://www.zotero.org/support/adding_items_to_zotero)
+- [WAI-ARIA APG Window Splitter Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/windowsplitter/)과 [Tabs Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/)
+- [WCAG 2.2 Error Identification](https://www.w3.org/WAI/WCAG22/Understanding/error-identification.html)과 [Status Messages](https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html)
