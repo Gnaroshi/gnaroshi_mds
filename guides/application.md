@@ -29,6 +29,8 @@
 
 ## UI contract
 
+- Primary application UI에는 현재 작업을 이해하고 완료하는 데 필요한 사용자 목표, blocker, progress, result와 next action만 노출한다. Repository path, executable/command, PID, hash, schema/version, raw API/backend 상태, artifact filename과 raw log는 기본 화면·dashboard·floating workflow에서 숨기고 `Settings > Advanced/Diagnostics`, explicit Details, Reports 또는 Logs로 이동한다. 잠재적으로 유용하다는 이유만으로 primary UI에 계속 표시하지 않는다.
+- Technical details는 기본값을 off/collapsed로 유지하고 사용자가 명시적으로 열었을 때만 표시한다. Error는 기술 문자열을 그대로 던지지 않고 사용자 언어의 요약, 보존된 data와 recovery action을 먼저 제공한다. Safety, privacy, destructive scope와 blocker는 technical detail로 분류해 숨기지 않는다.
 - 현재 상태, blocker, 다음 valid action을 3초 안에 찾을 수 있어야 한다.
 - 의존 작업은 번호와 prerequisite를 보여주고 성공한 경우에만 다음 단계로 진행한다.
 - minimum window/device에서 control과 text가 잘리지 않아야 한다.

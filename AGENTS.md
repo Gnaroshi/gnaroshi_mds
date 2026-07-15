@@ -22,6 +22,8 @@
 
 ## 사용자 경험
 
+- 사용자-facing 정보 경계는 safety, accessibility, data integrity 다음으로 우선하는 presentation 원칙이다. 기본 화면에는 사용자가 목적, 선행 조건, 현재 상태, 결과와 다음 행동을 이해하거나 결정하는 데 필요한 정보만 둔다. 구현 경로, raw command, PID, hash, schema/version, API/backend 이름, artifact filename, raw log처럼 개발자에게만 필요한 값과 제거해도 사용자의 판단·행동이 달라지지 않는 문구는 기본 UI에서 숨긴다.
+- 문제 해결이나 호기심 때문에 일부 사용자가 볼 수 있는 기술 정보는 `Settings > Advanced/Diagnostics`, 명시적인 `Details`, Reports 또는 Logs에 progressive disclosure로 둔다. 기본값은 닫힘 또는 꺼짐이며, error 본문에는 평이한 실패 요약·보존된 것·다음 행동을 먼저 보여주고 copy 가능한 기술 원인은 세부정보 안에 둔다. 이 규칙을 이유로 안전 경고, blocker, data-loss/privacy 영향 또는 recovery action을 숨기지 않는다.
 - 단순함을 우선하되 필요한 정보, 목적, 선행 조건, 작업 순서, 현재 상태와 다음 행동은 한 화면에서 파악 가능해야 한다.
 - 처음 사용하는 사람도 무엇을 왜 어떤 순서로 해야 하는지 즉시 이해할 수 있어야 한다.
 - 불필요한 문구, 설명을 위한 설명, 장식용 component를 넣지 않는다.

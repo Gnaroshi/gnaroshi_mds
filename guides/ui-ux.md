@@ -10,6 +10,17 @@ Simple means low cognitive load, not missing information. A first-time user must
 4. 어떤 순서로 실행해야 하는가?
 5. 다음 행동과 그 결과는 무엇인가?
 
+## Highest-priority user-facing information boundary
+
+Safety, accessibility와 data integrity를 훼손하지 않는 범위에서 다음 규칙을 다른 density, decoration, dashboard completeness 요구보다 우선한다.
+
+- 기본 화면에는 사용자가 지금 이해·결정·실행해야 하는 정보만 둔다. 문구나 값 하나를 제거해도 사용자의 판단, 안전 또는 다음 행동이 달라지지 않으면 숨긴다.
+- Repository/local path, executable, raw command, PID, hash, schema/version, API/backend/provider 명칭, environment variable, artifact filename과 raw log는 developer-facing detail이다. Primary navigation, dashboard, floating intake/status window, routine result card와 일반 error 본문에 노출하지 않는다.
+- 일부 사용자가 troubleshooting, audit 또는 호기심으로 확인할 수 있는 정보는 `Settings > Advanced/Diagnostics`, explicit `Details`, Reports 또는 Logs에 progressive disclosure로 배치한다. 기본값은 off/collapsed이고, 기술 정보가 primary action보다 먼저 보이지 않게 한다.
+- Error와 warning은 평이한 실패/영향 요약, 보존된 것과 next action을 기본으로 보여준다. Copy 가능한 error code, command와 raw output은 별도 technical detail에 둔다.
+- Safety warning, destructive scope, privacy·비용 영향, blocker와 recovery action은 사용자 결정에 필요한 정보이므로 숨기지 않는다. 같은 사실을 반복하는 장문 설명은 한 번의 짧은 consequence-oriented 문구로 합친다.
+- 구현 후에는 primary UI source에 developer-facing literal이 다시 들어오지 않도록 focused copy test 또는 lint를 유지한다.
+
 ## Required
 
 - 화면마다 하나의 명확한 목적과 primary action을 둔다.
