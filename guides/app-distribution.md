@@ -51,11 +51,17 @@ Tracked manifest에는 secret, token, local checkout path 또는 mutable latest 
 
 ## Source-checkout update channel
 
+- Source checkout path는 tracked manifest가 아니라 user-private local settings에만 저장하고 expected repository owner/name과 canonical path를 검증한다.
 - Source checkout은 verified repository remote와 clean/dirty state를 먼저 확인한다.
 - 자동 동작은 fixed `git fetch --prune origin`까지로 제한한다. Fetch는 현재 branch, worktree와 file을 변경하지 않는다.
+- 자동 fetch는 inherited environment를 clear하고 fixed executable, non-interactive credential policy, protocol/TLS/redirect policy와 isolated system/global config를 사용한다. Repository-discovery variable, executable path, askpass, proxy 또는 process-level Git config가 command를 바꾸지 못하게 한다.
+- 표시용 `remote.origin.url`만 검증하지 않는다. Automatic fetch는 exact HTTPS host/repository를 요구하고, applicable `url.*.insteadOf`, include, `core.sshCommand`, remote upload/proxy override, URL-scoped HTTP proxy/TLS/redirect override가 identity를 바꿀 수 있으면 fail closed한다.
+- `current`는 bounded-age successful fetch evidence, canonical repository identity, expected remote branch와 remote-tracking commit을 함께 검증할 때만 사용한다. `FETCH_HEAD` timestamp나 다른 remote의 동일 commit만으로 freshness를 주장하지 않는다.
 - Merge, rebase, reset, checkout, pull, dependency install, build와 app replacement는 preview와 명시적 승인 뒤에 별도 단계로 수행한다.
 - Dirty checkout은 update availability를 보여줄 수 있지만 apply를 차단하고 현재 file을 보존한다.
 - Ahead/diverged state를 behind와 구분한다. Remote default branch가 새 commit을 가진다는 이유만으로 local commit을 버리지 않는다.
+- `always open latest`는 highest version string을 무조건 실행한다는 뜻이 아니다. Compatible verified release 또는 명시적으로 선택한 clean/current local build가 아니면 실행을 막고 exact remediation을 제공한다.
+- Source fetch, dependency install, build, signed install과 launch는 서로 다른 action이다. Fetch가 성공했다고 build 또는 installed bundle이 current하다고 표시하지 않는다.
 
 ## Signed-release update channel
 
@@ -71,6 +77,7 @@ Tracked manifest에는 secret, token, local checkout path 또는 mutable latest 
 - Current version, available version, channel, release notes link와 valid next action을 보여준다.
 - Mandatory update는 security/contract incompatibility처럼 owner가 명시한 경우에만 사용한다.
 - Source fetch와 binary download/install을 같은 button이나 status로 표현하지 않는다.
+- Embedded compatibility expectation을 `update available`로 표시하지 않는다. Remote metadata, exact commit, artifact identity와 checked time이 있을 때만 availability를 주장한다.
 
 ## Release validation
 

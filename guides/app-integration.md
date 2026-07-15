@@ -42,6 +42,21 @@ Tracked manifest의 semantic version은 release source와 일치해야 한다. R
 - Timeout, cancellation, stdout/stderr size, exit code와 redaction을 adapter contract에 포함한다.
 - 다른 repository source를 복사해 adapter를 만들지 않고 public/stable contract만 구현한다.
 
+## Integration consent and operating-system permissions
+
+Studio가 관리하는 integration access와 operating system이 각 application에 부여하는 privacy permission은 서로 다른 경계다.
+
+- 서로 다른 bundle ID의 독립 application은 Studio의 macOS TCC permission을 상속하지 않는다. 같은 signing team, App Group 또는 stable install path도 Files & Folders, Accessibility, Automation, camera, microphone 같은 승인을 다른 app에 전달하지 않는다.
+- Stable bundle ID, designated requirement, signing team, entitlement와 install path는 동일 app update의 permission continuity를 돕지만 새 권한을 승인하거나 다른 app의 승인을 대체하지 않는다.
+- Studio 설정은 app별 integration access를 `ask`, `allow once`, `allow`, `deny`처럼 관리할 수 있다. 이를 macOS permission이 granted된 것으로 표현하지 않는다.
+- Persistent grant는 verified app ID, bundle ID, signing team/designated requirement, contract major와 capability policy에 묶고 identity 또는 effect가 바뀌면 fail closed한다.
+- Status, health, recent activity, launch, resource open, handoff preview와 write/apply는 별도 capability다. 한 capability 승인을 다른 effect로 확대하지 않는다.
+- 승인 전 background refresh는 provider process를 실행하지 않는다. Revoke는 다음 operation부터 즉시 적용하고 provider-derived private cache도 제거한다.
+- Studio는 TCC database를 읽거나 수정하거나 `tccutil` reset, 자동 클릭, 임의 설정 pane URL로 승인을 우회하지 않는다. Provider-owned permission은 provider가 자기 setup flow에서 요청하고 Studio는 sanitized blocker와 next action만 보여준다.
+- 모든 authorization은 UI preflight만으로 끝내지 않고 native broker가 typed request, verified provider identity와 current grant를 다시 확인한다.
+
+모든 provider가 denied 또는 unavailable이어도 Studio의 독립 authoring workflow는 계속 동작해야 한다.
+
 ## Read-only first
 
 1. application discovery와 launch를 먼저 검증한다.
@@ -78,6 +93,14 @@ CLI가 있는 application은 fixed status subcommand와 machine-readable JSON을
 ## Update channels
 
 Update discovery와 installation은 capability negotiation 대상이며 health/status 권한에서 추론하지 않는다. Signing, version provenance, source checkout과 signed release channel은 [`app-distribution.md`](app-distribution.md)를 따른다.
+
+- Studio에 내장된 compatibility manifest version은 remote release availability의 증거가 아니다. 실제 release metadata를 확인하지 않았다면 `not checked` 또는 `unknown`으로 표시한다.
+- Source checkout status, signed release status와 selected launch target은 서로 다른 evidence와 checked time을 가진다.
+- 여러 app copy가 있을 때 bundle ID만으로 Launch Services에 선택을 맡기지 않는다. Verified installed release, 사용자가 선택한 local development build 또는 explicit ask policy에 따라 exact canonical bundle path를 연다.
+- Status provider executable, provider manifest와 실제 launch bundle의 provenance가 다르면 launch를 차단하고 blocker와 next action을 표시한다.
+- Launch validation은 manifest 일부 field를 spot-check하지 않는다. Supported schema 전체, actual bundle executable, bundle/signing identity, clean build provenance와 exact commit을 검증하고 다른 copy가 이미 실행 중이면 path mismatch를 차단한다.
+- Native와 web runtime이 같은 manifest를 각각 검증하면 allowlisted platform/capability/icon, semantic version, command token, deep-link syntax, timeout, privacy와 distribution bound의 parity fixture를 유지한다. 한쪽의 느슨한 shadow validator를 `full schema`라고 부르지 않는다.
+- 한 provider action이 성공한 뒤 수행하는 background evidence refresh는 다른 app의 blocker 때문에 이미 성공한 결과를 error로 바꾸지 않는다. Explicit global check만 aggregate partial failure를 전체 check feedback으로 표현한다.
 
 ## Deep links
 

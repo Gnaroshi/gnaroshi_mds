@@ -89,5 +89,12 @@
     "title": "Application Identity and Icon Guide",
     "description": "Approved identity base, role variants, icon classes, shared palette, and export rules.",
     "path": "guides/app-icons.md"
+  },
+  {
+    "uri": "gnaroshi://guides/authoring-editor",
+    "name": "authoring-editor-guide",
+    "title": "Long-form Authoring Editor Guide",
+    "description": "Markdown editing, document identity, private media, LaTeX, feedback, and publication-boundary rules.",
+    "path": "guides/authoring-editor.md"
   }
 ]
