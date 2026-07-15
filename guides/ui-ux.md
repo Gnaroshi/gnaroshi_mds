@@ -18,6 +18,7 @@ Simple means low cognitive load, not missing information. A first-time user must
 - empty, loading, error, success, disabled, permission-denied state를 설계한다.
 - 버튼은 결과를 예측할 수 있는 동사를 사용한다.
 - destructive action은 일반 action과 분리하고 변경 범위를 표시한다.
+- 되돌릴 수 있는 routine apply는 최신 preview와 backup 상태를 같은 맥락에 표시하고 한 번의 명시적 action으로 실행한다. 위험을 낮추지 않는 긴 typed phrase, 중복 checkbox와 반복 설명을 confirmation처럼 쌓지 않는다. Irreversible 또는 recovery가 불확실한 작업만 typed confirmation처럼 더 강한 friction을 사용한다.
 - navigation 선택지가 상호 배타적이면 direct link, tab, 또는 한 번에 하나만 열리는 disclosure를 사용한다. 여러 navigation disclosure가 독립적으로 열린 채 중첩되지 않게 한다.
 - 공개 evidence나 실제 기능이 없는 capability는 disabled menu나 빈 dashboard로 광고하지 않고 숨긴다. route 보존이 필요하면 direct navigation에서 제외한다.
 
