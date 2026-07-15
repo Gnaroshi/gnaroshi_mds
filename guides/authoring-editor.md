@@ -8,6 +8,10 @@
 - LaTeX는 `$…$` inline과 `$$\n…\n$$` display form을 지원하고 malformed formula는 source를 보존한 채 해당 formula 가까이에 설명한다.
 - Formula validation은 raw dollar-sign regex가 아니라 실제 Markdown math syntax tree의 inline/display math node만 검사한다. Inline code, fenced code, escaped dollar와 일반 가격 표기를 수식 오류로 오인하지 않는다.
 - Editor document identity가 바뀌면 본문이 우연히 같아도 undo/redo history를 새 document에 전달하지 않는다. External hydration은 undo history에 넣지 않고 document별 editor lifetime 또는 compartment를 명시적으로 분리한다.
+- Frontmatter와 body를 함께 가진 source에서 body editor는 body 밖의 exact bytes를 보존한다. Body를 수정했다가 원래 text로 되돌리면 전체 canonical source도 byte-for-byte 원본이 되어 dirty와 Recovery state가 해제돼야 한다.
+- Source serializer는 routine body edit 때문에 frontmatter key order, quoting, whitespace 또는 line ending을 정규화하지 않는다. 구조 변경이 필요한 metadata action만 schema-aware serialization을 사용하고 preview/diff를 제공한다.
+- Focus mode는 title, source/preview mode, saved state, Save, blocking error와 exit을 유지한다. 주변 workflow navigation은 숨길 수 있지만 canonical write boundary는 숨기지 않는다.
+- Editor 탈출, indentation과 other keyboard 도움은 실제 behavior와 일치해야 하며 persistent body copy로 공간을 차지하지 않는다. Help/Guide 또는 accessible description으로 제공하고 visually-hidden utility가 production CSS에서 실제로 숨겨지는지 검증한다.
 
 ## Screenshots and images
 
