@@ -25,6 +25,10 @@
 - Owner가 GitHub Actions를 별도 요청 전까지 사용하지 말라고 정한 작업에서는 workflow 실행·재실행·취소·활성화·비활성화·수정뿐 아니라 run/check/log 조회와 CI 진단도 수행하지 않는다.
 - 이 경계는 local inspection/build/test/signed install과 Git status/diff/commit/push, branch 및 PR의 일반 code-management metadata 작업을 막지 않는다. 다만 PR check 상태를 대신 조회하거나 CI 성공을 추정하지 않는다.
 - Actions가 다시 필요하면 owner의 명시적인 요청을 받은 뒤에만 해당 workflow 범위와 허용된 action을 확인한다. 기존 workflow를 임의로 우회하거나 약화하지 않는다.
+- GitHub Actions는 제한된 유료 실행 자원으로 취급한다. 가능한 build, unit/integration/contract test, lint, packaging과 signature 검증은 먼저 local에서 실행하고, Actions를 반복적인 개발·디버깅 loop나 local test 대용으로 사용하지 않는다.
+- Workflow가 실패하면 허용된 범위에서 원인을 한 번 분류한다. Code/configuration failure는 같은 조건을 local에서 재현하고 수정·검증한 뒤 새 commit을 한 번 push한다. Billing, quota, runner 또는 account gate처럼 code와 무관한 failure는 workflow나 제품 code를 임의로 바꾸지 않고 외부 blocker가 해소될 때까지 추가 push와 rerun을 중단한다.
+- Rerun이 필요하면 현재 PR 또는 release의 최신 relevant SHA와 실패 job만 대상으로 한다. Superseded commit의 과거 run을 일괄 재실행하지 않으며, 동일 원인 실패가 반복되면 추가 실행을 누적시키지 않는다.
+- Expensive macOS packaging, signing, notarization과 release workflow는 required validation 또는 owner-approved release 시점에만 실행한다. Workflow 설계 시 안전한 path filter, concurrency cancellation, dependency cache와 job 분리를 사용하되 required check와 release integrity를 약화해 비용을 줄이지 않는다.
 
 ## 사용자 경험
 
@@ -37,6 +41,7 @@
 - 반응형 크기에서 component, text, control이 잘리지 않게 wrap, reflow, scroll, min/max constraint를 명시하고 최소 viewport에서 검증한다.
 - 모든 user action은 같은 맥락에서 pending/result/error/next action을 보여주고, feedback 때문에 기존 component가 가려지거나 불필요하게 이동하지 않게 한다. Broad UI change는 변경 component별 acceptance review 뒤 전체 workflow를 다시 검증한다.
 - Packaged desktop application을 변경한 작업은 source-only 요청이 아니라면 signed stable install과 실제 Spotlight/launcher 반영까지 완료한다. 실행 중 app에 미저장 상태가 있을 수 있으면 강제 종료하지 말고 안전한 종료 뒤 같은 작업에서 설치를 재개하며, 자세한 조건은 `guides/app-distribution.md`를 따른다.
+- 검증을 위해 agent가 실행한 application, local server와 provider process는 필요한 evidence를 수집한 즉시 정상 종료하고, 작업을 마치기 전에 app-owned child process, detached process와 listening port가 남지 않았는지 확인한다. 사용자가 원래 실행한 app이나 미저장 상태가 의심되는 process는 강제 종료하지 않는다.
 
 ## 이미지
 

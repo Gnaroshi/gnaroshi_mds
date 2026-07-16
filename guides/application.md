@@ -27,6 +27,15 @@
 - destructive action은 scope, preservation, confirmation을 명확히 표시한다.
 - Confirmation friction은 실제 위험에 비례시킨다. Current dry-run/preview, 자동 backup, idempotency와 rollback이 있는 반복 apply는 범위와 보존 항목을 짧게 보여주는 한 번의 명시적 confirmation으로 실행하고, 매 실행마다 긴 문장을 다시 입력하게 하지 않는다. Typed confirmation은 되돌릴 수 없는 삭제, 광범위한 overwrite, 복구 수단이 없는 변경처럼 오입력 비용이 큰 작업에만 사용한다.
 
+## Process and resource lifecycle
+
+- 모든 subprocess, timer, polling task, observer, local server, socket과 file handle에는 명시적인 owner와 시작·취소·종료 경계가 있어야 한다. View 재생성이나 refresh가 같은 background work를 중복 시작하지 않게 idempotent start를 사용한다.
+- 일반 CLI, health/status command와 one-shot adapter는 종료 뒤 child process나 listening port를 남기지 않는다. 지속 실행이 필요한 daemon/service는 optional background service로 명시하고 lifecycle, PID/port ownership, stop command와 recovery를 문서화한다.
+- Subprocess는 shell string이 아니라 typed argument로 시작하고 timeout, cancellation, stdout/stderr drain과 exit wait를 처리한다. Parent가 종료되거나 task가 취소될 때 child와 필요한 process group을 정상 종료하고 reap한다. 의도하지 않은 detached/background child를 만들지 않는다.
+- SSH multiplexing 같은 reusable connection은 host별 stable ownership과 bounded lifetime을 사용한다. Poll마다 detached master를 새로 만들지 않고, application shutdown과 configuration removal에서 해당 app이 소유한 connection만 명시적으로 닫는다. 사용자의 unrelated SSH session과 socket은 건드리지 않는다.
+- Electron/desktop app은 window close와 application quit를 구분한다. App-owned local server, media resolver와 child process는 quit에서 종료하고, reload/crash/retry에서도 중복 listener와 orphan process가 남지 않게 한다.
+- Lifecycle validation은 최소 세 번의 launch → idle/refresh → graceful quit cycle에서 process, child process, thread/task, file descriptor와 listening port가 baseline으로 돌아오는지 확인한다. Timeout, malformed response, unreachable host와 cancellation 경로도 포함하며, 검증용으로 실행한 app과 server는 evidence 수집 직후 종료한다.
+
 ## UI contract
 
 - Primary application UI에는 현재 작업을 이해하고 완료하는 데 필요한 사용자 목표, blocker, progress, result와 next action만 노출한다. Repository path, executable/command, PID, hash, schema/version, raw API/backend 상태, artifact filename과 raw log는 기본 화면·dashboard·floating workflow에서 숨기고 `Settings > Advanced/Diagnostics`, explicit Details, Reports 또는 Logs로 이동한다. 잠재적으로 유용하다는 이유만으로 primary UI에 계속 표시하지 않는다.

@@ -66,6 +66,14 @@ Repository-local test 외에 다음 matrix를 검증한다.
 
 실행하지 못한 test, dependency, external approval, deployment state를 PR에 정확히 남긴다.
 
+### Local-first CI budget
+
+- 각 repository의 documented build, test, lint, contract, package와 signature check를 local에서 먼저 통과시킨다. GitHub Actions는 local 검증을 대신하는 반복 feedback loop가 아니라 clean checkout, supported runner와 release boundary를 확인하는 마지막 검증으로 사용한다.
+- 한 repository의 실패가 다른 repository 변경과 무관하면 관련 없는 모든 workflow를 다시 돌리지 않는다. 실패한 repository와 최신 relevant SHA만 대상으로 한다.
+- Failure를 code/configuration, missing secret/approval, external dependency, runner infrastructure, billing/quota로 분류하고 PR validation record에 남긴다. Code/configuration failure만 local fix와 새 commit으로 해결하며, account나 infrastructure blocker를 숨기기 위해 workflow를 끄거나 required check를 우회하지 않는다.
+- Billing 또는 usage limit으로 job이 시작되지 못하면 추가 push와 rerun을 중단한다. 제한이 해소된 뒤 latest failed job 한 번만 재실행하고, 실제 step failure가 나타날 때에만 다음 code change를 만든다.
+- Cross-repository release는 provider-first order를 유지하되 모든 repository의 expensive release job을 동시에 시험하지 않는다. 각 provider contract의 local validation을 마친 뒤 필요한 release를 순서대로 실행하고 성공 evidence를 확인한 후 consumer로 이동한다.
+
 ## Required commit body
 
 Cross-repository와 architecture change commit은 다음 section을 사용한다.
