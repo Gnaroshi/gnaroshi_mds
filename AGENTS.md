@@ -20,6 +20,12 @@
 - 프로젝트 고유 사실은 원래 프로젝트에 남기고, 여기에는 여러 프로젝트에 적용되는 규칙만 요약한다.
 - Cross-repository와 architecture change는 `guides/cross-repo-changes.md`의 baseline, preservation, compatibility, validation, rollback과 commit body를 사용한다.
 
+## GitHub 작업 경계
+
+- Owner가 GitHub Actions를 별도 요청 전까지 사용하지 말라고 정한 작업에서는 workflow 실행·재실행·취소·활성화·비활성화·수정뿐 아니라 run/check/log 조회와 CI 진단도 수행하지 않는다.
+- 이 경계는 local inspection/build/test/signed install과 Git status/diff/commit/push, branch 및 PR의 일반 code-management metadata 작업을 막지 않는다. 다만 PR check 상태를 대신 조회하거나 CI 성공을 추정하지 않는다.
+- Actions가 다시 필요하면 owner의 명시적인 요청을 받은 뒤에만 해당 workflow 범위와 허용된 action을 확인한다. 기존 workflow를 임의로 우회하거나 약화하지 않는다.
+
 ## 사용자 경험
 
 - 사용자-facing 정보 경계는 safety, accessibility, data integrity 다음으로 우선하는 presentation 원칙이다. 기본 화면에는 사용자가 목적, 선행 조건, 현재 상태, 결과와 다음 행동을 이해하거나 결정하는 데 필요한 정보만 둔다. 구현 경로, raw command, PID, hash, schema/version, API/backend 이름, artifact filename, raw log처럼 개발자에게만 필요한 값과 제거해도 사용자의 판단·행동이 달라지지 않는 문구는 기본 UI에서 숨긴다.
