@@ -60,6 +60,8 @@ Tracked manifest에는 secret, token, local checkout path 또는 mutable latest 
 - Merge, rebase, reset, checkout, pull, dependency install, build와 app replacement는 preview와 명시적 승인 뒤에 별도 단계로 수행한다.
 - Dirty checkout은 update availability를 보여줄 수 있지만 apply를 차단하고 현재 file을 보존한다.
 - Ahead/diverged state를 behind와 구분한다. Remote default branch가 새 commit을 가진다는 이유만으로 local commit을 버리지 않는다.
+- Clean ahead checkout은 installed bundle provenance가 exact local HEAD와 일치할 때 latest-local launch 대상으로 사용할 수 있다. 이 상태를 published/synced라고 부르지 않고 push는 별도 Git action으로 유지한다.
+- Owner가 여러 established checkout parent를 사용할 때는 작은 allowlist를 deterministic order로 확인하고 exact repository remote를 검증한다. Secondary known root에 있다는 이유만으로 manual setup을 요구하지 않는다.
 - `always open latest`는 highest version string을 무조건 실행한다는 뜻이 아니다. Compatible verified release 또는 명시적으로 선택한 clean/current local build가 아니면 실행을 막고 exact remediation을 제공한다.
 - Source fetch, dependency install, build, signed install과 launch는 서로 다른 action이다. Fetch가 성공했다고 build 또는 installed bundle이 current하다고 표시하지 않는다.
 

@@ -66,6 +66,17 @@ Studio가 관리하는 integration access와 operating system이 각 application
 
 초기 integration은 destructive action, publish, install, model download, remote job control, cleanup을 호출하지 않는다. Write integration이 필요해도 owning application의 scope preview, confirmation, audit와 rollback을 우회하지 않는다.
 
+Application launch availability is independent from status-provider health.
+When Studio has a compatible provider identity and an exact verified launch
+target, it keeps a plainly labeled Open action available even when status is
+stale, degraded, empty, or temporarily failed. Refresh and setup remain separate
+actions; a failed summary must not hide an otherwise runnable application.
+
+CLI/web-only applications may expose an explicit local-UI launch capability
+without pretending to be a native bundle. The control plane must use a fixed
+loopback address, own and reap the child process, refuse an unrelated listener,
+and never embed the full UI.
+
 ## JSON status commands
 
 CLI가 있는 application은 fixed status subcommand와 machine-readable JSON을 우선한다.
