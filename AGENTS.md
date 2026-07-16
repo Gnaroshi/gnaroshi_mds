@@ -42,6 +42,7 @@
 - 모든 user action은 같은 맥락에서 pending/result/error/next action을 보여주고, feedback 때문에 기존 component가 가려지거나 불필요하게 이동하지 않게 한다. Broad UI change는 변경 component별 acceptance review 뒤 전체 workflow를 다시 검증한다.
 - Packaged desktop application을 변경한 작업은 source-only 요청이 아니라면 signed stable install과 실제 Spotlight/launcher 반영까지 완료한다. 실행 중 app에 미저장 상태가 있을 수 있으면 강제 종료하지 말고 안전한 종료 뒤 같은 작업에서 설치를 재개하며, 자세한 조건은 `guides/app-distribution.md`를 따른다.
 - 검증을 위해 agent가 실행한 application, local server와 provider process는 필요한 evidence를 수집한 즉시 정상 종료하고, 작업을 마치기 전에 app-owned child process, detached process와 listening port가 남지 않았는지 확인한다. 사용자가 원래 실행한 app이나 미저장 상태가 의심되는 process는 강제 종료하지 않는다.
+- 사용자가 다른 작업 중일 때 검증용 application을 주 모니터에 열거나 현재 application의 focus를 가져오지 않는다. 기본은 headless test, CLI와 non-activating background 검증이며, 실제 window가 반드시 필요하면 보조 display를 명시적으로 선택할 수 있을 때만 사용한다. Display와 focus를 보장할 수 없으면 app을 열지 않고 해당 visual validation을 blocked로 보고한다.
 
 ## 이미지
 

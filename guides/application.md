@@ -35,6 +35,7 @@
 - SSH multiplexing 같은 reusable connection은 host별 stable ownership과 bounded lifetime을 사용한다. Poll마다 detached master를 새로 만들지 않고, application shutdown과 configuration removal에서 해당 app이 소유한 connection만 명시적으로 닫는다. 사용자의 unrelated SSH session과 socket은 건드리지 않는다.
 - Electron/desktop app은 window close와 application quit를 구분한다. App-owned local server, media resolver와 child process는 quit에서 종료하고, reload/crash/retry에서도 중복 listener와 orphan process가 남지 않게 한다.
 - Lifecycle validation은 최소 세 번의 launch → idle/refresh → graceful quit cycle에서 process, child process, thread/task, file descriptor와 listening port가 baseline으로 돌아오는지 확인한다. Timeout, malformed response, unreachable host와 cancellation 경로도 포함하며, 검증용으로 실행한 app과 server는 evidence 수집 직후 종료한다.
+- Automated lifecycle test는 가능하면 window를 만들지 않는 harness와 fake process/server를 사용한다. 실제 UI launch가 필요하면 사용자 작업을 방해하지 않도록 activation을 피하고 보조 display를 명시적으로 사용하며, 주 display placement나 focus state를 추정하지 않는다.
 
 ## UI contract
 
