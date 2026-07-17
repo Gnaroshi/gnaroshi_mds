@@ -15,6 +15,10 @@
 - 중요한 content를 mobile에서 숨기지 않는다.
 - JavaScript와 image는 설명이나 상호작용에 필요할 때만 추가한다.
 - Project/application page는 실제 product screen이나 검증 artifact로 핵심 user scenario를 보여 준다. Demo fixture를 사용하면 public caption에서 demo임을 숨기지 않는다.
+- Project evidence media는 sighted user와 assistive technology 모두에게 같은 provenance boundary를 제공한다. Meaningful screenshot/diagram을 `aria-hidden` link 안에만 두지 말고, concise alt와 visible caption 또는 nearby evidence text를 함께 둔다.
+- Generated concept scene, diagram, screenshot, demo fixture는 public page에서 서로 다른 media type으로 드러나야 한다. Disclosure가 alt text에만 있거나 developer document에만 있으면 public disclosure로 보지 않는다.
+- Language switcher는 현재 locale을 reload-only link처럼 보이게 하지 않는다. 현재 locale은 selected/inert state로 표현하고, translation unavailable 상태는 desktop과 mobile 모두에서 hover-only title이 아니라 visible text 또는 disabled/redirect explanation으로 제공한다.
+- Public page의 large visual은 two-second semantic test를 통과해야 하며, identity/portrait/evidence가 없을 때 큰 monogram이나 placeholder tile로 첫 viewport를 채우지 않는다.
 
 ## Identity color
 
@@ -30,6 +34,9 @@
 - component는 wrap/reflow하고, 본질적으로 넓은 content는 자체 scroll container를 가진다.
 - 고정 width/min-width 때문에 parent를 넘지 않게 한다.
 - focus, keyboard, contrast, heading order와 reduced motion을 검증한다.
+- Local in-page navigation은 populated state에서도 active item이 좁은 viewport에서 발견 가능해야 한다. Scrollbar를 숨기면 edge fade, active auto-scroll, wrapping, disclosure 같은 다른 cue를 제공한다.
+- Hash-link interaction은 static build에서도 click, Enter, direct URL load, back/forward, sticky offset, exactly-one-current invariant를 자동화한다.
+- Visual regression은 route screenshot만으로 완료하지 않는다. Empty/populated feed, translated/untranslated pair, stale/fresh data, hover/focus/current states를 대표 fixture로 분리해 확인한다.
 
 ## Security and release
 
