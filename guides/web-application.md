@@ -18,6 +18,9 @@
 - Project evidence media는 sighted user와 assistive technology 모두에게 같은 provenance boundary를 제공한다. Meaningful screenshot/diagram을 `aria-hidden` link 안에만 두지 말고, concise alt와 visible caption 또는 nearby evidence text를 함께 둔다.
 - Generated concept scene, diagram, screenshot, demo fixture는 public page에서 서로 다른 media type으로 드러나야 한다. Disclosure가 alt text에만 있거나 developer document에만 있으면 public disclosure로 보지 않는다.
 - Language switcher는 현재 locale을 reload-only link처럼 보이게 하지 않는다. 현재 locale은 selected/inert state로 표현하고, translation unavailable 상태는 desktop과 mobile 모두에서 hover-only title이 아니라 visible text 또는 disabled/redirect explanation으로 제공한다.
+- 실제 translation pair의 locale switch는 query뿐 아니라 양쪽 route에 존재하는 hash/location state도 보존한다. Translation unavailable fallback에는 존재하지 않는 detail hash를 전달하지 않는다.
+- Site-owned internal href는 배포된 canonical pathname과 일치시켜 불필요한 redirect를 만들지 않는다. Collection과 page route의 trailing slash 정책을 navigation, CTA, footer와 hash URL에 동일하게 적용한다.
+- Empty collection과 archive route는 화면의 empty state뿐 아니라 robots와 sitemap 노출도 content evidence와 함께 gate한다. 첫 공개 항목이 생기면 같은 규칙으로 자동 복귀해야 한다.
 - Public page의 large visual은 two-second semantic test를 통과해야 하며, identity/portrait/evidence가 없을 때 큰 monogram이나 placeholder tile로 첫 viewport를 채우지 않는다.
 
 ## Identity color
@@ -36,6 +39,7 @@
 - focus, keyboard, contrast, heading order와 reduced motion을 검증한다.
 - Local in-page navigation은 populated state에서도 active item이 좁은 viewport에서 발견 가능해야 한다. Scrollbar를 숨기면 edge fade, active auto-scroll, wrapping, disclosure 같은 다른 cue를 제공한다.
 - Hash-link interaction은 static build에서도 click, Enter, direct URL load, back/forward, sticky offset, exactly-one-current invariant를 자동화한다.
+- Route current item이 hash navigation 뒤 non-current가 될 수 있으면 operable element semantics도 함께 전환한다. `aria-current`만 제거한 inert label을 남기지 않는다.
 - Visual regression은 route screenshot만으로 완료하지 않는다. Empty/populated feed, translated/untranslated pair, stale/fresh data, hover/focus/current states를 대표 fixture로 분리해 확인한다.
 
 ## Security and release
