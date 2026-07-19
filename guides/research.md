@@ -36,4 +36,5 @@
 - 논문·연구 figure 작업은 `technical-figure-code.md`와 `scientific-figure-generation.md`를 함께 읽는다.
 - 별도 지시가 없으면 정확성·편집성 중심의 code baseline과 시각 완성도 중심의 generated candidate를 나란히 검토한다.
 - 두 결과는 같은 도구나 같은 조형으로 수렴시킬 필요가 없다. 각 track의 역할과 한계를 명시하고, 선택 또는 hybrid 방향은 실제 render를 비교한 뒤 정한다.
+- 실제 구현을 설명하는 figure는 current code, config, tests와 필요한 runtime evidence를 먼저 조사하고 주요 visual element를 source file과 symbol에 연결한 evidence map을 유지한다.
 - Figure에 reusable한 owner 승인·거절 기준이 생기면 해당 guide의 decision log를 같은 작업에서 갱신한다.

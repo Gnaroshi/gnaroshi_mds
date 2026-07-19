@@ -49,6 +49,7 @@
 
 - Full-color generated visual과 application/product identity는 사용자가 다른 format을 요청하지 않는 한 raster로 만든다.
 - 논문·연구 figure는 별도 지시가 없으면 즉시 사용 가능한 code-based technical baseline과 visual-quality-first generated candidate를 함께 준비해 나란히 검토한다. 두 track은 서로 다른 합격 기준을 가지며 한쪽을 다른 쪽처럼 보이게 만들기 위해 품질을 타협하지 않는다.
+- 실제 구현을 설명하는 figure는 target repository의 current code, config, tests와 필요한 runtime evidence를 먼저 조사하고, 주요 visual element를 source file·symbol·verification state에 연결한 evidence map을 함께 제공한다.
 - Functional UI icon은 SF Symbols, Lucide 또는 일관된 custom monochrome vector system을 사용할 수 있고 모든 toolbar control을 mascot으로 만들지 않는다.
 - Menu-bar icon은 full-color mascot이 아니라 monochrome template asset을 사용한다.
 - Gnaroshi application identity의 approved base는 `identity/approved/gnaroshi-base-v1.png`이며 새 role variant는 base recognition을 유지한다.
