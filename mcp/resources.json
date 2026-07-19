@@ -63,6 +63,20 @@
     "path": "guides/image-assets.md"
   },
   {
+    "uri": "gnaroshi://guides/technical-figure-code",
+    "name": "technical-figure-code-guide",
+    "title": "Code-based Technical Figure Guide",
+    "description": "Fast, editable, reproducible, and immediately usable technical figure baseline rules.",
+    "path": "guides/technical-figure-code.md"
+  },
+  {
+    "uri": "gnaroshi://guides/scientific-figure-generation",
+    "name": "scientific-figure-generation-guide",
+    "title": "Visual-quality-first Scientific Figure Generation Guide",
+    "description": "Generated scientific figure art direction, candidate review, and Gnaroshi visual authorship rules.",
+    "path": "guides/scientific-figure-generation.md"
+  },
+  {
     "uri": "gnaroshi://guides/app-integration",
     "name": "app-integration-guide",
     "title": "Application Integration Guide",
