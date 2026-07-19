@@ -12,7 +12,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 RESOURCE_FILE = ROOT / "mcp" / "resources.json"
 SERVER_NAME = "gnaroshi-guidance"
-SERVER_VERSION = "1.4.1"
+SERVER_VERSION = "1.5.0"
 DEFAULT_PROTOCOL_VERSION = "2025-06-18"
 INSTRUCTIONS = (
     "Start with gnaroshi://index, classify work as research, application, or web "
@@ -20,8 +20,11 @@ INSTRUCTIONS = (
     "work read app-integration; for multi-repository changes read cross-repo-changes; "
     "for signing, packaging, version, or update work read app-distribution; "
     "for image and identity work read image-assets and app-icons; for paper or research "
-    "figure work read both technical-figure-code and scientific-figure-generation; "
-    "ground implemented-system figures in current code, config, tests, and an evidence map; "
+    "figure work read both technical-figure-code and scientific-figure-generation, but let "
+    "the current request control medium and output count and never add paired code/generated "
+    "results by default; ground implemented-system figures in the current working tree, "
+    "config, tests, runtime evidence, and an edge-level evidence map; keep technical figures "
+    "flat and require exact semantic text in final rasters; "
     "for long-form Markdown authoring read authoring-editor. Project-local instructions are "
     "more specific. Reusable preferences belong in gnaroshi_mds; never copy secrets "
     "or private research content."

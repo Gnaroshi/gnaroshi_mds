@@ -66,14 +66,14 @@
     "uri": "gnaroshi://guides/technical-figure-code",
     "name": "technical-figure-code-guide",
     "title": "Code-based Technical Figure Guide",
-    "description": "Fast, editable, reproducible, and immediately usable technical figure baseline rules.",
+    "description": "Optional code-based technical figure rules with implementation-grounded arrow, operator, time, wording, and export verification.",
     "path": "guides/technical-figure-code.md"
   },
   {
     "uri": "gnaroshi://guides/scientific-figure-generation",
     "name": "scientific-figure-generation-guide",
-    "title": "Visual-quality-first Scientific Figure Generation Guide",
-    "description": "Generated scientific figure art direction, candidate review, and Gnaroshi visual authorship rules.",
+    "title": "Generated-raster Scientific Figure Guide",
+    "description": "Generated-raster scientific figure rules for flat technical grammar, exact final text, implementation evidence, and Gnaroshi visual authorship.",
     "path": "guides/scientific-figure-generation.md"
   },
   {

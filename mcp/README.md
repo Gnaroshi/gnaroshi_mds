@@ -27,6 +27,8 @@ ChatGPT web does not read local Codex MCP configuration. Connect the GitHub repo
 10. `gnaroshi://guides/technical-figure-code` and `gnaroshi://guides/scientific-figure-generation` for paper and research figure work
 11. `gnaroshi://guides/authoring-editor` for long-form Markdown, media, and formula authoring work
 
+Reading both figure resources establishes their boundaries; it does not require paired output. The current user request controls whether the result is code-based, generated raster, hybrid, or multiple tracks.
+
 ## Manual protocol check
 
 ```bash

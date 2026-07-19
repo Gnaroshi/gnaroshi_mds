@@ -34,7 +34,8 @@
 ## Scientific figures
 
 - 논문·연구 figure 작업은 `technical-figure-code.md`와 `scientific-figure-generation.md`를 함께 읽는다.
-- 별도 지시가 없으면 정확성·편집성 중심의 code baseline과 시각 완성도 중심의 generated candidate를 나란히 검토한다.
-- 두 결과는 같은 도구나 같은 조형으로 수렴시킬 필요가 없다. 각 track의 역할과 한계를 명시하고, 선택 또는 hybrid 방향은 실제 render를 비교한 뒤 정한다.
-- 실제 구현을 설명하는 figure는 current code, config, tests와 필요한 runtime evidence를 먼저 조사하고 주요 visual element를 source file과 symbol에 연결한 evidence map을 유지한다.
+- 현재 사용자 요청이 medium, 산출물 수와 우선순위의 최상위 권한이다. Code/generated 결과는 둘 다 요청되었을 때만 함께 만들며, generated-raster-only 요청을 code guidance와의 conflict로 처리하지 않는다.
+- 실제 구현을 설명하는 figure는 current working tree, config, tests와 필요한 runtime evidence를 먼저 조사하고 모든 visible module, arrow, operator, time index, shared/frozen/detached state와 label을 source file과 symbol에 연결한 evidence map을 유지한다.
+- Introduction figure는 한 문장 claim과 main contribution을 가장 크게 보여주고 full architecture dump를 피한다. Technical panel은 flat 2D로 만들며 computation을 3D object나 pseudo-machine으로 표현하지 않는다.
+- Generated technical raster도 required semantic text를 final PNG에 실제로 포함한다. Blank annotation plate와 pseudo-text는 deliverable이 아니다.
 - Figure에 reusable한 owner 승인·거절 기준이 생기면 해당 guide의 decision log를 같은 작업에서 갱신한다.
