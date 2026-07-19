@@ -13,6 +13,13 @@
 7. 논문·연구 figure 작업이면 `guides/technical-figure-code.md`와 `guides/scientific-figure-generation.md`를 모두 읽는다.
 8. 대상 프로젝트의 자체 `AGENTS.md`와 문서를 더 구체적인 지침으로 적용한다.
 
+## Guidance access without Codex CLI or MCP
+
+- Codex CLI와 MCP는 optional convenience다. 보안상 설치할 수 없는 SSH server에서는 이 repository를 한 번 clone하고 작업 시작 전 `git pull --ff-only`로 최신화한 뒤 Markdown을 remote filesystem에서 직접 읽는다.
+- VS Code Remote-SSH의 target project `AGENTS.md`에서 cloned `gnaroshi_mds`의 absolute path와 read order를 명시한다. Sibling repository는 자동 발견된다고 가정하지 않는다.
+- Figure 작업은 clone의 `AGENTS.md`, `guides/research.md`, `guides/technical-figure-code.md`, `guides/scientific-figure-generation.md`를 매번 다시 읽는다.
+- Guidance clone은 read-only reference로 취급한다. Reusable rule 변경은 canonical `gnaroshi_mds`에서 수행하고, target project output folder에 새 versioned guideline을 만들지 않는다.
+
 ## 업데이트 원칙
 
 - 반복해서 사용할 새 선호, 문서 패턴, 작업 규칙이 확인되면 이 저장소를 먼저 업데이트하고 GitHub와 동기화한다.
@@ -48,9 +55,11 @@
 ## 이미지
 
 - Full-color generated visual과 application/product identity는 사용자가 다른 format을 요청하지 않는 한 raster로 만든다.
-- 논문·연구 figure의 medium, 산출물 수와 우선순위는 현재 사용자 요청을 따른다. 두 figure guide를 모두 읽더라도 code/generated 결과를 자동으로 함께 만들지 않으며, generated-raster-only 요청을 code guidance와의 충돌로 취급하지 않는다.
+- 논문·연구 figure의 role, output format, 산출물 수와 우선순위는 현재 사용자 요청을 따른다. 두 figure guide를 모두 읽더라도 code/generated 결과를 자동으로 함께 만들지 않는다.
+- PNG와 raster는 export format이지 image-generation method가 아니다. Technical architecture, pipeline, state, operator와 data plot은 real text가 있는 flat constructed schematic으로 만들고, image generation은 cover, teaser와 non-technical concept illustration에만 사용한다.
 - 실제 구현을 설명하는 figure는 target repository의 current working tree, config, tests와 필요한 runtime evidence를 먼저 조사한다. 모든 visible module, arrow, operator, time index, shared/frozen/detached state와 technical label을 source file·symbol·verification state에 연결한 evidence map을 함께 제공한다.
 - Technical figure는 flat 2D scientific grammar를 기본으로 하고, module·feature·latent·operator·pipeline을 3D cube, portal, rail, pipe, tank나 pseudo-machine으로 표현하지 않는다. Final raster에는 required semantic text가 실제로 들어가야 하며 blank annotation plate와 pseudo-text는 미완성으로 reject한다.
+- Target venue size를 우선하고, venue가 정해지지 않았으면 약 89/182 mm와 300/600 dpi를 working reference로 사용한다. 16:9는 명시적인 slide·video·web placement가 아니면 paper 기본값으로 사용하지 않는다.
 - Functional UI icon은 SF Symbols, Lucide 또는 일관된 custom monochrome vector system을 사용할 수 있고 모든 toolbar control을 mascot으로 만들지 않는다.
 - Menu-bar icon은 full-color mascot이 아니라 monochrome template asset을 사용한다.
 - Gnaroshi application identity의 approved base는 `identity/approved/gnaroshi-base-v1.png`이며 새 role variant는 base recognition을 유지한다.

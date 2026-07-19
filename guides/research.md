@@ -34,8 +34,12 @@
 ## Scientific figures
 
 - 논문·연구 figure 작업은 `technical-figure-code.md`와 `scientific-figure-generation.md`를 함께 읽는다.
-- 현재 사용자 요청이 medium, 산출물 수와 우선순위의 최상위 권한이다. Code/generated 결과는 둘 다 요청되었을 때만 함께 만들며, generated-raster-only 요청을 code guidance와의 conflict로 처리하지 않는다.
+- 현재 사용자 요청이 figure role, output format, 산출물 수와 우선순위의 최상위 권한이다. Code/generated 결과는 둘 다 요청되었을 때만 함께 만든다.
+- PNG/raster는 export format이다. Technical architecture, pipeline, operator, state transition과 data plot은 constructed schematic으로 만들고 image generation은 cover, teaser와 non-technical concept에 제한한다.
+- Usable baseline과 아름다운 technical final을 함께 요청하면 code baseline과 polished constructed schematic을 같은 evidence map에서 만들고, image-generated pipeline을 대안으로 사용하지 않는다.
 - 실제 구현을 설명하는 figure는 current working tree, config, tests와 필요한 runtime evidence를 먼저 조사하고 모든 visible module, arrow, operator, time index, shared/frozen/detached state와 label을 source file과 symbol에 연결한 evidence map을 유지한다.
 - Introduction figure는 한 문장 claim과 main contribution을 가장 크게 보여주고 full architecture dump를 피한다. Technical panel은 flat 2D로 만들며 computation을 3D object나 pseudo-machine으로 표현하지 않는다.
-- Generated technical raster도 required semantic text를 final PNG에 실제로 포함한다. Blank annotation plate와 pseudo-text는 deliverable이 아니다.
+- Final technical raster에는 required semantic text를 실제로 포함한다. Blank annotation plate와 pseudo-text는 deliverable이 아니다.
+- Target venue size를 우선하고, venue가 정해지지 않았으면 약 89/182 mm와 300/600 dpi를 working reference로 사용한다. 16:9는 paper 기본값이 아니다.
+- Semantic rejection은 과거 visual score와 pass 판정을 무효화한다. Rejected candidate를 보존했다는 이유로 publication asset로 사용하지 않는다.
 - Figure에 reusable한 owner 승인·거절 기준이 생기면 해당 guide의 decision log를 같은 작업에서 갱신한다.
