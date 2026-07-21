@@ -101,6 +101,17 @@ CLI가 있는 application은 fixed status subcommand와 machine-readable JSON을
 - Recent가 비어 있음, provider unavailable과 permission blocked를 같은 상태로 합치지 않는다.
 - Manifest는 fixed recent-activity subcommand와 timeout/limit을 선언할 수 있다. UI는 bounded limit을 사용하고 provider가 더 많은 record를 반환하면 거부한다.
 
+## Control-plane interaction model
+
+- 여러 provider를 한 화면에서 관리해도 unrelated app operation을 page-wide lock으로 막지 않는다. Single-flight, pending/result/error와 cancellation identity는 application 단위로 소유하고, global refresh처럼 실제 shared resource를 쓰는 작업만 별도 global state로 둔다.
+- Async result에는 application/request generation을 연결한다. App A의 늦은 status나 이전 App A request가 App B 또는 최신 App A state를 덮어쓰지 않아야 한다.
+- Overview는 app name과 role, availability, installed version, update readiness, blocker와 valid next action을 primary layer에서 보여준다. Commit, executable, provider command, path와 raw response는 technical disclosure로 내린다.
+- App별 control을 같은 크기와 grid로 정렬하되 기능을 획일화하지 않는다. 각 provider가 실제로 선언한 capability에 맞는 role-specific action과 result structure를 사용하며 manifest에 없는 action은 렌더링하거나 실행하지 않는다.
+- Search/filter/view 선택 같은 control-plane presentation preference는 local UI state다. Provider data나 tracked manifest를 오염시키지 않고 invalid stored value는 safe default로 복원한다.
+- Freshness는 relative label과 exact timestamp를 함께 제공한다. Window focus refresh는 bounded read-only status check만 수행하고 source fetch, dependency install, build, app replacement 또는 launch를 시작하지 않는다.
+- Recent activity가 typed resource와 actionable flag를 제공할 때만 direct Open을 노출한다. Summary만 있는 item에 action을 추측하거나 private resource identifier를 합성하지 않는다.
+- Read-only result는 사용자가 UI에서 clear할 수 있어도 provider record를 delete한 것으로 표현하지 않는다. Clear는 control-plane presentation state만 제거한다.
+
 ## Update channels
 
 Update discovery와 installation은 capability negotiation 대상이며 health/status 권한에서 추론하지 않는다. Signing, version provenance, source checkout과 signed release channel은 [`app-distribution.md`](app-distribution.md)를 따른다.
