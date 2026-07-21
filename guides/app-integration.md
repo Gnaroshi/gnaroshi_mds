@@ -110,6 +110,8 @@ Update discovery와 installation은 capability negotiation 대상이며 health/s
 - 여러 app copy가 있을 때 bundle ID만으로 Launch Services에 선택을 맡기지 않는다. Verified installed release, 사용자가 선택한 local development build 또는 explicit ask policy에 따라 exact canonical bundle path를 연다.
 - Status provider executable, provider manifest와 실제 launch bundle의 provenance가 다르면 launch를 차단하고 blocker와 next action을 표시한다.
 - Launch validation은 manifest 일부 field를 spot-check하지 않는다. Supported schema 전체, actual bundle executable, bundle/signing identity, clean build provenance와 exact commit을 검증하고 다른 copy가 이미 실행 중이면 path mismatch를 차단한다.
+- macOS native bundle이 존재하면 Studio의 `Open`은 verified exact `.app`을 열어야 한다. Legacy/local web UI는 별도 action으로 유지할 수 있지만 native application action을 browser page로 대체하거나 web service를 desktop app처럼 표시하지 않는다.
+- Owner-enabled local update-before-open은 arbitrary shell 없이 provider repository의 fixed installer만 호출하고 [`app-distribution.md`](app-distribution.md)의 clean source, running-app, signing, provenance와 rollback 조건을 모두 따른다.
 - Native와 web runtime이 같은 manifest를 각각 검증하면 allowlisted platform/capability/icon, semantic version, command token, deep-link syntax, timeout, privacy와 distribution bound의 parity fixture를 유지한다. 한쪽의 느슨한 shadow validator를 `full schema`라고 부르지 않는다.
 - 한 provider action이 성공한 뒤 수행하는 background evidence refresh는 다른 app의 blocker 때문에 이미 성공한 결과를 error로 바꾸지 않는다. Explicit global check만 aggregate partial failure를 전체 check feedback으로 표현한다.
 

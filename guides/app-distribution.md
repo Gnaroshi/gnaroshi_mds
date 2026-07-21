@@ -57,13 +57,23 @@ Tracked manifest에는 secret, token, local checkout path 또는 mutable latest 
 - 자동 fetch는 inherited environment를 clear하고 fixed executable, non-interactive credential policy, disabled repository hooks/fsmonitor/executable filters, protocol/TLS/redirect policy와 isolated system/global config를 사용한다. Repository-discovery variable, executable path, askpass, proxy 또는 process-level Git config가 command를 바꾸거나 refresh만으로 executable을 실행하지 못하게 한다.
 - 표시용 `remote.origin.url`만 검증하지 않는다. Automatic fetch는 exact HTTPS host/repository를 요구하고, applicable `url.*.insteadOf`, include, `core.sshCommand`, remote upload/proxy override, URL-scoped HTTP proxy/TLS/redirect override가 identity를 바꿀 수 있으면 fail closed한다.
 - `current`는 bounded-age successful fetch evidence, canonical repository identity, expected remote branch와 remote-tracking commit을 함께 검증할 때만 사용한다. `FETCH_HEAD` timestamp나 다른 remote의 동일 commit만으로 freshness를 주장하지 않는다.
-- Merge, rebase, reset, checkout, pull, dependency install, build와 app replacement는 preview와 명시적 승인 뒤에 별도 단계로 수행한다.
+- Merge, rebase, reset, checkout, pull, dependency install, build와 app replacement는 기본적으로 preview와 명시적 승인 뒤에 별도 단계로 수행한다. 단, owner가 Settings에서 `update before open`을 명시적으로 활성화한 개인 local-development channel은 아래의 bounded automatic update contract를 사용할 수 있다.
 - Dirty checkout은 update availability를 보여줄 수 있지만 apply를 차단하고 현재 file을 보존한다.
 - Ahead/diverged state를 behind와 구분한다. Remote default branch가 새 commit을 가진다는 이유만으로 local commit을 버리지 않는다.
 - Clean ahead checkout은 installed bundle provenance가 exact local HEAD와 일치할 때 latest-local launch 대상으로 사용할 수 있다. 이 상태를 published/synced라고 부르지 않고 push는 별도 Git action으로 유지한다.
 - Owner가 여러 established checkout parent를 사용할 때는 작은 allowlist를 deterministic order로 확인하고 exact repository remote를 검증한다. Secondary known root에 있다는 이유만으로 manual setup을 요구하지 않는다.
 - `always open latest`는 highest version string을 무조건 실행한다는 뜻이 아니다. Compatible verified release 또는 명시적으로 선택한 clean/current local build가 아니면 실행을 막고 exact remediation을 제공한다.
 - Source fetch, dependency install, build, signed install과 launch는 서로 다른 action이다. Fetch가 성공했다고 build 또는 installed bundle이 current하다고 표시하지 않는다.
+
+### Owner-enabled local update before open
+
+- 이 channel은 public DMG updater가 아니다. Owner가 소유한 검증된 Gnaroshi checkout을 현재 컴퓨터에서 개발·검수할 때만 사용한다. 일반 사용자는 signed-release update channel을 사용한다.
+- Application별 tracked entrypoint는 `scripts/install_local.sh`처럼 이름과 위치가 고정되어야 한다. Studio는 shell text, manifest command template, user-supplied argument 또는 임의 executable을 받지 않는다.
+- 실행 전 exact GitHub remote, expected branch, clean index/worktree, fetch evidence를 검증한다. Clean behind 상태만 hook과 unsafe transport override를 차단한 fixed `git merge --ff-only`로 전진할 수 있다. Ahead는 local HEAD를 latest-local로 취급하고, dirty, detached, wrong-remote, branch-mismatch, diverged는 모두 차단한다. Reset, rebase, stash, forced checkout은 자동으로 수행하지 않는다.
+- Installer는 stable bundle ID, team/signing identity, entitlement와 install path를 유지하고 CLI와 native bundle을 같은 source commit으로 만든다. 완료 후 manifest, version, signature, executable, full commit provenance와 `dirty: false`를 다시 검증하기 전에는 launch하지 않는다.
+- 같은 app이 실행 중이면 자동 종료하거나 덮어쓰지 않는다. 저장·종료 후 `Update & Open`을 다시 실행하도록 안내한다. 실패 시 source file, canonical app data와 이전 installed bundle이 무엇이 보존됐는지 같은 card에서 표시한다.
+- `Always open latest`와 `Update before open`은 Settings에서 각각 취소할 수 있고 application별 source channel override와 함께 동작해야 한다. 기본값을 켤 경우 첫 화면과 Settings copy가 실제 bounded behavior를 정확히 설명해야 한다.
+- Update check, build/install, launch의 pending/result/error는 같은 application card의 안정된 feedback region에 표시한다. Background polling이 build/install을 시작하거나 다른 monitor에 app을 임의로 띄우면 안 된다.
 
 ## Signed-release update channel
 
