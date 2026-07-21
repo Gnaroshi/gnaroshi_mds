@@ -111,6 +111,11 @@ CLI가 있는 application은 fixed status subcommand와 machine-readable JSON을
 - Freshness는 relative label과 exact timestamp를 함께 제공한다. Window focus refresh는 bounded read-only status check만 수행하고 source fetch, dependency install, build, app replacement 또는 launch를 시작하지 않는다.
 - Recent activity가 typed resource와 actionable flag를 제공할 때만 direct Open을 노출한다. Summary만 있는 item에 action을 추측하거나 private resource identifier를 합성하지 않는다.
 - Read-only result는 사용자가 UI에서 clear할 수 있어도 provider record를 delete한 것으로 표현하지 않는다. Clear는 control-plane presentation state만 제거한다.
+- App 수가 작고 각 row에 availability가 이미 보이면 `N ready / N setup / N attention` summary를 별도 dashboard strip으로 반복하지 않는다. Aggregate가 실제 triage decision이나 navigation을 바꾸지 않으면 제거한다.
+- 여러 app의 role-specific control을 한 화면에 모두 펼치지 않는다. Compact app selector에서 name, role과 state를 비교하고 선택한 app의 launch, primary action, fields와 results만 한 focused detail surface에 표시한다.
+- Compact selector에서는 application의 전체 이름이 status badge 때문에 잘리지 않아야 한다. Minimum width에서는 role 설명을 focused detail로 이동할 수 있지만 app name과 현재 state는 항상 읽을 수 있어야 한다.
+- Normal/healthy state에는 generic `Refresh status`를 app마다 반복하지 않는다. Read-only focus refresh를 사용하고, stale/error일 때만 `Check GPU status`, `Check providers`, `Check recent runs`처럼 무엇을 다시 관측하는지 이름으로 표시한다.
+- Setup, health와 activity list는 같은 의미의 blocker/meta sentence를 두 번 쓰지 않는다. Raw parser, command와 provider error는 primary row에서 제외하고 redacted technical disclosure로 이동한다.
 
 ## Update channels
 
