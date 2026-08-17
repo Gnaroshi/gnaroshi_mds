@@ -28,6 +28,7 @@ Safety, accessibility와 data integrity를 훼손하지 않는 범위에서 다�
 - 중요한 정보는 한 번에 scan 가능하게 하고 세부사항만 progressive disclosure한다.
 - empty, loading, error, success, disabled, permission-denied state를 설계한다.
 - 버튼은 결과를 예측할 수 있는 동사를 사용한다.
+- User-facing copy는 target locale에서 실제로 쓰는 자연스러운 용어와 문장 구조를 사용한다. 직역투, 불필요한 영어·developer jargon과 같은 개념의 표현 변형을 피하고, 대표 workflow 전체에서 terminology와 tone의 일관성을 검증한다.
 - destructive action은 일반 action과 분리하고 변경 범위를 표시한다.
 - 되돌릴 수 있는 routine apply는 최신 preview와 backup 상태를 같은 맥락에 표시하고 한 번의 명시적 action으로 실행한다. 위험을 낮추지 않는 긴 typed phrase, 중복 checkbox와 반복 설명을 confirmation처럼 쌓지 않는다. Irreversible 또는 recovery가 불확실한 작업만 typed confirmation처럼 더 강한 friction을 사용한다.
 - navigation 선택지가 상호 배타적이면 direct link, tab, 또는 한 번에 하나만 열리는 disclosure를 사용한다. 여러 navigation disclosure가 독립적으로 열린 채 중첩되지 않게 한다.
