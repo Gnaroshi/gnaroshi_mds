@@ -2,6 +2,7 @@
 
 ## Writing surface
 
+- Gnaroshi의 live Overleaf project는 read-only review surface로 취급한다. Agent는 project source를 직접 입력·교체·삭제하거나 recompile하지 않고, 확인한 file·section·line context와 사용자가 적용할 exact replacement 또는 patch instruction만 제공한다. 사용자가 이후 직접 수정을 요청하더라도 이 persistent boundary를 유지한다.
 - Long-form editor는 title/metadata form과 경쟁하지 않는 충분한 width를 갖고 cursor, selection, undo history와 scroll position을 mode 전환 중 보존한다.
 - Markdown source는 canonical text이고 preview는 derived view다. Preview failure가 source editing 또는 recovery를 막지 않는다.
 - Formatting action은 cursor/selection에 예측 가능한 Markdown을 삽입하고 focus를 editor로 돌려준다. Inline math와 display math를 서로 다른 action으로 제공한다.
