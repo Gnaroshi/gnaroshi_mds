@@ -24,6 +24,12 @@
 - 실패와 미완료 상태를 숨기지 않는다.
 - 자동 생성 report는 artifact이며 장기 지침 문서가 아니다.
 
+## Theory-to-code learning
+
+- 연구 방법을 code level로 학습하는 실습에서는 핵심 연산의 줄·구획마다 한글 주석으로 수식의 변수, tensor shape, 입력·출력과 코드 흐름을 연결한다.
+- 복잡한 실제 repository를 단순화할 때는 생략·대체한 부분을 명시하고, 원래 구현의 함수와 실습 코드의 대응 관계를 남긴다.
+- 학습과 추론을 분리해 실행 가능한 작은 예제를 제공하고, 중간 tensor와 실제 실행 결과의 시각화를 함께 보여 준다. 설명용 경로와 학습된 모델의 생성 결과를 구분한다.
+
 ## Minimum maintained Markdown
 
 - `AGENTS.md`: privacy, ownership, publish boundary, validation
