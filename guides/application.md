@@ -19,6 +19,7 @@
 - macOS local build를 Spotlight나 app launcher에 노출할 때는 repository bundle symlink만 등록하지 않는다. Spotlight가 실제로 index하는 Applications 위치에 작은 real launcher bundle을 한 번 만들고 repository build를 열게 하며, `mdls`와 `mdfind` 결과를 확인한다.
 - macOS의 floating intake/status window가 사용자의 현재 작업 옆에 계속 있어야 하는 제품이면 모든 Spaces 참여를 기본으로 하고 명시적인 opt-out을 제공한다. Space membership과 cursor/focused display placement는 별도 설정 축으로 취급하며, display 선택이 Desktop 전환 추적을 대신한다고 가정하지 않는다.
 - Packaged desktop UI나 behavior를 바꾼 작업은 source/build artifact에서 끝내지 않는다. 사용자가 source-only 검증을 명시하지 않았다면 [`app-distribution.md`](app-distribution.md)의 local development delivery contract에 따라 signed stable install, Spotlight launch target과 exact build provenance까지 확인한다.
+- System-wide shortcut은 같은 app의 새 window와 별도 application instance/process 중 의도한 결과를 먼저 구분한다. Config 저장·구문 검사·hotkey 등록 성공만으로 완료 처리하지 않고 representative foreground app과 지원 input language/layout에서 실제 key input과 결과를 확인한다. 별도 instance는 새 PID로 검증하며, 실제 입력 검증이 막히면 미검증 범위를 명시하고 완료로 단정하지 않는다.
 - external provider는 protocol/interface 뒤에 두고 mock과 real provider를 분리한다.
 - Repository terminal action이 있는 macOS application은 owner preference로 Ghostty를 우선할 수 있다. 이 경우 exact installed bundle identity를 검증하고 canonical working directory만 fixed argument로 전달하며, Settings에서 명시적인 system Terminal fallback/override를 제공한다. Terminal 선택을 arbitrary executable이나 shell command field로 만들지 않고 one-shot launcher process를 wait/reap한다.
 - 다른 Gnaroshi application과 연결할 때는 [`app-integration.md`](app-integration.md)의 independent-app, manifest, typed-adapter와 degraded-mode contract를 적용한다.
