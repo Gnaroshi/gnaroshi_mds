@@ -203,6 +203,14 @@ Implementation-grounded figure의 review package에는 다음을 포함한다.
 - runtime으로 확인하지 못한 부분
 - real external asset provenance
 
+## Latent and representation-space plots
+
+- PCA 축에는 PC 번호와 설명 분산뿐 아니라 무엇을 압축한 축인지 짧게 설명한다. 점이 가깝다는 것은 표시된 부분 공간에서 가깝다는 뜻이며, 생략된 차원까지 같거나 행동·성공률이 같다는 뜻이 아님을 구분한다.
+- 정규화, 중심화, pooling, token mask와 projection fit 범위를 기록한다. 두 경로를 같은 좌표에서 비교하려면 공통 축을 fit하고, 서로 다른 공간이나 별도로 fit한 좌표의 이동량을 직접 비교하지 않는다.
+- Cosine similarity는 원래 비교 벡터에서 계산한다. 1·0·−1의 방향 의미와 크기를 무시한다는 점을 설명하고, cosine과 1−cosine 거리의 label·범위를 혼동하지 않는다.
+- 시간에 따른 condition, model output과 실제 실행 command를 구분한다. Prediction horizon, policy query와 environment step이 다르면 각 시간 인덱스를 보존하고 chart에 해당 단위를 표시한다.
+- 공유 관측 replay와 독립 rollout을 구분한다. 독립 rollout의 같은 step 차이에는 관측 상태의 차이가 포함되며, 종료된 경로를 복제해 비교 지표를 채우지 않는다. 성공·실패 사례는 실제 평가 결과로 분류한다.
+
 ## Production method and export format
 
 Technical schematic 제작에는 다음을 사용할 수 있다.

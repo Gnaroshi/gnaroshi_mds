@@ -62,6 +62,9 @@ Safety, accessibility와 data integrity를 훼손하지 않는 범위에서 다�
 
 ## Information hierarchy and density
 
+- 시간 순서의 관측·trajectory viewer는 Space로 재생/정지하고 좌우 화살표로 이전/다음 시점을 탐색할 수 있게 한다. Text input, select와 편집 영역의 기본 키 동작을 가로채지 않고 재생 중 이동, 첫/마지막 시점과 키 반복을 검증한다.
+- 회전·드래그 가능한 plot은 실제 point 위에서 pointer down→move→up을 실행해 검증한다. Click callback에서 active drag 중 scene을 재생성하지 않으며, 시점 선택·재생 갱신은 camera와 pointer 상태를 보존한다. 정적 screenshot과 mode 전환만 통과한 것을 drag 검증으로 대신하지 않는다.
+
 - Navigation group과 screen heading은 implementation layer가 아니라 사용자 목표와 결과를 이름으로 사용한다. 한 item만 가진 group, 모호한 container label과 raw technical noun은 grouping 이득이 없으면 합치거나 이름을 바꾼다.
 - Current location, primary task와 next action은 secondary status, repository path, hash, schema/version detail보다 먼저 보여준다. Raw provenance와 diagnostic value는 사용자가 요청할 때 disclosure, Details 또는 inspector에서 보여준다.
 - Empty state의 primary action은 사용자가 방금 막힌 workflow의 다음 유효 단계로 이어져야 한다. 일반 adjacent page, broad research page, marketing page로 보내는 CTA는 그곳이 실제 다음 행동일 때만 primary로 둔다.
