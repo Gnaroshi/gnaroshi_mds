@@ -10,6 +10,12 @@ Simple means low cognitive load, not missing information. A first-time user must
 4. 어떤 순서로 실행해야 하는가?
 5. 다음 행동과 그 결과는 무엇인가?
 
+## Design iteration and reference interpretation
+
+- 진행 중인 디자인 개선 과업에서 후속 비판은 별도 중단·범위 변경 지시가 없는 한 기존 범위 안의 반복 개선 요청으로 이해한다.
+- 누적된 사용자 의견이 충분하면 새 reference를 다시 요구하며 수정을 미루지 않는다.
+- 지침과 reference에서는 위계·밀도·상호작용의 의도를 해석하고, font·window·margin·padding 수치나 특정 앱의 외형을 그대로 복제하지 않는다. 현재 제품의 사용 목적과 플랫폼·접근성 제약에 맞게 독립적으로 설계하고 실제 크기에서 검증한다.
+
 ## Highest-priority user-facing information boundary
 
 Safety, accessibility와 data integrity를 훼손하지 않는 범위에서 다음 규칙을 다른 density, decoration, dashboard completeness 요구보다 우선한다.
