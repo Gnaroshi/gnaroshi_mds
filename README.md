@@ -22,6 +22,8 @@ Gnaroshi의 Codex·ChatGPT 개발 지침을 관리하는 공개 source of truth�
 
 프로젝트별 지침이 이 저장소의 일반 지침보다 구체적이면 프로젝트 지침을 따릅니다. 새로 확인된 재사용 가능한 선호나 작업 규칙은 이 저장소에 먼저 반영하고 GitHub에 동기화합니다. 비밀, 개인 연구 원문, 임시 로그, 프로젝트 고유 구현 세부사항은 이곳에 복사하지 않습니다.
 
+디자인 reference를 비교·갱신할 때는 [`design-references.md`](guides/design-references.md)에서 원문, 확인한 변경일, 적용 원칙과 플랫폼별 제외 이유를 확인합니다. 일상 구현에서는 `ui-ux.md`와 프로젝트의 유지 design 문서를 우선하고 모든 외부 문서를 매번 읽지는 않습니다.
+
 ## MCP resource server
 
 `mcp/server.py`는 이 저장소의 Markdown을 `gnaroshi://...` URI로 제공하는 의존성 없는 STDIO MCP resource server입니다. 설치와 resource 목록은 [`mcp/README.md`](mcp/README.md)를 참고하세요.

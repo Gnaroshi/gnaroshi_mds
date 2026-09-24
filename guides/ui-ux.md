@@ -15,6 +15,8 @@ Simple means low cognitive load, not missing information. A first-time user must
 - 진행 중인 디자인 개선 과업에서 후속 비판은 별도 중단·범위 변경 지시가 없는 한 기존 범위 안의 반복 개선 요청으로 이해한다.
 - 누적된 사용자 의견이 충분하면 새 reference를 다시 요구하며 수정을 미루지 않는다.
 - 지침과 reference에서는 위계·밀도·상호작용의 의도를 해석하고, font·window·margin·padding 수치나 특정 앱의 외형을 그대로 복제하지 않는다. 현재 제품의 사용 목적과 플랫폼·접근성 제약에 맞게 독립적으로 설계하고 실제 크기에서 검증한다.
+- Reference를 고를 때 먼저 surface를 작업용 app, 읽기 중심 문서, 홍보·브랜드 화면으로 구분한다. 작업용 app의 익숙한 control·시스템 폰트·밀도·일관성은 차별화 부족이 아니다. 개성은 제품의 목적을 설명하는 지점에 집중하고 매 화면의 장식으로 반복하지 않는다.
+- 외부 design Markdown은 원저자, 정확한 파일, 확인일과 가능한 파일별 변경일을 기록한다. 공식 플랫폼 제약, 접근성 기준, 특정 design system 내부 규칙과 미학적 취향을 분리한다. 최신성·유명도만으로 기존 결정을 바꾸지 않으며 충돌하는 규칙은 적용/유지/제외 이유를 남긴다. 원문 비교는 [`design-references.md`](design-references.md)를 참고한다.
 
 ## Highest-priority user-facing information boundary
 
@@ -81,9 +83,12 @@ Safety, accessibility와 data integrity를 훼손하지 않는 범위에서 다�
 - 한 card에서 같은 target을 가리키는 image, title, text CTA가 반복되면 tab stop을 최소화한다. 전체 card click handler 대신 필요한 실제 anchor만 남기고 evidence caption은 숨기지 않는다.
 - 긴 상세 페이지는 local navigation을 추가하기 전에 중복 section과 반복 copy를 먼저 줄인다. 줄인 뒤에도 긴 경우 stable heading ID와 permalink, keyboard-accessible local navigation을 제공한다.
 - Spacing은 먼저 관계를 표현한다. 가까운 요소는 같은 task group, 더 큰 간격은 section boundary를 뜻한다. Divider는 scrolling region, navigation group 또는 의미가 다른 dense row처럼 공간만으로 경계가 불충분할 때 일관되게 사용한다.
+- Compactness는 중복 heading·metadata·container·누적 inset을 제거한 결과여야 한다. Icon의 그림 크기와 실제 hit area를 구분하고 text 확대, touch target, keyboard/focus를 희생하지 않는다. Context에 이미 보이는 metadata는 반복하지 않되 현재 filter·sort·paused 같은 결정에 필요한 상태는 숨기지 않는다.
+- 여백 검수는 화면 전체의 빈 면적 비율이 아니라 관계별 budget으로 한다: header→첫 유효 content, row 내부, section 사이, fixed action→keyboard/safe area. 짧은 실제 목록 아래의 여유 공간은 오류가 아니며 filler나 큰 row로 채우지 않는다. 같은 fixture·viewport·text size의 전후 측정과 screenshot으로 누적 padding, 잘림, 겹침을 확인한다.
 - 같은 경계를 sticky/local navigation의 surface와 바로 뒤 full-width divider로 반복하지 않는다. Sequence connector는 실제 numbered step 사이를 이어 인과나 순서를 설명해야 하며, 내용 아래에 독립적으로 남는 선은 제거하거나 의미가 드러나는 grouping으로 바꾼다.
-- Font size는 hierarchy를 만들기 위한 유일한 수단이 아니다. Visible non-decorative caption/help는 기본 12px 이상, navigation/form/control은 보통 13–14px 이상, 긴 authoring text는 보통 15–17px에서 실제 EN/KO 가독성을 검증한다. 더 작은 text가 필요하면 정보 자체를 숨기거나 재구성할 수 없는지 먼저 검토한다.
+- Font size만으로 hierarchy를 만들지 않는다. 역할·weight·alignment·grouping을 먼저 정하고 본문을 caption으로 축소하지 않는다. Web의 caption 12 CSS px, control 13–14 CSS px, 긴 authoring text 15–17 CSS px는 시작점이지 native 최소값이나 모든 제품의 고정값이 아니다. Native는 플랫폼 semantic text style과 확대 동작을 사용하고 실제 EN/KO·긴 content·큰 text에서 검증한다. 사용자 확대 설정을 무시하는 고정 작은 글자로 compactness를 만들지 않는다.
 - Typography, spacing, radius, divider와 control height는 semantic token으로 제한한다. Component마다 임의 값으로 밀도를 미세 조정하지 않는다.
+- Color는 identity, action/selection, semantic status, neutral hierarchy로 역할을 나눈다. 사용자 지정 category 색이 error/success 상태를 대신하지 않으며 동일한 역할은 화면·widget·editor에서 이어진다. 전경/배경 조합을 light/dark 각각 검증하고 선택·완료·오류는 shape, label 또는 symbol로도 구분한다. 저장된 사용자 색과 접근성을 위한 display color 보정은 분리한다.
 - Minimum supported window에서 primary navigation label을 모두 숨겨 icon-only로 만들지 않는다. Reflow, narrower but readable label, disclosure 또는 secondary action 축소를 먼저 사용한다.
 
 ## Forms and metadata authoring

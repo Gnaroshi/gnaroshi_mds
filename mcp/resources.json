@@ -56,6 +56,13 @@
     "path": "guides/ui-ux.md"
   },
   {
+    "uri": "gnaroshi://guides/design-references",
+    "name": "design-references",
+    "title": "Design Reference Decisions",
+    "description": "Primary design Markdown sources, maintenance evidence, native adaptations and intentional exclusions.",
+    "path": "guides/design-references.md"
+  },
+  {
     "uri": "gnaroshi://guides/image-assets",
     "name": "image-asset-guide",
     "title": "Image Generation and Identity Asset Policy",

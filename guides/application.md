@@ -41,6 +41,7 @@
 
 ## UI contract
 
+- 유지 중인 design/UX 문서 한 곳에 대상 사용자·주 작업, 승인된 시각 방향, semantic token의 code 위치, component의 기본/선택/진행/실패 상태와 의도적으로 제외한 표현을 연결한다. 새 design-md 형식이 있다는 이유로 token 값의 두 번째 원본이나 중복 문서를 만들지 않는다. Reference의 웹 스타일을 native control, safe area, text 확대와 lifecycle 위에 강제하지 않는다.
 - Primary application UI에는 현재 작업을 이해하고 완료하는 데 필요한 사용자 목표, blocker, progress, result와 next action만 노출한다. Repository path, executable/command, PID, hash, schema/version, raw API/backend 상태, artifact filename과 raw log는 기본 화면·dashboard·floating workflow에서 숨기고 `Settings > Advanced/Diagnostics`, explicit Details, Reports 또는 Logs로 이동한다. 잠재적으로 유용하다는 이유만으로 primary UI에 계속 표시하지 않는다.
 - Technical details는 기본값을 off/collapsed로 유지하고 사용자가 명시적으로 열었을 때만 표시한다. Error는 기술 문자열을 그대로 던지지 않고 사용자 언어의 요약, 보존된 data와 recovery action을 먼저 제공한다. Safety, privacy, destructive scope와 blocker는 technical detail로 분류해 숨기지 않는다.
 - 현재 상태, blocker, 다음 valid action을 3초 안에 찾을 수 있어야 한다.
