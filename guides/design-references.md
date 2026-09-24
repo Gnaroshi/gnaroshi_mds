@@ -6,7 +6,7 @@
 
 | 원문 | 채택할 원칙 | 그대로 적용하지 않을 것 |
 | --- | --- | --- |
-| Vercel Labs [Web Interface Guidelines](https://github.com/vercel-labs/web-interface-guidelines/blob/main/README.md), [review checklist](https://github.com/vercel-labs/web-interface-guidelines/blob/main/command.md) | Focus, 의미 있는 control, 긴 content와 상태 전이, 실행 가능한 오류 복구를 검수한다. | DOM/CSS/URL 규칙을 native 앱에 강제하지 않는다. Title Case와 `&` 선호는 브랜드 선택이다. README의 input-zoom 우회와 checklist의 zoom 금지 규칙은 충돌하므로 zoom 제한을 도입하지 않는다. |
+| Vercel Labs [Web Interface Guidelines](https://github.com/vercel-labs/web-interface-guidelines/blob/main/README.md), [review checklist](https://github.com/vercel-labs/web-interface-guidelines/blob/main/command.md) | Focus, 의미 있는 control, 긴 content와 상태 전이, 실행 가능한 오류 복구를 검수한다. | DOM/CSS/URL 규칙을 native 앱에 강제하지 않는다. Title Case와 `&` 선호는 브랜드 선택이다. README의 input-zoom 우회와 checklist의 사용자 zoom 보장 규칙은 충돌하므로 zoom 제한을 도입하지 않는다. |
 | Anthropic [frontend-design](https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md) | 실제 사용자·업무에서 디자인을 출발시키고, 구조와 문구가 기능을 설명하게 한다. 개성은 목적이 있는 지점에 집중하고 실제 화면을 비평한다. | 차별화를 위해 시스템 폰트, 익숙한 탐색, 승인된 스타일을 버리지 않는다. 웹 hero와 display typography는 업무용 앱 기본값이 아니다. |
 | GitHub Primer [Design Tokens Guide](https://github.com/primer/primitives/blob/main/DESIGN_TOKENS_GUIDE.md) | 역할별 token, 전경/배경 조합, control과 content 밀도, 상태별 표현을 함께 정의한다. | CSS token 이름·정확한 크기·시간 수치를 이식하지 않는다. Caption을 본문 대용으로 쓰지 않는다. |
 
