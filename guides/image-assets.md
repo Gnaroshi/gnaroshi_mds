@@ -1,5 +1,7 @@
 # 이미지 제작과 screenshot
 
+이미지 제작·편집·export와 제품 screenshot 사용에 적용한다.
+
 ## 형식
 
 - 별도 vector 요청이 없으면 full-color image generation, identity, illustration과 scene은 raster로 만든다. PNG·WebP·AVIF·JPEG master를 보존하고 platform에 맞춰 export한다.

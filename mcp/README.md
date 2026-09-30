@@ -20,6 +20,12 @@ codex mcp add gnaroshiGuidance -- python3 /absolute/path/to/gnaroshi_mds/mcp/ser
 ## Resource 관리
 
 - [resources.json](resources.json)이 URI·파일·description의 등록표다. 새 guide를 추가하거나 파일을 이동할 때 함께 갱신한다.
-- 기존 URI는 유지한다. `gnaroshi://guides/design-references`는 이동된 `references/design-sources.md`를 제공한다.
+- 기존 URI는 아래처럼 유지한다. 통합된 resource는 `aliasOf`로 canonical URI를 지정하고 같은 파일을 제공한다. 새 읽기 목록에는 canonical URI를 사용하며 alias chain은 만들지 않는다.
 - Resource 내용은 파일을 읽을 때 갱신된다. Server code나 initialize instruction 변경은 server process가 새로 시작된 뒤 적용된다.
 - 저장소 루트에서 `python3 scripts/check_guidance.py`로 전체 resource의 실제 STDIO 응답과 문서·asset 참조를 검증한다.
+
+| 기존 URI | 현재 대상 |
+| --- | --- |
+| `gnaroshi://catalog/projects` | `gnaroshi://index` → [작업별 지침](../README.md). 과거 프로젝트 snapshot은 제거했다. |
+| `gnaroshi://catalog/markdown-patterns` | `gnaroshi://agents` → [문서 유지 규칙](../AGENTS.md#문서-유지) |
+| `gnaroshi://guides/design-references` | [references/design-sources.md](../references/design-sources.md). URI는 그대로 유지한다. |

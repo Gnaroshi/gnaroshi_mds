@@ -1,5 +1,7 @@
 # Research guidance
 
+논문 조사·읽기·재현, 학습·평가, 연구 주제 선정과 원고 검토에 적용한다. 수행하는 작업에 해당하는 section을 사용한다.
+
 ## Source of truth
 
 - 논문 note, reading evidence, implementation attempt, review와 recall record의 canonical owner를 명시한다.
@@ -60,4 +62,4 @@
 
 ## Figure
 
-[공통 규칙](research-figures.md), [기술 도식](technical-figure-code.md), [생성 일러스트](scientific-figure-generation.md)를 읽는다.
+Figure를 제작·수정할 때 [공통 규칙](research-figures.md)에서 제작 방식을 선택하고 해당 상세 guide를 읽는다.

@@ -80,9 +80,17 @@ def check_documents() -> tuple[int, int]:
 
 def check_mcp() -> int:
     registry = json.loads((ROOT / 'mcp/resources.json').read_text())
-    for field in ('uri', 'name', 'path'):
+    for field in ('uri', 'name'):
         values = [item[field] for item in registry]
         require(len(values) == len(set(values)), f'Duplicate MCP {field}')
+    canonical = {item['uri']: item for item in registry if 'aliasOf' not in item}
+    canonical_paths = [item['path'] for item in canonical.values()]
+    require(len(canonical_paths) == len(set(canonical_paths)), 'Duplicate canonical MCP path')
+    for item in registry:
+        if 'aliasOf' in item:
+            target = canonical.get(item['aliasOf'])
+            require(target is not None, f'Alias target must be canonical: {item["uri"]}')
+            require(item['path'] == target['path'], f'Alias path differs: {item["uri"]}')
     paths = {item['path'] for item in registry}
     guides = {str(path.relative_to(ROOT)) for path in (ROOT / 'guides').glob('*.md')}
     require(guides <= paths, f'Unregistered guides: {sorted(guides - paths)}')

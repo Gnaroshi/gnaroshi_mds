@@ -16,16 +16,18 @@
   {
     "uri": "gnaroshi://catalog/projects",
     "name": "project-catalog",
-    "title": "Project Catalog",
-    "description": "Dated project inventory and observed document locations; recheck target repositories before use.",
-    "path": "catalog/projects.md"
+    "title": "Legacy Project Catalog → Guidance Index",
+    "description": "Compatibility alias for gnaroshi://index. The dated project inventory was removed; inspect current target repositories.",
+    "path": "README.md",
+    "aliasOf": "gnaroshi://index"
   },
   {
     "uri": "gnaroshi://catalog/markdown-patterns",
     "name": "markdown-patterns",
-    "title": "Used Markdown Patterns",
-    "description": "Markdown document types actually used across projects.",
-    "path": "catalog/markdown-patterns.md"
+    "title": "Legacy Markdown Patterns → Agent Rules",
+    "description": "Compatibility alias for gnaroshi://agents. Use its document maintenance rules instead of the retired document-type catalog.",
+    "path": "AGENTS.md",
+    "aliasOf": "gnaroshi://agents"
   },
   {
     "uri": "gnaroshi://guides/research",
@@ -129,7 +131,7 @@
     "uri": "gnaroshi://guides/research-figures",
     "name": "research-figures-guide",
     "title": "Research Figure Rules",
-    "description": "Figure roles, method selection, real assets, paper sizing, palette and semantic acceptance.",
+    "description": "Start research figure work here; select the technical-diagram or generated-illustration guide by content, then apply shared evidence and presentation rules.",
     "path": "guides/research-figures.md"
   },
   {
@@ -138,6 +140,13 @@
     "title": "Figure Reference Sources",
     "description": "Publication specifications and technical figure reference sources.",
     "path": "references/figure-sources.md"
+  },
+  {
+    "uri": "gnaroshi://references/guidance-sources",
+    "name": "guidance-sources",
+    "title": "Agent Guidance Reference Sources",
+    "description": "Official guidance and Next.js practices for maintaining document scope, routing and useful instructions. Read when revising guidance structure.",
+    "path": "references/guidance-sources.md"
   },
   {
     "uri": "gnaroshi://identity",

@@ -1,6 +1,6 @@
 # Identity와 icon
 
-승인된 원본·production master·과거 후보의 위치와 상태는 [identity 목록](../identity/README.md)을 기준으로 한다. 기존 승인 원본은 덮어쓰지 않고 derivative를 별도 경로에 만든다.
+앱·웹 identity, 기능·메뉴바 아이콘의 제작·export에 적용한다. 승인된 원본·production master·과거 후보의 위치와 상태는 [identity 목록](../identity/README.md)을 기준으로 한다. 기존 승인 원본은 덮어쓰지 않고 derivative를 별도 경로에 만든다.
 
 ## 용도
 

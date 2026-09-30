@@ -1,6 +1,6 @@
 # 작업별 지침
 
-[AGENTS.md](AGENTS.md)와 대상 프로젝트의 `AGENTS.md`를 읽고, 아래에서 현재 작업에 해당하는 문서만 선택한다. 기존 프로젝트의 역할과 문서 위치를 찾을 때는 [프로젝트 목록](catalog/projects.md)을 참고한다.
+[AGENTS.md](AGENTS.md)와 대상 프로젝트의 `AGENTS.md`를 읽고, 아래에서 현재 작업에 해당하는 문서만 선택한다. 문서 안의 추가 링크도 명시된 작업 조건에 맞을 때 읽는다. 대상 프로젝트의 구조·명령·구현 상태는 그 저장소에서 확인한다.
 
 | 작업 | 읽을 문서 |
 | --- | --- |
@@ -15,8 +15,8 @@
 | 앱 서명·패키징·버전·설치·업데이트 | [app-distribution](guides/app-distribution.md) |
 | 이미지 제작·스크린샷 | [image-assets](guides/image-assets.md) |
 | 앱·웹 identity, 기능·메뉴바 아이콘 | [image-assets](guides/image-assets.md), [app-icons](guides/app-icons.md), [현재 asset 목록](identity/README.md) |
-| 논문·연구 figure | [공통 규칙](guides/research-figures.md), [기술 도식](guides/technical-figure-code.md), [생성 일러스트](guides/scientific-figure-generation.md) |
-| 문서 구조 설계 | [사용 중인 문서 유형](catalog/markdown-patterns.md) |
+| 논문·연구 figure | [공통 규칙](guides/research-figures.md) → 제작 방식에 따라 [기술 도식·plot](guides/technical-figure-code.md) 또는 [생성 일러스트](guides/scientific-figure-generation.md) |
+| 지침 문서 추가·이동·정리 | [문서 유지](AGENTS.md#문서-유지). 외부 방식 비교는 [조사 근거](references/guidance-sources.md) |
 | 외부 디자인 기준 비교·갱신 | [출처와 적용 판단](references/design-sources.md) |
 
 ## 경로
@@ -25,7 +25,6 @@
 | --- | --- |
 | `AGENTS.md` | 공통 작업 경계와 문서 유지 규칙 |
 | `guides/` | 작업별 실행·구현·검증 규칙 |
-| `catalog/` | 프로젝트와 문서 유형의 조사 근거 |
 | `references/` | 외부 기준의 출처와 적용 판단 |
 | `identity/` | 원본·후보·승인 asset, 선택 기록과 생성 도구 |
 | `bootstrap/` | 다른 환경의 `AGENTS.md`에 넣을 연결 지침 |
@@ -36,4 +35,4 @@
 
 - MCP 진입점: `gnaroshi://index`. 연결과 원격 파일 접근은 [mcp/README.md](mcp/README.md)를 따른다.
 - 다른 환경의 연결 지침: [bootstrap/global-AGENTS.md](bootstrap/global-AGENTS.md).
-- 저장소 루트에서 `python3 scripts/check_guidance.py`와 `git diff --check`를 실행한다.
+- 문서 변경 검증은 [문서 유지](AGENTS.md#문서-유지)를 따른다.

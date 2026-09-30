@@ -12,7 +12,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 RESOURCE_FILE = ROOT / "mcp" / "resources.json"
 SERVER_NAME = "gnaroshi-guidance"
-SERVER_VERSION = "1.7.0"
+SERVER_VERSION = "1.8.0"
 DEFAULT_PROTOCOL_VERSION = "2025-06-18"
 INSTRUCTIONS = (
     "Read gnaroshi://index and gnaroshi://agents, then follow the task-to-document "

@@ -1,18 +1,18 @@
 # 연구 figure 공통 규칙
 
-[기술 도식](technical-figure-code.md)과 [생성 일러스트](scientific-figure-generation.md)의 적용 범위를 함께 확인한다. 프로젝트별 figure spec에는 사용한 지침 commit, 주장, terminology, 크기와 출처를 기록한다.
+논문·연구 figure의 제작·수정에 적용한다. 아래 표로 제작 방식을 선택하고 해당 상세 guide만 읽는다. 프로젝트별 figure spec에는 사용한 지침 commit, 주장, terminology, 크기와 출처를 기록한다.
 
 ## 제작 방식 선택
 
-| 내용 | 제작 방식 |
-| --- | --- |
-| Architecture, pipeline, state, operator, 시간 관계, 정확한 label | Code·Figma·slide·raster editor로 직접 구성한 2D 도식 |
-| 수치·통계·실험 결과 | 실제 데이터에서 생성한 plot |
-| 관측 frame·장비·실행 화면 | 출처를 확인한 실제 asset |
-| Cover·teaser·비기술적 concept | 생성 일러스트 허용 |
+| 내용 | 제작 방식 | 상세 guide |
+| --- | --- | --- |
+| Architecture, pipeline, state, operator, 시간 관계, 정확한 label | Code·Figma·slide·raster editor로 직접 구성한 2D 도식 | [기술 도식](technical-figure-code.md) |
+| 수치·통계·실험 결과 | 실제 데이터에서 생성한 plot | [기술 도식](technical-figure-code.md) |
+| 관측 frame·장비·실행 화면 | 출처를 확인한 실제 asset | 이 문서의 실제 asset·공개 경계 |
+| Cover·teaser·비기술적 concept | 생성 일러스트 허용 | [생성 일러스트](scientific-figure-generation.md) |
 
 - 현재 요청의 역할, 범위, format과 산출물 수를 따른다. PNG/raster는 출력 형식이며 image model 사용 지시가 아니다.
-- 두 guide를 읽어도 code/generated 결과나 비교 sheet를 자동으로 추가하지 않는다. 두 결과를 요청하면 그 조합을 따른다. 빠른 baseline과 아름다운 technical final을 함께 요청하면 같은 evidence map의 baseline과 polished constructed schematic을 만든다.
+- 작업에 기술 도식과 생성 일러스트가 모두 포함되면 두 상세 guide를 적용한다. 결과나 비교 sheet를 임의로 추가하지 않는다. 빠른 baseline과 아름다운 technical final을 함께 요청하면 같은 evidence map의 baseline과 polished constructed schematic을 만든다.
 - Image-model-only technical sketch를 명시적으로 요청하면 정확한 text·connector·operator의 한계를 밝히고 publication-ready 결과로 보고하지 않는다. 추가 제작 방식이나 별도 결과는 요청 범위를 따른다.
 - 기존 figure의 내용·배치·용어는 이번 작업에서 유효한 reference인지 확인한다. Rejected artifact는 실패 근거로만 사용한다.
 
