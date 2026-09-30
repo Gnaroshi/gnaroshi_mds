@@ -25,6 +25,12 @@
 - Empty collection과 archive route는 화면의 empty state뿐 아니라 robots와 sitemap 노출도 content evidence와 함께 gate한다. 첫 공개 항목이 생기면 같은 규칙으로 자동 복귀해야 한다.
 - Public page의 large visual은 two-second semantic test를 통과해야 하며, identity/portrait/evidence가 없을 때 큰 monogram이나 placeholder tile로 첫 viewport를 채우지 않는다.
 
+## Research project pages
+
+- 관련 분야의 여러 공식 project page를 실제로 열어 소개·방법·실험·영상의 순서를 비교하고, 채택·제외 판단을 대상 프로젝트에 기록한다. 한두 개 template의 외형만으로 해당 분야의 일반적인 구성이라 단정하지 않는다.
+- 논문의 문제·기여·방법 설명에서 실험 근거로 이어지는 흐름을 먼저 설계한다. Overview는 상세 결과보다 앞에 두고, 중요한 ablation과 정량 표는 기본 노출하며 각 그림·영상이 검증하는 주장을 가까운 본문으로 설명한다.
+- 제공된 PPT나 편집 source가 있으면 합성된 완성 영상을 crop하기 전에 원본 embedded media와 animation을 확인해 우선 사용한다. 의미 있는 재생 속도·동기화·등장 순서를 보존하고, 정지 이미지나 별도 재구성으로 대체한 경우 원본 animation을 그대로 보존했다고 표현하지 않는다.
+
 ## Identity color
 
 - Existing website interaction palette가 검증되어 있으면 Gnaroshi identity를 보인다는 이유만으로 전체 palette를 교체하지 않는다.
