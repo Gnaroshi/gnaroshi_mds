@@ -1,5 +1,7 @@
 # Web application guidance
 
+웹 UI·API·공개 데이터·웹 배포에 적용한다. UI 변경은 [ui-ux](ui-ux.md), 편집기 구현은 [authoring-editor](authoring-editor.md)를 함께 적용한다.
+
 ## Ownership
 
 - presentation, canonical content, generated public data, API를 가능한 한 분리하고 각 source of truth를 문서화한다.
@@ -38,9 +40,9 @@
 - 고정 width/min-width 때문에 parent를 넘지 않게 한다.
 - focus, keyboard, contrast, heading order와 reduced motion을 검증한다.
 - Local in-page navigation은 populated state에서도 active item이 좁은 viewport에서 발견 가능해야 한다. Scrollbar를 숨기면 edge fade, active auto-scroll, wrapping, disclosure 같은 다른 cue를 제공한다.
-- Hash-link interaction은 static build에서도 click, Enter, direct URL load, back/forward, sticky offset, exactly-one-current invariant를 자동화한다.
+- Hash-link interaction은 static build에서도 click, Enter, direct URL load, back/forward, focus 이동, sticky offset과 exactly-one-current invariant를 검증한다. Sticky header나 local nav 아래 target이 가려지면 실패다.
 - Route current item이 hash navigation 뒤 non-current가 될 수 있으면 operable element semantics도 함께 전환한다. `aria-current`만 제거한 inert label을 남기지 않는다.
-- Visual regression은 route screenshot만으로 완료하지 않는다. Empty/populated feed, translated/untranslated pair, stale/fresh data, hover/focus/current states를 대표 fixture로 분리해 확인한다.
+- Screenshot 외에 실제 link 작동, browser history, hash focus와 locale 전환을 실행해 검증한다. Empty/populated feed, translated/untranslated pair, stale/fresh data와 hover/focus/current state를 대표 fixture로 분리한다.
 
 ## Security and release
 

@@ -1,14 +1,14 @@
 # Authoring editor guidance
 
+Markdown·수식·미디어 편집기 구현에 적용한다. 공통 상호작용은 [ui-ux](ui-ux.md)를 따른다.
+
 ## Writing surface
 
-- Gnaroshi의 live Overleaf project는 read-only review surface로 취급한다. Agent는 project source를 직접 입력·교체·삭제하거나 recompile하지 않고, 확인한 file·section·line context와 사용자가 적용할 exact replacement 또는 patch instruction만 제공한다. 사용자가 이후 직접 수정을 요청하더라도 이 persistent boundary를 유지한다.
-- Long-form editor는 title/metadata form과 경쟁하지 않는 충분한 width를 갖고 cursor, selection, undo history와 scroll position을 mode 전환 중 보존한다.
+- Long-form editor는 title/metadata form과 경쟁하지 않는 충분한 width를 확보한다.
 - Markdown source는 canonical text이고 preview는 derived view다. Preview failure가 source editing 또는 recovery를 막지 않는다.
 - Formatting action은 cursor/selection에 예측 가능한 Markdown을 삽입하고 focus를 editor로 돌려준다. Inline math와 display math를 서로 다른 action으로 제공한다.
 - LaTeX는 `$…$` inline과 `$$\n…\n$$` display form을 지원하고 malformed formula는 source를 보존한 채 해당 formula 가까이에 설명한다.
 - Formula validation은 raw dollar-sign regex가 아니라 실제 Markdown math syntax tree의 inline/display math node만 검사한다. Inline code, fenced code, escaped dollar와 일반 가격 표기를 수식 오류로 오인하지 않는다.
-- Editor document identity가 바뀌면 본문이 우연히 같아도 undo/redo history를 새 document에 전달하지 않는다. External hydration은 undo history에 넣지 않고 document별 editor lifetime 또는 compartment를 명시적으로 분리한다.
 - Frontmatter와 body를 함께 가진 source에서 body editor는 body 밖의 exact bytes를 보존한다. Body를 수정했다가 원래 text로 되돌리면 전체 canonical source도 byte-for-byte 원본이 되어 dirty와 Recovery state가 해제돼야 한다.
 - Source serializer는 routine body edit 때문에 frontmatter key order, quoting, whitespace 또는 line ending을 정규화하지 않는다. 구조 변경이 필요한 metadata action만 schema-aware serialization을 사용하고 preview/diff를 제공한다.
 - Focus mode는 title, source/preview mode, saved state, Save, blocking error와 exit을 유지한다. 주변 workflow navigation은 숨길 수 있지만 canonical write boundary는 숨기지 않는다.
@@ -19,6 +19,12 @@
 - Translation처럼 두 document의 관계를 편집하는 surface는 source/target locale·title·availability, missing/stale/conflict와 양쪽 Preview/Edit action을 먼저 보여준다. Pair status update는 document content save 및 publish와 분리하고 raw pair source는 escape hatch로 둔다.
 - Published source를 authoring할 때 source Save, public projection Preview, private checkpoint와 Publish를 하나의 짧은 workflow boundary로 구분한다. `Save changes`가 자동 공개를 뜻하지 않게 current public/source state와 다음 publish action을 같은 맥락에 둔다.
 - Markdown canonical source와 renderer는 [CommonMark](https://spec.commonmark.org/spec) block/inline precedence를 기본으로 하고 필요한 GFM/math/approved MDX 확장만 명시적으로 추가한다. Source, Preview, public renderer가 서로 다른 비명시적 dialect를 사용하지 않게 fixture로 검증한다.
+
+## 편집 상태와 toolbar
+
+- 변경 감지는 별도 boolean을 독립적으로 관리하기보다 현재 draft와 canonical saved value의 비교에서 파생한다. 사용자가 편집을 정확히 되돌리면 dirty indicator, Save action과 Recovery snapshot도 원래 상태로 돌아가야 한다.
+- Editor toolbar는 content mode, primary formatting, secondary insertion과 workspace utility를 구분한다. 좁은 폭에서는 낮은 빈도의 formatting을 한 개의 labelled `More` disclosure로 reflow하고 서로 배타적인 Guide/Outline popover는 한 번에 하나만 연다.
+- 같은 document의 mode·layout·focus 전환은 cursor, selection, undo history와 scroll을 보존한다. 본문이 같아도 document identity가 바뀌면 이력을 분리한다. External hydration은 undo에 넣지 않고 document별 editor lifetime 또는 compartment를 사용한다.
 
 ## Screenshots and images
 

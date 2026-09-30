@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Export the owner-approved P5 family as canonical 2048px PNG masters."""
+"""Reproduce P5 masters with separate production and historical metadata."""
 
 from __future__ import annotations
 
@@ -20,7 +20,9 @@ APP_EXPORTS = {
         "id": "gnaroshi-main-v1",
         "file": "gnaroshi-main-v1.png",
         "product": "gnaroshi.dev",
-        "targets": ["web identity", "favicon", "social preview identity element"],
+        "targets": [],
+        "historical": True,
+        "previousTargets": ["web identity", "favicon", "social preview identity element"],
     },
     "studio-p5": {
         "id": "gnaroshi-studio-v1",
@@ -72,6 +74,7 @@ def main() -> None:
     args.output_dir.mkdir(parents=True, exist_ok=True)
 
     records = []
+    historical_records = []
     for candidate_id, export in APP_EXPORTS.items():
         if candidate_id not in BUILDERS:
             raise ValueError(f"Unknown approved candidate: {candidate_id}")
@@ -88,7 +91,8 @@ def main() -> None:
             format="PNG",
             optimize=True,
         )
-        records.append(
+        destination = historical_records if export.get("historical") else records
+        destination.append(
             {
                 "id": export["id"],
                 "product": export["product"],
@@ -100,6 +104,11 @@ def main() -> None:
                 "masterSha256": sha256(master_path),
                 "exportedAt": SELECTED_AT,
                 "targetPlatforms": export["targets"],
+                **({
+                    "usageStatus": "historical",
+                    "previousTargetPlatforms": export["previousTargets"],
+                    "restriction": "Do not use as website or global primary identity; use the full-face identity rule.",
+                } if export.get("historical") else {}),
             }
         )
 
@@ -111,19 +120,20 @@ def main() -> None:
         "rendering": "64px deterministic pixel source expanded to 2048px with nearest-neighbor resampling",
         "baseReference": "../gnaroshi-base-v1.png",
         "restrictions": [
-            "Use only these owner-approved P5 candidates for production identity exports.",
+            "Only entries in apps are current production identity exports; historicalAssets preserve prior selections.",
             "Do not redraw, prompt-regenerate, smooth, blur, or interpolate the pixel masters.",
             "Do not use the full-color mascot as a menu-bar or functional toolbar icon.",
             "Keep application builds independent from network access to gnaroshi_mds.",
         ],
         "apps": records,
+        "historicalAssets": historical_records,
     }
     (args.output_dir / "metadata.json").write_text(
         json.dumps(metadata, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
 
-    print(f"Exported {len(records)} approved P5 masters to {args.output_dir}")
+    print(f"Exported {len(records)} production and {len(historical_records)} historical P5 masters to {args.output_dir}")
 
 
 if __name__ == "__main__":

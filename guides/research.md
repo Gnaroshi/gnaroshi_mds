@@ -35,19 +35,6 @@
 - 실험을 확대하거나 수정할 때 사용자가 요청한 비교 조건을 다른 방법으로 조용히 대체하지 않는다. 방법·데이터 범위·평가 방식이 바뀌면 별도 실험으로 이름과 대응 관계를 기록하고, 원래 요청에서 아직 실행하지 않은 범위를 명시한다. 같은 별칭을 다른 뜻으로 재사용할 때도 차이를 먼저 설명한다.
 - 결과에는 비율과 함께 맞힌 수·전체 수를 적고, 문항 수·교란 입력 수·학습 반복으로 처리한 입력 수를 구분한다. 방법을 예시로 설명할 때는 실제 입력·추가 문장·모델 답을 함께 보여 주고, 실제 기록과 가상 예시를 구분한다.
 
-## Assignment grading feedback
-
-- 과제 채점 피드백은 사용자가 지정한 답안과 평가 기준을 근거로, 틀린 부분이나 필요한 제출 파일이 없는 이유만 간결하게 설명한다. 요청하지 않은 재제출·수정 지시나 일반적인 격려는 넣지 않는다.
-- Excel 피드백은 전체 총점으로 구분한다. 총점 만점인 학생에게만 정확히 `잘 이해하셨습니다.` 한 문장을 쓰며 영역별 점수, 다른 피드백이나 이모티콘을 덧붙이지 않는다. 총점에서 감점된 학생은 모든 평가 영역의 `[영역명][획득점수/영역만점]`을 표시하고, 그중 만점 영역도 점수만 표시한다. 감점 학생의 피드백 어디에도 `잘 이해하셨습니다.`나 다른 격려 문구를 넣지 않으며, 감점 문항의 오답이나 제출 누락에 대한 피드백만 작성한다. 코드 오답은 아래의 원본 답안·제출 코드 비교 형식을 따른다.
-- 원본 답안·제출 코드 비교는 `실습제출` 피드백에만 사용한다. 코드 오답은 `(Qn) 답안:` 아래 답안지의 원본 코드를 그대로 넣고, 이어서 `(Qn) 제출하신 코드:` 아래 실제 제출 코드를 그대로 넣는다. 자연어 오류 설명으로 이 코드 비교를 대신하지 않는다. 필요한 파일이나 코드가 없으면 확인할 수 없어 감점하였다는 문구를 쓰고 제출 코드를 만들어 넣지 않는다.
-- 학생 피드백의 문항 표기는 실제 문제 번호에 맞춰 `(Q1)`, `(Q2)`처럼 쓴다. 내부 채점용 세부항목 이름이나 번호는 노출하지 않는다. 한 문제를 여러 기준으로 나누어 채점했더라도 피드백의 정답은 해당 문제 단위로 한 번만 통합해 표시한다.
-- `문제풀이` 피드백에는 `(Qn) 답안:` 뒤에 정답을 간결한 문장으로 적는다. `제출하신 답안` 제목이나 학생의 제출 답안 인용은 넣지 않는다. 반복되거나 불필요한 해설은 지우되 사용자가 명시적으로 요구한 감점·인정 이유는 간단하게 남긴다.
-- 이전 학기 자료는 작성 방식의 참고로 사용한다. 과제별 답안, 배점, 예외와 사용자가 이번 작업에서 확정한 기준을 이전 학기 기준으로 바꾸지 않는다. 수강생 정보, 제출물과 개별 점수는 공개 지침에 기록하지 않는다.
-- 검토용 Excel의 감점 사유는 항목별 배점, 답안에서 요구한 내용, 실제 제출 내용과의 차이와 감점 점수를 구체적으로 적는다. 검토용 원문 근거·설명 열과 학생에게 전달할 피드백을 구분한다.
-- 채점을 마친 뒤 제출 원문, 문항별 점수, 총점과 피드백을 다시 대조하여 누락, 잘못 부여한 점수, 인용 오류와 합계 오류를 확인한다.
-- 채점 note는 `문제풀이1`, `문제풀이2`, `실습제출 Q1, Q2 오답`처럼 문제풀이와 실습제출을 명확히 구분한다. 학생별 감점 항목과 필요한 핵심 사유만 간결하게 기록하며, 중복 총점, 일반 배점 설명과 진행·검토 기록은 넣지 않는다.
-- 사용자가 직접 수정한 note 등 기존 문서를 보존하고, 요청한 수정 범위 밖의 문서는 덮어쓰거나 채점 산출물에서 다시 생성하지 않는다.
-
 ## Research topic recommendations
 
 - 대학원 수업·연구 프로젝트에서 "재미있고 흥미롭고 기발한 주제"는 학술적으로 의미 있는 질문과 탐구의 흥미로 해석한다. 사용자가 요청하지 않은 게임화·오락형 시연을 주제 선정의 기본 방향으로 삼지 않는다.
@@ -60,22 +47,17 @@
 - 복잡한 실제 repository를 단순화할 때는 생략·대체한 부분을 명시하고, 원래 구현의 함수와 실습 코드의 대응 관계를 남긴다.
 - 학습과 추론을 분리해 실행 가능한 작은 예제를 제공하고, 중간 tensor와 실제 실행 결과의 시각화를 함께 보여 준다. 설명용 경로와 학습된 모델의 생성 결과를 구분한다.
 
-## Minimum maintained Markdown
+## 유지 문서
 
 - `AGENTS.md`: privacy, ownership, publish boundary, validation
 - `README.md`: canonical structure and workflow
-- 연구 방법 또는 reading workflow 문서
-- schema/visibility 문서가 실제로 존재할 때 해당 contract 문서
+- 연구 방법·reading workflow는 README 또는 기존 전문 문서에 기록한다.
+- Schema·visibility contract가 있는 경우 해당 문서를 유지한다. 같은 역할의 파일을 중복 생성하지 않는다.
 
-## Scientific figures
+## 원고 검토
 
-- 논문·연구 figure 작업은 `technical-figure-code.md`와 `scientific-figure-generation.md`를 함께 읽는다.
-- 현재 사용자 요청이 figure role, output format, 산출물 수와 우선순위의 최상위 권한이다. Code/generated 결과는 둘 다 요청되었을 때만 함께 만든다.
-- PNG/raster는 export format이다. Technical architecture, pipeline, operator, state transition과 data plot은 constructed schematic으로 만들고 image generation은 cover, teaser와 non-technical concept에 제한한다.
-- Usable baseline과 아름다운 technical final을 함께 요청하면 code baseline과 polished constructed schematic을 같은 evidence map에서 만들고, image-generated pipeline을 대안으로 사용하지 않는다.
-- 실제 구현을 설명하는 figure는 current working tree, config, tests와 필요한 runtime evidence를 먼저 조사하고 모든 visible module, arrow, operator, time index, shared/frozen/detached state와 label을 source file과 symbol에 연결한 evidence map을 유지한다.
-- Introduction figure는 한 문장 claim과 main contribution을 가장 크게 보여주고 full architecture dump를 피한다. Technical panel은 flat 2D로 만들며 computation을 3D object나 pseudo-machine으로 표현하지 않는다.
-- Final technical raster에는 required semantic text를 실제로 포함한다. Blank annotation plate와 pseudo-text는 deliverable이 아니다.
-- Target venue size를 우선하고, venue가 정해지지 않았으면 약 89/182 mm와 300/600 dpi를 working reference로 사용한다. 16:9는 paper 기본값이 아니다.
-- Semantic rejection은 과거 visual score와 pass 판정을 무효화한다. Rejected candidate를 보존했다는 이유로 publication asset로 사용하지 않는다.
-- Figure에 reusable한 owner 승인·거절 기준이 생기면 해당 guide의 decision log를 같은 작업에서 갱신한다.
+- Live Overleaf project는 읽기 전용으로 검토한다. Source 입력·교체·삭제와 recompile을 수행하지 않고, 확인한 file·section·line과 사용자가 적용할 replacement 또는 patch를 제공한다.
+
+## Figure
+
+[공통 규칙](research-figures.md), [기술 도식](technical-figure-code.md), [생성 일러스트](scientific-figure-generation.md)를 읽는다.

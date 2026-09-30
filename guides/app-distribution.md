@@ -1,5 +1,7 @@
 # Application distribution, signing and updates
 
+Packaged desktop의 로컬 전달과 macOS 서명·권한 연속성·업데이트에 적용한다. 다른 플랫폼의 서명·package 규격은 대상 프로젝트 지침을 따른다.
+
 ## macOS identity and permission continuity
 
 - macOS privacy approval를 우회하거나 자동 승인하려 하지 않는다. 최초 접근, 새 보호 자원, entitlement 변화와 사용자가 reset한 TCC state는 system confirmation을 요구할 수 있다.
@@ -14,11 +16,11 @@ Signing은 이미 승인된 permission을 안정된 application identity에 연�
 
 ## Local development delivery contract
 
-- Packaged desktop application의 동작이나 UI를 바꾼 작업은 사용자가 source-only 또는 development-server 검증만 명시하지 않는 한 source build 성공만으로 완료하지 않는다. 현재 source HEAD를 signed application으로 만들고 stable install location에 교체 설치한 뒤 실제 설치본의 provenance를 확인해야 한다.
+- Packaged desktop application의 동작이나 UI를 바꾼 작업은 사용자가 source-only 또는 development-server 검증만 명시하지 않는 한 source build 성공만으로 완료하지 않는다. 현재 working tree를 signed application으로 만들고 stable install location에 교체 설치한 뒤 실제 설치본의 commit·dirty state·build provenance를 확인해야 한다.
 - 개발자가 실행하는 repository binary, target/build bundle과 사용자가 Spotlight, Dock 또는 Finder에서 여는 installed bundle을 구분한다. 사용자-facing 검증과 handoff에는 installed bundle을 사용하고 build output을 열어 변경 반영을 대신하지 않는다.
 - 교체 전 실행 중인 installed application을 탐지한다. 미저장 작업 가능성이 있으면 강제 종료하지 않고 사용자에게 저장·종료를 요청한 뒤 같은 작업에서 설치를 재개한다. 종료 대기 때문에 설치하지 못했다면 변경이 Spotlight에 반영됐다고 보고하지 않는다.
 - 교체 설치는 stable bundle ID, signing team/identity, entitlements와 install path를 유지하고 가능한 경우 atomic replacement를 사용한다. 기존 승인을 보존하기 위해 매 작업마다 app을 다른 path에서 실행하거나 launcher bundle을 새 identity로 재생성하지 않는다.
-- 설치 뒤에는 최소한 installed bundle의 source commit/build provenance, `codesign --verify --deep --strict`, bundle/team identity, launcher target과 Spotlight index를 확인한다. 사용자가 바로 확인해야 하는 작업이면 새 installed bundle을 한 번 실행해 실제 launch target도 확인한다.
+- 설치 뒤에는 최소한 installed bundle의 source commit/build provenance, `codesign --verify --deep --strict`, bundle/team identity, launcher target과 Spotlight index를 확인한다. 실제 실행이 필요한 검증은 [공통 작업 보존 규칙](../AGENTS.md#검증과-사용자-작업-보존) 안에서 수행한다. 실행하지 못하면 launch 검증을 완료로 보고하지 않는다.
 - `/Applications`의 Spotlight용 launcher가 별도 bundle이면 stable launcher identity와 path를 유지하고 stable installed application만 연다. Launcher가 가리키는 target, `mdls`와 `mdfind` 결과를 갱신·검증하며 ephemeral repository path 또는 symlink 자체를 검색 결과로 의존하지 않는다.
 - 반복 build·install 때문에 동일한 Desktop/Documents/Downloads, network volume, camera, microphone 또는 automation permission을 다시 요구하면 먼저 code identity, entitlement diff, install path와 launcher target drift를 defect로 조사한다. 편의를 위해 TCC database를 reset·편집하거나 permission prompt를 자동 승인하지 않는다.
 - 새 protected resource, entitlement, signing team 또는 designated requirement가 실제로 바뀌면 macOS가 새 승인을 요구할 수 있다. 이를 숨기지 않고 변화 이유와 한 번 필요한 사용자 action을 명시한다.
@@ -71,9 +73,9 @@ Tracked manifest에는 secret, token, local checkout path 또는 mutable latest 
 - Application별 tracked entrypoint는 `scripts/install_local.sh`처럼 이름과 위치가 고정되어야 한다. Studio는 shell text, manifest command template, user-supplied argument 또는 임의 executable을 받지 않는다.
 - 실행 전 exact GitHub remote, expected branch, clean index/worktree, fetch evidence를 검증한다. Clean behind 상태만 hook과 unsafe transport override를 차단한 fixed `git merge --ff-only`로 전진할 수 있다. Ahead는 local HEAD를 latest-local로 취급하고, dirty, detached, wrong-remote, branch-mismatch, diverged는 모두 차단한다. Reset, rebase, stash, forced checkout은 자동으로 수행하지 않는다.
 - Installer는 stable bundle ID, team/signing identity, entitlement와 install path를 유지하고 CLI와 native bundle을 같은 source commit으로 만든다. 완료 후 manifest, version, signature, executable, full commit provenance와 `dirty: false`를 다시 검증하기 전에는 launch하지 않는다.
-- 같은 app이 실행 중이면 자동 종료하거나 덮어쓰지 않는다. 저장·종료 후 `Update & Open`을 다시 실행하도록 안내한다. 실패 시 source file, canonical app data와 이전 installed bundle이 무엇이 보존됐는지 같은 card에서 표시한다.
+- 같은 app이 실행 중이면 자동 종료하거나 덮어쓰지 않는다. 저장·종료 후 `Update & Open`을 다시 실행하도록 안내한다. 실패 시 source file, canonical app data와 이전 installed bundle이 무엇이 보존됐는지 같은 application detail에서 표시한다.
 - `Always open latest`와 `Update before open`은 Settings에서 각각 취소할 수 있고 application별 source channel override와 함께 동작해야 한다. 기본값을 켤 경우 첫 화면과 Settings copy가 실제 bounded behavior를 정확히 설명해야 한다.
-- Update check, build/install, launch의 pending/result/error는 같은 application card의 안정된 feedback region에 표시한다. Background polling이 build/install을 시작하거나 다른 monitor에 app을 임의로 띄우면 안 된다.
+- Update check, build/install, launch의 pending/result/error는 같은 application detail의 안정된 feedback region에 표시한다. Background polling이 build/install을 시작하거나 다른 monitor에 app을 임의로 띄우면 안 된다.
 
 ## Signed-release update channel
 

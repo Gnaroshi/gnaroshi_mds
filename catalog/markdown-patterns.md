@@ -1,6 +1,6 @@
 # Markdown patterns actually in use
 
-다음 문서 유형은 조사 대상 프로젝트에서 실제로 반복 사용되었다. 중앙 저장소는 이 유형만 유지하고, 필요가 확인되기 전에는 새 template category를 만들지 않는다.
+[프로젝트 조사](projects.md)에서 확인한 문서 유형이다. 대상 프로젝트의 기존 문서 중 같은 역할의 파일을 우선 사용한다.
 
 | Type | Purpose | Evidence examples |
 | --- | --- | --- |
@@ -14,11 +14,3 @@
 | Operations | setup, deployment, monitoring, release, rollback, recovery | website and Studio docs |
 | Verification/audit | traceability, QA, smoke test, release readiness | GN Traveler and website reports |
 | Migration | source inventory, ownership transfer, rollback | Gnaroshi repository split docs |
-
-## Keep documents useful
-
-- 한 문서는 하나의 안정된 질문에 답한다.
-- 상태가 바뀌는 report와 장기 규칙을 한 파일에 섞지 않는다.
-- 제목만 다른 중복 문서를 만들지 말고 canonical 문서를 연결한다.
-- 완료된 일회성 audit는 근거가 필요할 때만 보존하고 일반 지침으로 복사하지 않는다.
-- README에는 전체 세부사항을 복제하지 않고 읽기 순서와 실행 경로를 둔다.

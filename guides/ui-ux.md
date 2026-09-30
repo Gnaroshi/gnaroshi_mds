@@ -1,8 +1,10 @@
 # UI/UX preferences
 
+사용자 화면의 설계·구현·검증에 적용한다. DOM/CSS/ARIA 조건은 웹·webview에 적용하고 native에서는 대응하는 플랫폼 control과 접근성 semantics를 사용한다.
+
 ## Desired experience
 
-Simple means low cognitive load, not missing information. A first-time user must be able to answer these questions immediately:
+처음 사용하는 사람이 다음을 즉시 파악할 수 있게 한다:
 
 1. 이 app/program은 무엇을 위한 것인가?
 2. 지금 상태는 무엇인가?
@@ -16,7 +18,7 @@ Simple means low cognitive load, not missing information. A first-time user must
 - 누적된 사용자 의견이 충분하면 새 reference를 다시 요구하며 수정을 미루지 않는다.
 - 지침과 reference에서는 위계·밀도·상호작용의 의도를 해석하고, font·window·margin·padding 수치나 특정 앱의 외형을 그대로 복제하지 않는다. 현재 제품의 사용 목적과 플랫폼·접근성 제약에 맞게 독립적으로 설계하고 실제 크기에서 검증한다.
 - Reference를 고를 때 먼저 surface를 작업용 app, 읽기 중심 문서, 홍보·브랜드 화면으로 구분한다. 작업용 app의 익숙한 control·시스템 폰트·밀도·일관성은 차별화 부족이 아니다. 개성은 제품의 목적을 설명하는 지점에 집중하고 매 화면의 장식으로 반복하지 않는다.
-- 외부 design Markdown은 원저자, 정확한 파일, 확인일과 가능한 파일별 변경일을 기록한다. 공식 플랫폼 제약, 접근성 기준, 특정 design system 내부 규칙과 미학적 취향을 분리한다. 최신성·유명도만으로 기존 결정을 바꾸지 않으며 충돌하는 규칙은 적용/유지/제외 이유를 남긴다. 원문 비교는 [`design-references.md`](design-references.md)를 참고한다.
+- 외부 design Markdown은 원저자, 정확한 파일, 확인일과 가능한 파일별 변경일을 기록한다. 공식 플랫폼 제약, 접근성 기준, 특정 design system 내부 규칙과 미학적 취향을 분리한다. 최신성·유명도만으로 기존 결정을 바꾸지 않으며 충돌하는 규칙은 적용/유지/제외 이유를 남긴다. 원문 비교는 [출처와 적용 판단](../references/design-sources.md)를 참고한다.
 
 ## Highest-priority user-facing information boundary
 
@@ -51,7 +53,6 @@ Safety, accessibility와 data integrity를 훼손하지 않는 범위에서 다�
 - Action마다 idle, pending, success, error와 retry/next-action 상태를 정의한다. 비동기 action은 중복 실행을 막고, 진행 중 label 또는 indicator와 완료 결과를 제공한다.
 - Pending label과 indicator는 control의 폭과 주변 layout을 불필요하게 바꾸지 않는다. Button content와 feedback region은 예상 가능한 최소 크기를 예약해 상태 변화 때문에 인접 control이나 작성 surface가 이동하지 않게 한다.
 - 반복되는 card/list action column은 label 길이마다 자체 폭을 계산하지 않는다. 같은 hierarchy의 button은 공통 control height, icon-label gap, vertical baseline과 column width를 공유하고, 긴 label은 정해진 wrap/compact policy로 처리한다. Card별 button 폭과 수직 위치가 제멋대로 달라지면 기능이 동작해도 PASS가 아니다.
-- Connected Apps처럼 app별 기능이 다른 화면은 모든 card에 하나의 generic action만 복제하지 않는다. 공통 `Open`과 status grammar는 통일하되, provider가 실제 지원하는 2–3개의 가장 자주 쓰는 typed action을 같은 card에서 바로 발견할 수 있게 하고 나머지 technical evidence만 disclosure로 내린다.
 - Task-generated feedback은 trigger, field 또는 affected item 가까이에 둔다. Page-wide 문제만 page feedback region에 두고, 별도 작업의 message를 한 global banner에 섞지 않는다.
 - Inline feedback과 page feedback region은 기존 content를 덮거나 가리지 않는다. Conditional message가 중요한 editor, list, form 또는 control을 밀어내는 경우 reserved region, replacement state 또는 명시적 transition layout을 사용한다.
 - Modal alert는 data loss, irreversible action, credential/security 경계처럼 즉시 결정을 요구할 때만 사용한다. 일반 success, retry 가능한 fetch failure와 상태 정보는 current context 안에서 전달한다.
@@ -60,18 +61,18 @@ Safety, accessibility와 data integrity를 훼손하지 않는 범위에서 다�
 - Action이 새 view, item 또는 dialog를 열면 focus와 selection을 새 context로 이동하고 돌아갈 위치를 보존한다. Screen reader에는 live region을 사용하되 같은 message를 여러 `role=alert`로 중복 발표하지 않는다.
 - Async action 중 관련 input, selection과 navigation이 결과와 충돌할 수 있으면 operation scope만 잠근다. App 전체를 이유 없이 막지 않고, stale response가 새 selection을 덮지 않도록 request identity/cancellation을 적용한다.
 - `Continue`, `Resume`, `Retry`처럼 이전 상태를 이어가는 동사는 대상과 복원 지점을 증명할 수 있을 때만 사용한다. 사용자가 무엇을 이어가는지 알 수 있도록 document/item, 단계 또는 pass, 마지막 상태와 필요하면 elapsed time을 같은 맥락에 표시한다. 단순히 과거 기록이 있다는 이유로 `Continue`라고 부르지 않는다.
-- 변경 감지는 별도 boolean을 독립적으로 관리하기보다 현재 draft와 canonical saved value의 비교에서 파생한다. 사용자가 편집을 정확히 되돌리면 dirty indicator, Save action과 Recovery snapshot도 원래 상태로 돌아가야 한다.
-- Same-page/hash navigation은 click, keyboard activation, direct hash load, browser back/forward와 scroll/focus offset을 모두 같은 acceptance contract로 검증한다. Sticky header나 local nav 아래에 target이 가려지면 실패로 본다.
 - State-transition test는 각 상태를 따로 확인하는 데서 끝내지 않는다. "A가 current일 때 B는 current가 아니다", "current item은 한 개다", "stale async result가 새 selection을 덮지 않는다" 같은 negative invariant를 포함한다.
 - Minimal interface를 정지 화면으로 해석하지 않는다. Owner가 contemporary interaction을 요구하면 navigation destination, reading/task progress, current/pressed/open state처럼 사용자가 이해할 수 있는 변화에 native progressive motion을 연결한다. 자동 loop, custom cursor, decorative parallax와 motion-only feedback은 사용하지 않고 reduced-motion에서는 같은 상태를 즉시 전달한다.
 - Motion acceptance는 animation 선언 유무가 아니라 정상 속도에서 변화가 인지되는지로 판단한다. 시작·중간·종료 frame 또는 실제 계산값을 비교하고, text contrast와 layout geometry는 모든 frame에서 유지하며, reduced-motion에서는 동일한 정보와 action state를 즉시 제공한다.
 - Experimental interaction API는 normal navigation, reload, locale switch, focus 또는 requestAnimationFrame lifecycle을 불안정하게 만들면 해당 경로에서 opt out하거나 안정된 fallback으로 되돌린다. 최신 기술 사용 자체를 acceptance criterion보다 우선하지 않는다.
 - Hidden accessibility instruction은 실제 interaction contract와 일치해야 하고 layout utility가 정의되지 않아 visible text로 새지 않도록 component test와 packaged runtime에서 확인한다. Keyboard 도움말이 routine task에 필요하지 않으면 toolbar의 Help/Guide처럼 요청 가능한 위치로 이동한다.
 
-## Information hierarchy and density
+## Timeline과 interactive plot
 
 - 시간 순서의 관측·trajectory viewer는 Space로 재생/정지하고 좌우 화살표로 이전/다음 시점을 탐색할 수 있게 한다. Text input, select와 편집 영역의 기본 키 동작을 가로채지 않고 재생 중 이동, 첫/마지막 시점과 키 반복을 검증한다.
 - 회전·드래그 가능한 plot은 실제 point 위에서 pointer down→move→up을 실행해 검증한다. 확대 가능한 3D plot은 실제 wheel/trackpad 입력으로 확대하고 이어서 drag로 회전하는 연속 동작을 검증한다. 확대와 회전 control의 기능·현재 mode를 명확히 표시하고, 확대 뒤에도 회전할 수 있어야 한다. Click callback에서 active drag 중 scene을 재생성하지 않으며, 시점 선택·재생 갱신은 확대 배율, camera와 pointer 상태를 보존한다. 정적 screenshot, 개별 mode 전환이나 camera 값을 직접 설정한 검증으로 실제 입력에 따른 연속 동작 검증을 대신하지 않는다.
+
+## Information hierarchy and density
 
 - Navigation group과 screen heading은 implementation layer가 아니라 사용자 목표와 결과를 이름으로 사용한다. 한 item만 가진 group, 모호한 container label과 raw technical noun은 grouping 이득이 없으면 합치거나 이름을 바꾼다.
 - Current location, primary task와 next action은 secondary status, repository path, hash, schema/version detail보다 먼저 보여준다. Raw provenance와 diagnostic value는 사용자가 요청할 때 disclosure, Details 또는 inspector에서 보여준다.
@@ -107,9 +108,7 @@ Safety, accessibility와 data integrity를 훼손하지 않는 범위에서 다�
 - 각 component review는 purpose, expected action/result, idle/pending/success/error, keyboard/focus, narrow window, dark/light, content length, layout stability와 regression을 pass/fail로 기록한다.
 - Reviewer가 `OK`를 주려면 blocker가 없다는 말뿐 아니라 acceptance criterion별 증거를 남겨야 한다. Fail 또는 ambiguous item은 같은 component를 수정하고 다시 review한다.
 - Component들이 통과한 뒤 전체 workflow에서 hierarchy, state continuity와 cross-component feedback을 다시 검증한다. Component pass가 전체 product flow pass를 대신하지 않는다.
-- Desktop UI 검토는 source render, test fixture 또는 showcase만으로 완료하지 않는다. 실제 signed stable install에서 real representative record를 선택하고 navigation, edit/revert, mode change, pending/result/error, destructive entry point와 minimum window를 직접 실행해 source와 설치본의 일치를 확인한다.
-- Visual screenshot pass는 interaction pass가 아니다. Hover/click/focus/current state, translated-unavailable state, populated/empty fixtures, route-hash transitions와 stale/fresh cases를 별도 runtime test로 실행한다.
-- Visual screenshot이 정상이더라도 link operability, browser history, hash focus와 locale transition을 검증하지 않았다면 완료로 보지 않는다.
+- Desktop 검증 대상은 [app-distribution](app-distribution.md)의 signed stable install이다. Representative record로 navigation, edit/revert, mode, pending/result/error, destructive entry point와 minimum window를 검증한다. 창 실행은 [공통 작업 보존 규칙](../AGENTS.md#검증과-사용자-작업-보존)을 따른다.
 
 ## Avoid
 
@@ -121,6 +120,24 @@ Safety, accessibility와 data integrity를 훼손하지 않는 범위에서 다�
 - 작은 viewport에서 잘리는 text, button, form, table, navigation
 - hover-only 정보, color-only status, 이유 없는 disabled control
 - 반응형이라는 이유로 중요한 기능이나 정보를 숨기는 것
+
+## Gnaroshi interface palette
+
+Gnaroshi 앱의 기본 방향은 dark working theme과 제한된 pastel accent다. 프로젝트의 승인된 palette가 있으면 우선하며, identity를 이유로 검증된 웹 interaction palette를 교체하지 않는다.
+
+### Base dark surfaces
+
+| Token | Recommended color | Use |
+| --- | --- | --- |
+| `surface-near-black` | `#11151B` | app canvas, deepest background |
+| `surface-charcoal` | `#181E26` | primary panel and sidebar |
+| `surface-blue-gray` | `#222B38` | raised/inset surface |
+| `text-primary-dark` | `#F4F7FA` | primary text on dark surfaces |
+| `text-secondary-dark` | `#B7C0CC` | secondary text after contrast verification |
+
+Pure black을 기본 canvas로 사용하지 않는다. Surface hierarchy는 spacing과 제한된 separator를 함께 사용하고 card-within-card decoration으로 만들지 않는다.
+
+Identity teal/orange와 앱별 role accent 값은 [app-icons](app-icons.md#색과-role)를 사용한다. Status는 별도 semantic token과 text/icon으로 표시한다. Pastel filled control의 foreground contrast를 확인하고, light mode도 navigation·focus·disabled·error·chart·form을 모두 지원한다. Neon, glow, gradient text와 전체 surface의 gradient를 피하며 gradient는 필요한 identity artwork나 제한된 accent에만 사용한다.
 
 ## Pixel visual layer
 
@@ -153,8 +170,7 @@ Owner-selected pixel direction은 content를 retro-game interface로 바꾸는 t
 - Drag 시작 시 pointer capture와 text-selection 방지를 사용하고 종료/cancel/lost capture에서 모두 정리한다. Divider를 끌다가 문서 text가 선택되거나 resize cursor가 app 전체에 남지 않게 한다.
 - 합리적인 pane별 minimum, maximum과 primary content minimum을 동시에 적용한다. Persisted size가 현재 usable viewport를 벗어나면 안전하게 clamp하되 사용자의 저장값을 불필요하게 잃지 않는다.
 - Double-click reset, explicit collapse/expand와 local persistence를 제공한다. Collapsed pane은 시각적으로만 0px이 아니라 focus와 accessibility tree에서도 제외하고, expand control은 계속 접근 가능해야 한다.
-- Narrow window의 Split은 preview를 화면 밖으로 밀지 않는다. Side-by-side에서 stacked로 전환하거나 명시적 방향 선택을 제공하고 현재 정책을 짧게 표시한다. 두 pane은 독립 scroll을 유지한다.
-- Route, document, mode와 focus 전환은 mounted editor identity, cursor, selection, undo history, scroll과 유효 pane state를 보존한다. Focus mode가 주변 pane을 숨겨도 canonical save/error boundary를 unmount하지 않는다.
+- 좁은 window에서 pane을 화면 밖으로 밀지 않는다. Side-by-side를 stacked로 전환하거나 방향 선택을 제공한다. Pane별 scroll과 유효 size를 보존하며 editor 내부 상태는 [authoring-editor](authoring-editor.md)의 document 경계를 따른다.
 - Component test에는 clamp, malformed persistence, keyboard direction, separator semantics와 collapse state를 포함한다. Showcase에는 실제 drag 가능한 nested pane fixture를 두고 normal, minimum과 wide runtime에서 pointer/keyboard/reset/persistence를 다시 검증한다.
 
 ## Settings and form alignment
@@ -171,21 +187,7 @@ Owner-selected pixel direction은 content를 retro-game interface로 바꾸는 t
 - Manual Save는 canonical value와 다른 draft가 있을 때만 활성화한다. 안정된 위치에 `Saved`, `Unsaved changes`, `Saving`, `Error`를 표시하고 disabled primary control을 활성처럼 칠하지 않는다.
 - Backup, cache와 Recovery처럼 운영 성격이 다른 설정은 한 card 안에 합치지 않는다. Recovery의 destructive action은 routine restore와 시각적으로 분리하고 exact item을 이름으로 표시한다.
 
-## Authoring and history controls
+## Overlay와 history control
 
-- Editor toolbar는 content mode, primary formatting, secondary insertion과 workspace utility를 구분한다. 좁은 폭에서는 낮은 빈도의 formatting을 한 개의 labelled `More` disclosure로 reflow하고 서로 배타적인 Guide/Outline popover는 한 번에 하나만 연다.
 - Popover, disclosure와 dialog의 semantic role은 실제 keyboard behavior와 일치해야 한다. Menu key handling을 구현하지 않은 일반 action list를 `menu/menuitem`으로 가장하지 않는다. Escape는 닫고 trigger로 focus를 돌리며 outside click과 mode change도 stale overlay를 남기지 않는다.
-- Focus mode는 주변 chrome을 줄여도 document identity, edit/preview mode, saved/unsaved state, Save action, blocking error와 exit action을 유지한다. 집중 모드가 저장 경계나 실패를 숨겨서는 안 된다.
 - History correction/delete는 row에서 발견 가능해야 하고 exact target과 영향 범위를 확인한다. Immutable audit source를 보존해야 하는 domain이면 correction event와 recoverable journal을 사용하고, interrupted write는 다음 read/list 전에 안전하게 resume하거나 conflict로 fail closed한다.
-
-## Reference basis
-
-이 문서는 특정 design system의 visual appearance를 복제하지 않고 다음 공식 guidance에서 반복되는 interaction 원칙을 재사용한다.
-
-- [Apple Human Interface Guidelines: Feedback](https://developer.apple.com/design/human-interface-guidelines/feedback), [Alerts](https://developer.apple.com/design/human-interface-guidelines/alerts), [Progress indicators](https://developer.apple.com/design/human-interface-guidelines/progress-indicators), [Buttons](https://developer.apple.com/design/human-interface-guidelines/buttons)
-- [Carbon Design System: Notifications](https://carbondesignsystem.com/patterns/notification-pattern/), [Spacing](https://carbondesignsystem.com/elements/spacing/overview/)
-- [Primer: Forms](https://primer.style/product/ui-patterns/forms/), [Navigation](https://primer.style/product/ui-patterns/navigation/), [Notification messaging](https://primer.style/product/ui-patterns/notification-messaging/)
-- [GitHub Docs writing best practices](https://docs.github.com/en/contributing/writing-for-github-docs/best-practices-for-github-docs)와 [basic Markdown writing](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
-- [Zotero: Adding items and metadata by identifier](https://www.zotero.org/support/adding_items_to_zotero)
-- [WAI-ARIA APG Window Splitter Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/windowsplitter/)과 [Tabs Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/)
-- [WCAG 2.2 Error Identification](https://www.w3.org/WAI/WCAG22/Understanding/error-identification.html)과 [Status Messages](https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html)

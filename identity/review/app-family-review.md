@@ -1,20 +1,8 @@
 # Gnaroshi application icon family review
 
-Status: **owner approved on 2026-07-14**. P5 is the selected production family.
+2026-07-14 선택 기록. 6개 app role은 production에 사용한다. 함께 승인됐던 `gnaroshi-main-p5`는 현재 full-face 규칙에 맞지 않아 historical asset으로 보존하며 웹·global 대표 identity에 사용하지 않는다.
 
-P5 is one `hero-instrument` family. Every app uses the same ear-and-visor canopy, black separation outline, colored role rim, dark instrument surface, front-facing perspective and depth. The role instrument changes; the visual system does not.
-
-The exact approved base is recorded in [`../approved/metadata.json`](../approved/metadata.json). The selected P5 masters and checksums are recorded in [`../approved/apps/metadata.json`](../approved/apps/metadata.json). Review binaries remain ignored; production repositories use only the promoted masters.
-
-## Review criteria
-
-- Gaze quality: four cyan eye slits must read as one restrained visor, not floating face fragments.
-- Layer separation: the role plate border must clearly separate mascot identity from application function.
-- Scheme consistency: all six plates use the same bounds, perspective, border weight, highlight, inner surface and base.
-- Role clarity: the hero object must show a representative instrument plus an action/result, not merely illustrate the product name.
-- Product distinction: PaperFlow organization must not resemble arXiv acquisition; ContentDeck study must not resemble generic playback; RunShelf must not resemble a dashboard alone.
-- 32px readability: the role instrument leads while the common canopy remains a secondary family cue.
-- Surface quality: silhouette, border and key color remain visible on light and dark surfaces.
+P4에서 지적된 floating eye, mascot/role 경계 부족, app별 scale·perspective 불일치를 P5의 공통 canopy와 bordered role plate로 수정했다. 현재 구성 규칙은 [app-icons](../../guides/app-icons.md), byte provenance는 [metadata](../approved/apps/metadata.json)에 있다.
 
 ## Candidate record
 
@@ -31,4 +19,4 @@ At 16px the candidates are family/key-color indicators. At 32px each primary ins
 
 ## Owner decision
 
-The owner approved `gnaroshi-main-p5`, `studio-p5`, `paperflow-p5`, `arxiv-discovery-p5`, `tr-gpu-monitor-p5`, `runshelf-p5` and `contentdeck-p5` on 2026-07-14. No alternative candidate may replace these production sources without a new owner decision and metadata update.
+The owner approved `gnaroshi-main-p5`, `studio-p5`, `paperflow-p5`, `arxiv-discovery-p5`, `tr-gpu-monitor-p5`, `runshelf-p5` and `contentdeck-p5` on 2026-07-14. 현재 사용 범위는 [identity 목록](../README.md)을 따른다. 다른 후보로의 production 교체는 새 owner 결정과 metadata 갱신이 필요하다.

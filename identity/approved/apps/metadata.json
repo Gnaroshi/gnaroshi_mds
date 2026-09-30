@@ -6,34 +6,12 @@
   "rendering": "64px deterministic pixel source expanded to 2048px with nearest-neighbor resampling",
   "baseReference": "../gnaroshi-base-v1.png",
   "restrictions": [
-    "Use only these owner-approved P5 candidates for production identity exports.",
+    "Only entries in apps are current production identity exports; historicalAssets preserve prior selections.",
     "Do not redraw, prompt-regenerate, smooth, blur, or interpolate the pixel masters.",
     "Do not use the full-color mascot as a menu-bar or functional toolbar icon.",
     "Keep application builds independent from network access to gnaroshi_mds."
   ],
   "apps": [
-    {
-      "id": "gnaroshi-main-v1",
-      "product": "gnaroshi.dev",
-      "sourceCandidate": "gnaroshi-main-p5",
-      "sourceSize": [
-        64,
-        64
-      ],
-      "sourceSha256": "81853cd37db6fc592d0d966da1f949c0a246ed2bc197e5f94dd624c69fda164c",
-      "masterFile": "gnaroshi-main-v1.png",
-      "masterSize": [
-        2048,
-        2048
-      ],
-      "masterSha256": "80f889e2dca1e33ac99ced976584db6ea99647700899f5539f8f73785f05a494",
-      "exportedAt": "2026-07-14",
-      "targetPlatforms": [
-        "web identity",
-        "favicon",
-        "social preview identity element"
-      ]
-    },
     {
       "id": "gnaroshi-studio-v1",
       "product": "Gnaroshi Studio",
@@ -160,6 +138,33 @@
         "web favicon",
         "Studio managed-app card"
       ]
+    }
+  ],
+  "historicalAssets": [
+    {
+      "id": "gnaroshi-main-v1",
+      "product": "gnaroshi.dev",
+      "sourceCandidate": "gnaroshi-main-p5",
+      "sourceSize": [
+        64,
+        64
+      ],
+      "sourceSha256": "81853cd37db6fc592d0d966da1f949c0a246ed2bc197e5f94dd624c69fda164c",
+      "masterFile": "gnaroshi-main-v1.png",
+      "masterSize": [
+        2048,
+        2048
+      ],
+      "masterSha256": "80f889e2dca1e33ac99ced976584db6ea99647700899f5539f8f73785f05a494",
+      "exportedAt": "2026-07-14",
+      "targetPlatforms": [],
+      "usageStatus": "historical",
+      "previousTargetPlatforms": [
+        "web identity",
+        "favicon",
+        "social preview identity element"
+      ],
+      "restriction": "Do not use as website or global primary identity; use the full-face identity rule."
     }
   ]
 }

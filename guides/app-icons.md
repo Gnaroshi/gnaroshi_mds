@@ -1,175 +1,55 @@
-# Gnaroshi application identity and icon guidance
+# Identity와 icon
 
-## Approved visual base
+승인된 원본·production master·과거 후보의 위치와 상태는 [identity 목록](../identity/README.md)을 기준으로 한다. 기존 승인 원본은 덮어쓰지 않고 derivative를 별도 경로에 만든다.
 
-- Approved raster base: `identity/approved/gnaroshi-base-v1.png`
-- Selection metadata: `identity/approved/metadata.json`
-- Source candidate: `identity/candidates/07-cel-shaded.png`
-- Origin reference: `identity/reference/gnaroshi-origin-2020.jpeg`
+## 용도
 
-Source candidate와 approved base는 보존한다. Platform export나 role variant를 만들 때 approved base를 직접 덮어쓰지 않는다.
-
-## Icon classes
-
-### Full-color app and product identity
-
-- Full-color application/product icon은 raster master에서 시작한다.
-- Gnaroshi family icon은 `gnaroshi-base-v1`의 recognizable mascot, silhouette, teal/orange identity를 유지한다.
-- Application role에 맞는 작은 variant element를 추가할 수 있다.
-- PNG master를 보존하고 ICNS, asset catalog, Windows ICO/PNG, web PNG 등 platform requirement에 맞춰 export한다.
-- Platform mask, safe area, corner treatment와 small-size optical correction은 export마다 검증한다.
-- Website favicon과 compact brand mark도 full-color product identity에 포함한다. 기존 interaction palette는 유지하고 mascot의 teal/orange는 제한된 ownership cue로 적용할 수 있다.
-
-### Functional UI icons
-
-- Toolbar, navigation, status, form action에는 SF Symbols, Lucide 또는 application 안에서 일관된 custom monochrome vector icon을 사용할 수 있다.
-- Functional control까지 모두 raster mascot으로 만들지 않는다.
-- 한 application 안에서 stroke, fill, optical size, label treatment를 섞지 않는다.
-- Essential meaning을 icon 하나에만 의존하지 않고 accessible label, text 또는 state와 함께 제공한다.
-- Brand illustration과 functional icon system을 별도 layer로 유지한다.
-
-### Menu-bar icons
-
-- macOS menu-bar icon은 monochrome template asset을 사용한다.
-- Full-color mascot, pastel fill, gradient, shadow를 menu bar에 그대로 넣지 않는다.
-- Light/dark menu bar에서 system tint와 selected state를 검증한다.
-
-## Base mascot preservation
-
-- 큰 귀, 날카로운 눈, 넓은 얼굴/이빨, 강한 중심 silhouette와 teal/orange 대비가 즉시 인식되어야 한다.
-- Approved full identity에서는 base의 얼굴, 눈, 귀와 주요 silhouette를 보존한다. Website homepage mark, browser favicon, touch icon과 manifest icon은 항상 이 full-face identity를 사용하며 얼굴 덩어리와 이빨까지 남겨야 한다. Compact pixel launcher family에서는 완전한 얼굴을 어색하게 자르거나 가리지 않고 양쪽 큰 귀와 visor 안의 네 개 eye slit만 deliberate identity canopy로 추출할 수 있지만, 이 canopy를 website의 primary identity나 role이 없는 global main mark로 승격하지 않는다.
-- App role variant는 복잡한 character illustration이 아니라 작은 크기에서 용도가 구분되는 application icon으로 읽혀야 한다.
-- 기본 Gnaroshi icon은 mascot을 수평·수직 중심축에 두며 이유 없이 한쪽 구석으로 밀지 않는다.
-- App variant에서 snout, teeth, cheek, chest 또는 armor 일부만 잘린 채 남기지 않는다. 완전한 mascot portrait를 쓰지 않으면 ears-and-visor canopy만 사용하고 나머지 얼굴은 명시적으로 제거한다.
-- 네 eye는 서로 떨어진 장식 점이나 별처럼 두지 않는다. 하나의 dark visor/socket 안에서 같은 각도와 optical weight의 좁은 cyan slit으로 설계한다.
-- Role treatment는 tile 전면의 약 60–75%를 차지하고 한 개의 hero instrument와 최대 한 개의 action/result cue로 구성한다. 실제 user action과 outcome을 보여주되 miniature illustration이나 여러 작은 prop을 모은 장면으로 만들지 않는다.
-- Role subject가 먼저 보여야 한다. Identity canopy는 orange ear silhouette와 restrained cyan visor로 family를 표시하며 role object의 outline이나 key color와 경쟁하지 않는다.
-- Text, watermark, franchise logo, official emblem, trademark 또는 existing game asset의 direct copy를 넣지 않는다.
-- 특정 game publisher가 selected design을 소유한다고 주장하지 않는다.
-
-## Pixel application family
-
-Owner가 pixel direction을 선택한 Gnaroshi application family는 서로 다른 pixel illustration을 모은 것이 아니라 하나의 반복 가능한 icon system으로 만든다.
-
-### Reference design model
-
-P5 family는 Apple의 개별 app artwork를 복제하지 않고 [Apple Human Interface Guidelines의 app icon 원칙](https://developer.apple.com/design/human-interface-guidelines/app-icons/)을 reusable rule로 해석한다.
-
-- App의 essence를 한 개의 simple, unique core idea로 압축한다.
-- Primary content를 중심에 두고 platform mask의 safe area 안에 유지한다.
-- Fine detail과 UI screenshot 대신 최소한의 filled shape와 clearly defined foreground edge를 사용한다.
-- Foreground, middle, background의 깊이를 단순하게 유지하고 family 전체에서 같은 material과 perspective를 반복한다.
-- 이름을 연상시키는 사물만 그리지 않고 사용자가 다루는 representative instrument와 그 결과를 보여준다.
-
-Gnaroshi에서는 이를 `hero-instrument` scheme으로 부른다. 각 app은 같은 bordered instrument plate 안에 한 개의 대표 도구/작업물과 한 개의 action 또는 result cue만 둔다. Apple의 clapperboard, lectern, color wheel, hardware silhouette 또는 다른 proprietary artwork를 직접 복제하지 않는다.
-
-### Shared grid and construction
-
-- 모든 master는 처음부터 실제 `64×64` raster pixel grid에서 설계하고 nearest-neighbor 방식으로만 큰 raster export를 만든다.
-- Anti-aliasing, sub-pixel stroke, blur, soft shadow, glow와 gradient를 사용하지 않는다.
-- 주요 silhouette과 role glyph에는 2 logical pixel을 기본 outline으로 사용한다. 1 pixel detail은 눈, 이빨 또는 꼭 필요한 내부 구분에만 제한한다.
-- Background, stepped frame, identity-canopy anchor, ear/visor position, role-plate geometry, outline value와 light direction은 family 전체에서 고정한다.
-- Approved base를 직접 pixel master의 raster reference로 사용한다. App마다 text description만으로 mascot을 다시 생성하지 않는다.
-- 먼저 한 개의 canonical ears-and-visor canopy와 한 개의 bordered instrument plate를 확정하고, 모든 app variant는 그 동일 pixel coordinates를 재사용한다.
-- Image generation은 role metaphor를 탐색하는 concept 단계에만 사용할 수 있다. Owner가 artificial/generated look를 지적한 뒤의 active pixel master는 generated large raster를 축소한 결과가 아니라 좌표, palette와 layer가 결정론적으로 재현되는 `64×64` source여야 한다.
-- 16px/32px에서는 새로운 detail을 축소해 보존하려 하지 말고 optical small-size export에서 불필요한 detail을 제거한다.
-
-### Fixed composition
-
-- Base/default icon의 mascot은 tile 정중앙에 둔다. Role variant도 공통 수직 중심축을 유지하며 app마다 좌우 corner로 이동시키지 않는다.
-- Current role family는 `hero-instrument` composition을 사용한다. 같은 orange ear + dark visor canopy를 tile 뒤쪽 상단에 두고, 모든 app에서 같은 크기의 bordered role plate가 아래쪽 전면을 차지한다.
-- Identity canopy에는 nose, mouth, teeth, cheek, body, armor torso 또는 잘린 face edge를 넣지 않는다. Visor가 네 eye slit을 하나의 intentional mark로 묶어 floating facial fragment처럼 보이지 않게 한다.
-- Role plate는 mascot과 app subject 사이에 최소 2px outer outline, 2px app-color rim과 dark inner surface를 둔다. 이 border는 mascot과 role을 시각적으로 분리하는 동시에 family의 공통 container가 된다.
-- Hero instrument는 동일한 front-facing perspective, `32–38px` bounding box, 2px outer outline, 1px internal separator와 같은 visual center를 사용한다. App의 representative work object와 action/result를 한 개의 결합된 silhouette로 단순화한다.
-- Tile border, background, canopy, role plate, object anchor와 light direction은 family 전체에서 동일해야 한다. App별로 바꿀 수 있는 것은 key color와 hero-instrument geometry뿐이다.
-- 16px/32px optical export에서는 role subject의 visual mass와 contrast가 mascot보다 커야 한다. 64px 이상에서는 role action과 mascot family가 함께 읽혀야 한다.
-- Icon은 mascot portrait, AI illustration이나 rebus puzzle이 아니라 application launcher로 읽혀야 한다. 이름을 가린 32px 비교에서 foreground만 보고 대표 workflow를 말할 수 없거나 AI-generated scene처럼 보이면 geometry를 줄이고 다시 설계한다.
-
-### Role glyph vocabulary and key colors
-
-Role glyph는 아래 canonical symbol에서 시작한다. 의미를 흐리는 장식, 두 번째 metaphor 또는 miniature interface를 추가하지 않는다.
-
-| Product | Hero instrument and visible result | Key color | Common result color |
-| --- | --- | --- | --- |
-| Gnaroshi Studio | editorial console: source tabs enter one manuscript surface, a pen edits it, and one publish output leaves | lavender `#B8A7F3` | identity teal `#3FA6A0` |
-| PaperFlow | guarded paper sorter: one paper enters and emerges as ordered indexed slots | mint `#8FD9C0` | identity teal `#3FA6A0` |
-| Arxiv Discovery | research radar: incoming paper blips cross one sweep and one result is acquired | sky blue `#82C7EE` | identity teal `#3FA6A0` |
-| TR GPU Monitor | dual-fan GPU instrument: hardware surface carries one live telemetry trace and remote state | soft coral `#E9948E` | identity teal `#3FA6A0` |
-| RunShelf | indexed run archive: stacked run records retain a metric trace, status and artifact marker | butter yellow `#E9D27A` | identity teal `#3FA6A0` |
-| ContentDeck | study player: media, dominant subtitle and bounded A–B segment coexist in one frame | peach `#F2B58D` | identity teal `#3FA6A0` |
-
-- Studio에는 generic document icon, gear, dashboard grid 또는 command-center collage를 사용하지 않는다. Central workbench, connected work와 author/publish action이 함께 보여야 한다.
-- PaperFlow에는 Zotero logo, generic folder, download arrow나 빈 tray만 사용하지 않는다. Paper가 분류되어 library record로 정돈되는 action을 보여준다.
-- Arxiv Discovery에는 arXiv logo, generic magnifier나 scan gate 하나만 사용하지 않는다. 여러 paper가 radar sweep 안에서 발견되는 action을 보여준다.
-- TR GPU Monitor에는 vendor logo, server rack 또는 command line을 넣지 않는다. Chip, telemetry와 remote status를 하나의 굵은 glyph로 결합한다.
-- RunShelf에는 runner, fitness cue, server block, slider lane 또는 unreadable chart를 넣지 않는다. Experiment와 metric evidence가 durable indexed record로 남는 관계를 보여준다.
-- ContentDeck에는 provider logo, repeat glyph 하나 또는 player UI 전체를 넣지 않는다. Media frame 안의 subtitle와 bounded segment practice가 한 scene으로 읽혀야 한다.
-
-Role glyph는 icon 안의 설명문이 아니다. 각 glyph는 product promise를 한 개의 결합된 silhouette로 압축하고, 이름을 가린 32px 비교에서도 다른 app과 혼동되지 않아야 한다.
-
-Key color는 app role을 구분하는 identity color다. Available, success, warning, failed 같은 semantic state를 대신하지 않는다.
-
-## Application role family
-
-| Product family | Identity role | Suitable secondary motif |
-| --- | --- | --- |
-| Gnaroshi Studio | coordination, writing, publishing, central control | 연결 ring, 작은 page/pen, controlled hub cue |
-| PaperFlow | papers, organization, safe flow | layered paper, ordered path, guarded flow cue |
-| Arxiv crawler | discovery, scanning, incoming papers | scan arc, incoming sheet, discovery spark |
-| TR GPU Monitor | GPU, telemetry, remote status | small chip grid, telemetry line, remote status pulse |
-| RunShelf | experiment runs, shelves, indexed results | shelf line, indexed block, run marker |
-| ContentDeck / `content-looper` | playback, looping, subtitles, learning | loop arc, play cue, compact subtitle strip |
-
-Secondary motif는 logo collage가 아니라 하나의 굵고 단순한 role cue다. 작은 크기에서 의미가 사라지는 가는 선, 세부 pictogram, miniature interface를 피한다. Base mascot의 pose와 expression을 무리하게 바꿔 family recognition을 잃지 않는다.
-
-## Shared palette
-
-Dark mode가 primary working theme이며 bright pastel은 제한된 role accent로 사용한다.
-
-### Base dark surfaces
-
-| Token | Recommended color | Use |
-| --- | --- | --- |
-| `surface-near-black` | `#11151B` | app canvas, deepest background |
-| `surface-charcoal` | `#181E26` | primary panel and sidebar |
-| `surface-blue-gray` | `#222B38` | raised/inset surface |
-| `text-primary-dark` | `#F4F7FA` | primary text on dark surfaces |
-| `text-secondary-dark` | `#B7C0CC` | secondary text after contrast verification |
-
-Pure black을 기본 canvas로 사용하지 않는다. Surface hierarchy는 spacing과 제한된 separator를 함께 사용하고 card-within-card decoration으로 만들지 않는다.
-
-### Shared identity colors
-
-| Token | Recommended color | Use |
-| --- | --- | --- |
-| `identity-teal` | `#3FA6A0` | shared mascot/identity cue |
-| `identity-orange` | `#E88945` | warm shared identity cue |
-
-### Pastel role accents
-
-| Accent | Recommended color |
+| 용도 | 형식과 조건 |
 | --- | --- |
-| lavender | `#B8A7F3` |
-| mint | `#8FD9C0` |
-| sky blue | `#82C7EE` |
-| peach | `#F2B58D` |
-| butter yellow | `#E9D27A` |
-| soft coral | `#E9948E` |
+| 앱·제품 identity | Raster master에서 platform asset으로 export. Mask, safe area, corner와 작은 크기 보정 검증 |
+| Gnaroshi 웹 대표 mark·favicon·touch/manifest icon | Approved base의 전체 얼굴·귀·눈·얼굴 덩어리·이빨을 보존한 pixel raster. 귀·visor만 남긴 축약형 금지 |
+| Compact application role family | 아래 P5 pixel system과 production master 사용 |
+| Toolbar·navigation·status·form action | SF Symbols, Lucide 또는 일관된 monochrome vector system. Stroke·fill·optical size·label 처리 통일 |
+| macOS menu bar | Monochrome template asset. System tint, selected state와 light/dark 검증 |
 
-- Pastel accent는 selection, category, application role을 구분하는 보조 color다.
-- Pastel color를 success, warning, error, unavailable 같은 semantic status color의 대체로 사용하지 않는다.
-- Status는 semantic token, text/icon label과 함께 표시한다.
-- Pastel filled control에는 contrast가 검증된 dark foreground를 사용한다.
-- Text와 interactive state는 WCAG contrast를 통과해야 하며 실제 component pairing마다 측정한다.
-- Neon saturation, excessive glow, 모든 surface의 gradient, gradient text를 피한다.
-- Gradient는 identity artwork나 하나의 restrained accent area에만 필요할 때 사용한다.
-- Light mode도 navigation, status, focus, disabled, error, chart와 form을 포함해 완전하고 usable해야 한다.
+- 기능의 의미를 icon이나 색만으로 전달하지 않고 accessible label·text·state를 제공한다. Full-color mascot을 기능·메뉴바 icon으로 재사용하지 않는다.
+- 큰 귀, 날카로운 눈, 강한 중심 silhouette와 teal/orange 대비를 유지한다. 일반 identity는 중심축에 두고 app마다 mascot pose·표정을 무리하게 바꾸지 않는다.
+- Text, watermark, 복잡한 배경, franchise logo, UI, 공식 emblem과 기존 게임 asset의 직접 복사를 넣지 않는다. 특정 publisher의 소유물이라고 주장하지 않는다.
 
-## Export and acceptance
+## P5 pixel application family
 
-- Raster master와 generation/selection metadata를 보존한다.
-- 16px, 32px, 64px, 128px와 platform launcher size에서 확인한다.
-- Light/dark background, platform mask, grayscale/menu-bar context를 구분해 검증한다.
-- 한 중심 subject, safe margin, no text/watermark, readable ear/visor canopy와 hero instrument를 유지한다.
-- Role variants를 한 화면에 놓고 base recognition, role distinction, saturation balance를 비교한다.
-- App icon, functional UI icon, menu-bar template을 서로의 export로 재사용하지 않는다.
+### 제작
+
+- 실제 `64×64` raster grid에서 시작하고 큰 export는 nearest-neighbor만 사용한다. Anti-aliasing, sub-pixel stroke, blur, glow, soft shadow와 gradient를 사용하지 않는다.
+- Major silhouette·role에는 2 logical pixel outline을 기본으로 쓰고 1px detail은 눈과 필수 내부 구분에 제한한다.
+- Approved base를 직접 reference로 사용한다. App마다 prompt로 mascot을 재생성하지 않는다.
+- Active master의 좌표·palette·layer와 재현용 tool·dependency 버전을 고정한다. 재생성 결과가 승인 master와 다르면 새 후보로 검토하고 기존 파일을 덮어쓰지 않는다. Generated raster는 role 탐색용 concept으로만 사용한다.
+- Source grid, scale factor, palette와 SHA-256을 metadata에 기록한다. 16/32px optical export에서는 detail을 줄여 주요 덩어리를 보존한다.
+
+### 공통 배치
+
+- 모든 app이 같은 background, stepped frame, canopy 좌표, ear/visor, role plate, outline, light direction과 perspective를 공유한다.
+- 뒤쪽 상단 canopy는 큰 orange 귀와 하나의 dark visor 안 네 개의 좁은 cyan eye slit으로 만든다. Nose, mouth, teeth, cheek, torso와 잘린 face edge를 남기지 않는다.
+- 아래 전면 role plate는 tile의 약 60–75%를 차지한다. 최소 2px outer outline, 2px app-color rim과 dark inner surface로 canopy와 분리한다.
+- 대표 작업물·도구 하나와 action/result cue 최대 하나를 결합한다. Front-facing perspective, `32–38px` bounding box, 2px outer outline, 1px internal separator와 같은 중심을 유지한다.
+- App별 변경은 role geometry와 key color로 제한한다. 여러 작은 prop, miniature UI, portrait나 rebus puzzle로 만들지 않는다.
+- Role subject의 mass·contrast가 canopy보다 먼저 읽혀야 한다. 16px는 family·key color, 32px는 primary instrument 구분, 64px 이상은 action/result까지 검증한다.
+
+## 색과 role
+
+| Product | 대표 도구와 결과 | Key color | 피할 대체물 |
+| --- | --- | --- | --- |
+| Gnaroshi Studio | Source tabs → manuscript·pen → publish output | `#B8A7F3` | Generic document·gear·dashboard·command-center collage |
+| PaperFlow | Paper → guarded sorter → indexed slots | `#8FD9C0` | Zotero logo·folder·download arrow·빈 tray |
+| Arxiv Discovery | Paper blips → radar sweep → acquired result | `#82C7EE` | arXiv logo·generic magnifier·scan gate만 사용 |
+| TR GPU Monitor | Dual-fan GPU + telemetry + remote state | `#E9948E` | Vendor logo·server rack·command line |
+| RunShelf | Indexed run records + metric·status·artifact | `#E9D27A` | Fitness·server block·slider lane·읽을 수 없는 chart |
+| ContentDeck | Media + subtitle + bounded A–B practice | `#F2B58D` | Provider logo·repeat glyph만 사용·전체 player UI |
+
+Identity teal은 `#3FA6A0`, orange는 `#E88945`다. Common result cue는 teal을 사용한다. Key color는 app role을 구분하며 success·warning·error를 대신하지 않는다. App canvas·text·control의 palette는 [ui-ux](ui-ux.md#gnaroshi-interface-palette)를 따른다.
+
+## 검증과 export
+
+- 16/32/64/128px와 실제 launcher size에서 silhouette, safe margin, role 구분과 family 인식을 확인한다.
+- Light/dark, platform mask, grayscale와 menu-bar context를 구분해 검증한다. 이름을 가린 32px 비교에서 primary instrument가 구분되지 않으면 geometry를 단순화한다.
+- Raster master와 selection metadata를 보존한다. ICNS, asset catalog, ICO, web PNG 등은 대상 repository에서 생성하며 build 중 이 저장소에서 다운로드하지 않는다.

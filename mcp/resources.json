@@ -17,7 +17,7 @@
     "uri": "gnaroshi://catalog/projects",
     "name": "project-catalog",
     "title": "Project Catalog",
-    "description": "Evidence-backed research, application, and web application classification.",
+    "description": "Dated project inventory and observed document locations; recheck target repositories before use.",
     "path": "catalog/projects.md"
   },
   {
@@ -31,7 +31,7 @@
     "uri": "gnaroshi://guides/research",
     "name": "research-guide",
     "title": "Research Guide",
-    "description": "Research source, evidence, privacy, and publishing rules.",
+    "description": "Paper research, training and evaluation, reproducibility, manuscript review and publication boundaries.",
     "path": "guides/research.md"
   },
   {
@@ -60,27 +60,27 @@
     "name": "design-references",
     "title": "Design Reference Decisions",
     "description": "Primary design Markdown sources, maintenance evidence, native adaptations and intentional exclusions.",
-    "path": "guides/design-references.md"
+    "path": "references/design-sources.md"
   },
   {
     "uri": "gnaroshi://guides/image-assets",
     "name": "image-asset-guide",
     "title": "Image Generation and Identity Asset Policy",
-    "description": "Raster generation defaults and Gnaroshi identity asset rules.",
+    "description": "Raster output defaults and provenance for actual application screenshots.",
     "path": "guides/image-assets.md"
   },
   {
     "uri": "gnaroshi://guides/technical-figure-code",
     "name": "technical-figure-code-guide",
-    "title": "Code-based Technical Figure Guide",
-    "description": "Code baseline and polished constructed-schematic rules with implementation-grounded arrow, operator, time, wording, paper-size, and export verification.",
+    "title": "Technical Schematics and Data Plots",
+    "description": "Implementation evidence, semantic checks, constructed diagrams and representation-space plots.",
     "path": "guides/technical-figure-code.md"
   },
   {
     "uri": "gnaroshi://guides/scientific-figure-generation",
     "name": "scientific-figure-generation-guide",
     "title": "Scientific Illustration Generation Guide",
-    "description": "Image-generation boundaries for cover, teaser, and non-technical scientific illustration, with paper sizing, evidence separation, rejection status, and Gnaroshi visual authorship.",
+    "description": "Generated cover, teaser and concept illustration: prompts, evidence boundaries and publication approval.",
     "path": "guides/scientific-figure-generation.md"
   },
   {
@@ -108,7 +108,7 @@
     "uri": "gnaroshi://guides/app-icons",
     "name": "app-icon-guide",
     "title": "Application Identity and Icon Guide",
-    "description": "Approved identity base, role variants, icon classes, shared palette, and export rules.",
+    "description": "Full-face identity, P5 application roles, functional/menu-bar icons and platform export.",
     "path": "guides/app-icons.md"
   },
   {
@@ -117,5 +117,33 @@
     "title": "Long-form Authoring Editor Guide",
     "description": "Markdown editing, document identity, private media, LaTeX, feedback, and publication-boundary rules.",
     "path": "guides/authoring-editor.md"
+  },
+  {
+    "uri": "gnaroshi://guides/assignment-grading",
+    "name": "assignment-grading-guide",
+    "title": "Assignment Grading",
+    "description": "Student problem answers and submitted code: scoring evidence, Excel feedback and review notes.",
+    "path": "guides/assignment-grading.md"
+  },
+  {
+    "uri": "gnaroshi://guides/research-figures",
+    "name": "research-figures-guide",
+    "title": "Research Figure Rules",
+    "description": "Figure roles, method selection, real assets, paper sizing, palette and semantic acceptance.",
+    "path": "guides/research-figures.md"
+  },
+  {
+    "uri": "gnaroshi://references/figure-sources",
+    "name": "figure-sources",
+    "title": "Figure Reference Sources",
+    "description": "Publication specifications and technical figure reference sources.",
+    "path": "references/figure-sources.md"
+  },
+  {
+    "uri": "gnaroshi://identity",
+    "name": "identity-index",
+    "title": "Identity Asset Index",
+    "description": "Current production assets and historical selection boundaries.",
+    "path": "identity/README.md"
   }
 ]

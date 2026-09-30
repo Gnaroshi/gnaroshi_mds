@@ -2,7 +2,7 @@
 
 ## When this applies
 
-두 개 이상의 repository contract, release order, application compatibility, data handoff, deployment 또는 rollback이 함께 바뀌는 change에 적용한다. 한 repository의 trivial one-file fix와 독립적인 typo 수정에는 긴 commit body를 요구하지 않는다.
+여러 repository의 contract·release order·compatibility·data handoff·deployment·rollback이 함께 바뀌거나, 단일 repository의 architecture·public contract·migration·destructive behavior·credential boundary·release/rollback을 바꾸는 작업에 적용한다. Typo와 독립적인 trivial fix에는 적용하지 않는다.
 
 Cross-repository 또는 architecture change는 시작 전에 repository별 baseline과 preservation contract를 기록하고, repository별 focused commit/PR로 전달한다.
 
@@ -66,13 +66,9 @@ Repository-local test 외에 다음 matrix를 검증한다.
 
 실행하지 못한 test, dependency, external approval, deployment state를 PR에 정확히 남긴다.
 
-### Local-first CI budget
+### Release와 CI 순서
 
-- 각 repository의 documented build, test, lint, contract, package와 signature check를 local에서 먼저 통과시킨다. GitHub Actions는 local 검증을 대신하는 반복 feedback loop가 아니라 clean checkout, supported runner와 release boundary를 확인하는 마지막 검증으로 사용한다.
-- 한 repository의 실패가 다른 repository 변경과 무관하면 관련 없는 모든 workflow를 다시 돌리지 않는다. 실패한 repository와 최신 relevant SHA만 대상으로 한다.
-- Failure를 code/configuration, missing secret/approval, external dependency, runner infrastructure, billing/quota로 분류하고 PR validation record에 남긴다. Code/configuration failure만 local fix와 새 commit으로 해결하며, account나 infrastructure blocker를 숨기기 위해 workflow를 끄거나 required check를 우회하지 않는다.
-- Billing 또는 usage limit으로 job이 시작되지 못하면 추가 push와 rerun을 중단한다. 제한이 해소된 뒤 latest failed job 한 번만 재실행하고, 실제 step failure가 나타날 때에만 다음 code change를 만든다.
-- Cross-repository release는 provider-first order를 유지하되 모든 repository의 expensive release job을 동시에 시험하지 않는다. 각 provider contract의 local validation을 마친 뒤 필요한 release를 순서대로 실행하고 성공 evidence를 확인한 후 consumer로 이동한다.
+[GitHub Actions 공통 경계](../AGENTS.md#github-actions)를 따른다. 허용된 cross-repository release는 provider contract의 local 검증 뒤 provider-first 순서로 진행한다. 한 저장소의 실패 때문에 관련 없는 workflow나 모든 expensive release job을 재실행하지 않는다.
 
 ## Required commit body
 
@@ -96,7 +92,7 @@ Risk and rollback:
 Related repositories:
 ```
 
-각 section은 해당 repository의 concrete fact를 짧게 기록한다. 관련 내용이 없으면 이유를 한 줄로 명시하고 section을 삭제하지 않는다.
+각 section에는 해당 repository의 concrete fact만 짧게 기록한다. 관련 없는 section과 의미 없는 `N/A` 문장은 생략한다.
 
 Trivial one-file fix, typo, comment-only change에는 이 body를 강제하지 않는다. 한 repository change라도 architecture, public contract, migration, destructive behavior, credential boundary, release/rollback을 바꾸면 detailed body를 사용한다.
 
@@ -112,4 +108,4 @@ PR description에는 다음을 포함한다.
 - related PR links와 merge/deploy order
 - owner decision이 필요한 unresolved item
 
-관련 PR이 merge되기 전에는 존재하지 않는 commit/PR link를 추정하지 않는다. 생성 후 실제 URL과 SHA로 갱신한다.
+PR과 commit을 생성한 뒤 실제 URL·SHA를 기록한다. 아직 없는 링크를 추정하지 않는다.

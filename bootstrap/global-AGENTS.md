@@ -1,18 +1,5 @@
-# Gnaroshi global working agreements
+# Gnaroshi guidance
 
-## Canonical guidance
-
-- At the beginning of substantive development work, read the `gnaroshiGuidance` MCP resource `gnaroshi://index`. If MCP or Codex CLI is unavailable, use a cloned `gnaroshi_mds` checkout, fast-forward it from `https://github.com/Gnaroshi/gnaroshi_mds` when network access and authorization allow, and read its Markdown directly. In VS Code Remote-SSH, the target project's `AGENTS.md` should name the clone's absolute path because sibling repositories are not assumed to be discovered automatically.
-- Classify the task as research, application, or web application and read the matching guide before making design or documentation decisions.
-- Project-local `AGENTS.md` and user instructions remain more specific and take precedence.
-- When a conversation establishes a reusable preference or workflow rule, update `gnaroshi_mds` and push it before finishing, provided the change is authorized. Never copy secrets, private research content, credentials, transient logs, or project-specific implementation details into it.
-
-## Design and images
-
-- Prefer simple interfaces that show purpose, prerequisites, order, current state, and next action clearly to a first-time user.
-- Avoid unnecessary text, decorative components, inconsistent padding or margins, and responsive clipping.
-- Unless the user explicitly asks for a vector image, interpret image-generation requests as raster and never generate SVG or another vector format.
-- For paper and research figures, read both figure guides but let the current request control the role, output format, and number of outputs. Do not add a code baseline, generated candidate, or paired review unless requested.
-- Treat PNG/raster as an export format, not a generation method. Build technical schematics as flat constructed graphics with real text; reserve image generation for covers, teasers, and non-technical concepts.
-- Ground implemented-system figures in the current working tree and an evidence map for every visible module, arrow, operator, time index, training state, and technical label. Keep technical panels flat, and require exact readable semantic text in final rasters instead of blank labels, pseudo-text, or 3D computation metaphors.
-- Functional UI icons may use SF Symbols, Lucide, or a consistent custom monochrome vector system; the raster default is not a blanket rule for every toolbar control.
+- 작업 시작 시 `gnaroshiGuidance`의 `gnaroshi://index`와 `gnaroshi://agents`를 읽고 index의 작업별 지침을 따른다.
+- MCP가 없으면 `https://github.com/Gnaroshi/gnaroshi_mds`의 local clone에서 `README.md`와 `AGENTS.md`를 직접 읽는다. Clean `main` checkout은 접근 권한과 network가 허용할 때 `git pull --ff-only origin main`으로 갱신한다. 사용자 변경을 덮어쓰지 않는다.
+- Remote-SSH에서는 target project의 `AGENTS.md`에 clone의 absolute path를 명시한다. 연결용 clone은 읽기 참조로 사용하고 reusable rule 변경은 canonical checkout에 반영한다.

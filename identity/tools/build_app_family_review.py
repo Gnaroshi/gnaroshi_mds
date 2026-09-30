@@ -14,7 +14,7 @@ MASTER_SIZE = 2048
 SMALL_SIZES = (16, 32, 64, 128, 256)
 SOURCE_SIZE = 64
 SOURCE_SUBDIR = "p5-64"
-MAIN_REFERENCE = ("gnaroshi-main-p5", "Gnaroshi main/default", "centered ears-and-visor identity")
+MAIN_REFERENCE = ("gnaroshi-main-p5", "Historical mark - do not use", "archived ears-and-visor reference")
 CANDIDATES = (
     ("studio-p5", "Gnaroshi Studio", "sources → editorial console → published work"),
     ("paperflow-p5", "PaperFlow", "paper → guarded sorter → indexed slots"),
@@ -199,7 +199,7 @@ def main() -> None:
     build_surface_preview(masters, args.output_dir / "app-family-light-preview.png", light=True)
     build_small_sizes(masters, args.output_dir / "app-family-small-sizes.png")
     print(
-        f"validated {len(CANDIDATES)} P5 candidates plus centered main reference: "
+        f"validated {len(CANDIDATES)} P5 candidates plus historical main reference: "
         f"true {SOURCE_SIZE}x{SOURCE_SIZE} sources and nearest-neighbor {MASTER_SIZE}x{MASTER_SIZE} exports"
     )
 

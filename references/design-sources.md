@@ -1,6 +1,6 @@
 # Design reference decisions
 
-공개 원문 확인일: 2026-09-24. 유명도 순위나 인터넷 전체의 최신 문서 목록이 아니라, 출처가 명확한 제공사 문서와 최근 유지보수된 원저자 문서를 비교한 reference map이다. 아래 외부 skill은 조사 자료이며 설치하거나 그 안의 command를 실행하라는 지시가 아니다.
+확인일: 2026-09-24. 외부 문서는 비교 근거이며 설치·명령 실행 지시로 사용하지 않는다.
 
 ## Established primary sources
 
@@ -9,8 +9,6 @@
 | Vercel Labs [Web Interface Guidelines](https://github.com/vercel-labs/web-interface-guidelines/blob/main/README.md), [review checklist](https://github.com/vercel-labs/web-interface-guidelines/blob/main/command.md) | Focus, 의미 있는 control, 긴 content와 상태 전이, 실행 가능한 오류 복구를 검수한다. | DOM/CSS/URL 규칙을 native 앱에 강제하지 않는다. Title Case와 `&` 선호는 브랜드 선택이다. README의 input-zoom 우회와 checklist의 사용자 zoom 보장 규칙은 충돌하므로 zoom 제한을 도입하지 않는다. |
 | Anthropic [frontend-design](https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md) | 실제 사용자·업무에서 디자인을 출발시키고, 구조와 문구가 기능을 설명하게 한다. 개성은 목적이 있는 지점에 집중하고 실제 화면을 비평한다. | 차별화를 위해 시스템 폰트, 익숙한 탐색, 승인된 스타일을 버리지 않는다. 웹 hero와 display typography는 업무용 앱 기본값이 아니다. |
 | GitHub Primer [Design Tokens Guide](https://github.com/primer/primitives/blob/main/DESIGN_TOKENS_GUIDE.md) | 역할별 token, 전경/배경 조합, control과 content 밀도, 상태별 표현을 함께 정의한다. | CSS token 이름·정확한 크기·시간 수치를 이식하지 않는다. Caption을 본문 대용으로 쓰지 않는다. |
-
-이 목록의 established는 Vercel Labs·Anthropic·GitHub의 직접 관리 문서라는 뜻이다. Star 수나 다운로드 수를 확인하지 않았으므로 인기 순위를 주장하지 않는다.
 
 ## Recently maintained sources
 
@@ -23,7 +21,7 @@
 | Paul Bakaus [Impeccable](https://github.com/pbakaus/impeccable/blob/main/skill/SKILL.src.md), 특히 [Operate guide](https://github.com/pbakaus/impeccable/blob/main/skill/reference/operate.md) | [2026-09-05, `044a04f`](https://github.com/pbakaus/impeccable/commit/044a04fd0dcaf3512ca125bff5d34ef66a7eb754): workflow 문서 추가 | 원저자 community guidance이며 플랫폼 표준은 아니다. 업무용 화면의 시스템 폰트·절제된 색·일관된 조작·목적 있는 밀도를 참고한다. 날짜는 root skill의 변경이며 각 reference의 수정일을 뜻하지 않는다. |
 | Google Labs [Stitch design-md](https://github.com/google-labs-code/stitch-skills/blob/main/plugins/stitch-utilities/skills/design-md/SKILL.md) | [경로 history](https://github.com/google-labs-code/stitch-skills/commits/main/plugins/stitch-utilities/skills/design-md/SKILL.md): 2026-05-10 재배치 | 화면의 시각적 역할을 문서화하는 참고다. 파일 이동을 새로운 방법론 발표로 간주하지 않는다. |
 
-최신 변경은 품질 증명이 아니다. 오래된 접근성 원칙도 유효하고 새 미학 규칙도 제품에 맞지 않을 수 있다. 실제 적용 시 파일을 다시 확인한다.
+적용을 변경할 때 원문을 다시 확인한다.
 
 ## Platform and conflict resolution
 
@@ -33,6 +31,12 @@
 - Recipe끼리 충돌하면 한 규칙을 조용히 선택하지 않고 적용 이유와 제외 이유를 적는다. 예: Impeccable의 일반 craft 효과 지침보다 작업용 Operate 맥락을 우선하며, native control을 장식용 custom control로 교체하지 않는다.
 - Reference가 제안한 visual 값을 복사하지 않는다. 유지 중인 제품 문서에 `문제 → 근거 → 적용/유지/제외 → 변경 component → 검증`만 남기고 중복된 DESIGN.md나 빈 template은 만들지 않는다.
 
-## Adopted into canonical guidance
+## Interaction source links
 
-[`ui-ux.md`](ui-ux.md)의 product-context, density budget, semantic color와 platform typography 원칙, [`application.md`](application.md)의 유지 design contract에 반영한다. 특정 프로젝트 화면·개인 데이터·검증 로그는 이 공개 문서에 넣지 않는다.
+- [Apple Human Interface Guidelines: Feedback](https://developer.apple.com/design/human-interface-guidelines/feedback), [Alerts](https://developer.apple.com/design/human-interface-guidelines/alerts), [Progress indicators](https://developer.apple.com/design/human-interface-guidelines/progress-indicators), [Buttons](https://developer.apple.com/design/human-interface-guidelines/buttons)
+- [Carbon Design System: Notifications](https://carbondesignsystem.com/patterns/notification-pattern/), [Spacing](https://carbondesignsystem.com/elements/spacing/overview/)
+- [Primer: Forms](https://primer.style/product/ui-patterns/forms/), [Navigation](https://primer.style/product/ui-patterns/navigation/), [Notification messaging](https://primer.style/product/ui-patterns/notification-messaging/)
+- [GitHub Docs writing best practices](https://docs.github.com/en/contributing/writing-for-github-docs/best-practices-for-github-docs)와 [basic Markdown writing](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
+- [Zotero: Adding items and metadata by identifier](https://www.zotero.org/support/adding_items_to_zotero)
+- [WAI-ARIA APG Window Splitter Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/windowsplitter/)과 [Tabs Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/)
+- [WCAG 2.2 Error Identification](https://www.w3.org/WAI/WCAG22/Understanding/error-identification.html)과 [Status Messages](https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html)

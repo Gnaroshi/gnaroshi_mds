@@ -1,5 +1,7 @@
 # Application integration guidance
 
+Gnaroshi Studio와 독립 application의 연동에 적용한다. 공통 UI는 [ui-ux](ui-ux.md), provider process 수명은 [application](application.md#process-and-resource-lifecycle)을 따른다.
+
 ## Product boundary
 
 - 각 application은 Studio 없이도 install, launch, core workflow, recovery를 독립적으로 수행할 수 있어야 한다.
@@ -73,8 +75,8 @@ stale, degraded, empty, or temporarily failed. Refresh and setup remain separate
 actions; a failed summary must not hide an otherwise runnable application.
 
 CLI/web-only applications may expose an explicit local-UI launch capability
-without pretending to be a native bundle. The control plane must use a fixed
-loopback address, own and reap the child process, refuse an unrelated listener,
+without pretending to be a native bundle. The control plane must use a verified
+loopback endpoint, own and reap the child process, refuse an unrelated listener,
 and never embed the full UI.
 
 ## JSON status commands
@@ -105,7 +107,7 @@ CLI가 있는 application은 fixed status subcommand와 machine-readable JSON을
 
 - 여러 provider를 한 화면에서 관리해도 unrelated app operation을 page-wide lock으로 막지 않는다. Single-flight, pending/result/error와 cancellation identity는 application 단위로 소유하고, global refresh처럼 실제 shared resource를 쓰는 작업만 별도 global state로 둔다.
 - Async result에는 application/request generation을 연결한다. App A의 늦은 status나 이전 App A request가 App B 또는 최신 App A state를 덮어쓰지 않아야 한다.
-- Overview는 app name과 role, availability, installed version, update readiness, blocker와 valid next action을 primary layer에서 보여준다. Commit, executable, provider command, path와 raw response는 technical disclosure로 내린다.
+- Overview는 app name·role·availability·blocker·다음 action을 표시한다. Installed/available version은 update 판단에 필요한 detail에서 보여주고 commit·executable·command·path·raw response는 technical disclosure에 둔다.
 - App별 control을 같은 크기와 grid로 정렬하되 기능을 획일화하지 않는다. 각 provider가 실제로 선언한 capability에 맞는 role-specific action과 result structure를 사용하며 manifest에 없는 action은 렌더링하거나 실행하지 않는다.
 - Search/filter/view 선택 같은 control-plane presentation preference는 local UI state다. Provider data나 tracked manifest를 오염시키지 않고 invalid stored value는 safe default로 복원한다.
 - Freshness는 relative label과 exact timestamp를 함께 제공한다. Window focus refresh는 bounded read-only status check만 수행하고 source fetch, dependency install, build, app replacement 또는 launch를 시작하지 않는다.
@@ -177,7 +179,7 @@ Application이 missing, stopped, outdated, permission-limited, incompatible일 �
 - Stopped: unavailable로 표시하고 expired healthy state를 재사용하지 않는다.
 - Stale: last update와 freshness를 표시한다.
 - Partial: 관측된 fact만 보여주고 누락 scope를 명시한다.
-- Incompatible: supported/received contract version을 보여주고 write를 차단한다.
+- Incompatible: 호환되지 않는다는 요약과 다음 action을 보여주고 write를 차단한다. Supported/received contract version은 technical Details에 둔다.
 - Failed handoff: source data와 기존 destination을 보존하고 새 preview를 요구한다.
 
 Provider가 없어도 existing external reference를 삭제하거나 가짜 result로 대체하지 않는다.
