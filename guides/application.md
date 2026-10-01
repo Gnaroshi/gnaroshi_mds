@@ -21,6 +21,7 @@ Native·desktop·CLI·로컬 도구 개발에 적용한다. UI는 [ui-ux](ui-ux.
 - 다른 Gnaroshi application과 연결할 때는 [`app-integration.md`](app-integration.md)의 independent-app, manifest, typed-adapter와 degraded-mode contract를 적용한다.
 - Release에서 fake data로 조용히 fallback하지 않는다.
 - credential은 client code나 repository에 넣지 않는다.
+- 개인 Mac 재설치 도구는 Git의 설치 목록·이식 가능한 설정과 외부 저장소의 원본 파일·앱 상태·대화 백업을 분리한다. 일반 자료는 폴더로 직접 탐색할 수 있게 보관하고, Mac 메타데이터가 필요한 복원본은 별도 Mac 파일시스템 보관함을 사용한다.
 - 큰 화면이나 manager 하나에 책임을 몰지 말고 feature boundary로 나눈다.
 
 ## Native integration
