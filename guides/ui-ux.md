@@ -108,6 +108,7 @@ Safety, accessibility와 data integrity를 훼손하지 않는 범위에서 다�
 - Broad UI change는 screen 전체에 대한 vague approval 한 번으로 끝내지 않는다. Navigation, form, editor toolbar, dialog, list row, status/feedback, destructive action처럼 변경 component를 나눠 review한다.
 - 각 component review는 purpose, expected action/result, idle/pending/success/error, keyboard/focus, narrow window, dark/light, content length, layout stability와 regression을 pass/fail로 기록한다.
 - Reviewer가 `OK`를 주려면 blocker가 없다는 말뿐 아니라 acceptance criterion별 증거를 남겨야 한다. Fail 또는 ambiguous item은 같은 component를 수정하고 다시 review한다.
+- Source 문자열·정적 markup 검사는 실제 control 조작, mode 전환, 저장/되돌리기, resize와 focus 검증을 대신하지 않는다. 재현 가능한 browser/component harness는 제품 component를 직접 사용하고, 전시용으로 따로 만든 UI를 제품 동작의 증거로 쓰지 않는다.
 - Component들이 통과한 뒤 전체 workflow에서 hierarchy, state continuity와 cross-component feedback을 다시 검증한다. Component pass가 전체 product flow pass를 대신하지 않는다.
 - Desktop 검증 대상은 [app-distribution](app-distribution.md)의 signed stable install이다. Representative record로 navigation, edit/revert, mode, pending/result/error, destructive entry point와 minimum window를 검증한다. 창 실행은 [공통 작업 보존 규칙](../AGENTS.md#검증과-사용자-작업-보존)을 따른다.
 

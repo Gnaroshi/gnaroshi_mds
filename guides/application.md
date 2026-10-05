@@ -23,6 +23,7 @@ Native·desktop·CLI·로컬 도구 개발에 적용한다. UI는 [ui-ux](ui-ux.
 - credential은 client code나 repository에 넣지 않는다.
 - 개인 Mac 재설치 도구는 Git의 설치 목록·이식 가능한 설정과 외부 저장소의 원본 파일·앱 상태·대화 백업을 분리한다. 일반 자료는 폴더로 직접 탐색할 수 있게 보관하고, Mac 메타데이터가 필요한 복원본은 별도 Mac 파일시스템 보관함을 사용한다.
 - 큰 화면이나 manager 하나에 책임을 몰지 말고 feature boundary로 나눈다.
+- UI를 줄일 때 사라진 container의 style, helper와 전시용 구현도 함께 정리한다. 검증 fixture는 production dependency graph에서 제외하고, lazy feature의 큰 parser·renderer가 shared chunk를 통해 시작 화면에 다시 포함되지 않는지 실제 build output으로 확인한다. 코드량 감소만으로 성능 개선을 주장하지 않는다.
 
 ## Native integration
 
