@@ -105,6 +105,7 @@ Safety, accessibility와 data integrity를 훼손하지 않는 범위에서 다�
 
 ## Component-level review loop
 
+- 시각 방향을 반복 탐색하는 단계에서는 기본 글자 크기의 핵심 동선·밀도·실제 조작부터 검증한다. Owner가 검수 시점을 지정하면 최대 Dynamic Type 등 확대 크기의 전체 검수는 최종 배포 gate로 미루고 현재 반복마다 다시 실행하지 않는다. 기존 글자 확대 지원·읽기 순서·터치 영역은 제거하거나 작은 고정 글씨로 대체하지 않는다.
 - Broad UI change는 screen 전체에 대한 vague approval 한 번으로 끝내지 않는다. Navigation, form, editor toolbar, dialog, list row, status/feedback, destructive action처럼 변경 component를 나눠 review한다.
 - 각 component review는 purpose, expected action/result, idle/pending/success/error, keyboard/focus, narrow window, dark/light, content length, layout stability와 regression을 pass/fail로 기록한다.
 - Reviewer가 `OK`를 주려면 blocker가 없다는 말뿐 아니라 acceptance criterion별 증거를 남겨야 한다. Fail 또는 ambiguous item은 같은 component를 수정하고 다시 review한다.
