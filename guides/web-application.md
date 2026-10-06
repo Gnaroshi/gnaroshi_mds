@@ -68,4 +68,6 @@
 - CORS, validation, rate limit, error handling을 유지한다.
 - build에는 content/schema/static check를 포함한다.
 - deploy provenance와 rollback 경로를 남긴다.
+- Actions 비용을 쓰지 않는 배포를 요청하면 로컬 빌드·검증과 정적 결과물 직접 업로드를 우선한다. GitHub 코드 관리와 게시 호스팅을 분리할 수 있으며, 게시 서비스 선택은 현재 사이트의 기능·무료 사용 한도·도메인 이전 범위를 근거로 정한다. 새 과금 서비스는 승인 없이 추가하지 않는다.
+- 호스팅 이전은 새 게시 주소에서 정확한 source/feed 버전·내용과 주요 경로를 먼저 검증한 뒤 도메인을 전환한다. 기존 DNS·메일·하위 도메인 설정과 이전 게시본을 보존하고, 로그인이나 도메인 권한이 없으면 필요한 연결 단계만 요청한다.
 - 사용자에게 보이는 metric은 실제 evidence가 있을 때만 노출한다.
