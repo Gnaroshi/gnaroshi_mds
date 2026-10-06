@@ -18,6 +18,7 @@ Signing은 이미 승인된 permission을 안정된 application identity에 연�
 
 - Packaged desktop application의 동작이나 UI를 바꾼 작업은 사용자가 source-only 또는 development-server 검증만 명시하지 않는 한 source build 성공만으로 완료하지 않는다. 현재 working tree를 signed application으로 만들고 stable install location에 교체 설치한 뒤 실제 설치본의 commit·dirty state·build provenance를 확인해야 한다.
 - 개발자가 실행하는 repository binary, target/build bundle과 사용자가 Spotlight, Dock 또는 Finder에서 여는 installed bundle을 구분한다. 사용자-facing 검증과 handoff에는 installed bundle을 사용하고 build output을 열어 변경 반영을 대신하지 않는다.
+- 설치본이 외부 실행 도구를 사용하면 terminal의 shell 초기화나 PATH에 의존하지 않는다. 지원하는 설치 위치에서 도구를 확인하고, GUI 실행 환경에서도 실제 호출을 검증한다. 도구 누락·실행 실패와 사용자 문서의 검증 실패를 구분해 안내한다.
 - 교체 전 실행 중인 installed application을 탐지한다. 미저장 작업 가능성이 있으면 강제 종료하지 않고 사용자에게 저장·종료를 요청한 뒤 같은 작업에서 설치를 재개한다. 종료 대기 때문에 설치하지 못했다면 변경이 Spotlight에 반영됐다고 보고하지 않는다.
 - 교체 설치는 stable bundle ID, signing team/identity, entitlements와 install path를 유지하고 가능한 경우 atomic replacement를 사용한다. 기존 승인을 보존하기 위해 매 작업마다 app을 다른 path에서 실행하거나 launcher bundle을 새 identity로 재생성하지 않는다.
 - 설치 뒤에는 최소한 installed bundle의 source commit/build provenance, `codesign --verify --deep --strict`, bundle/team identity, launcher target과 Spotlight index를 확인한다. 실제 실행이 필요한 검증은 [공통 작업 보존 규칙](../AGENTS.md#검증과-사용자-작업-보존) 안에서 수행한다. 실행하지 못하면 launch 검증을 완료로 보고하지 않는다.

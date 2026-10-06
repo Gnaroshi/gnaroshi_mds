@@ -58,6 +58,7 @@ Safety, accessibility와 data integrity를 훼손하지 않는 범위에서 다�
 - Modal alert는 data loss, irreversible action, credential/security 경계처럼 즉시 결정을 요구할 때만 사용한다. 일반 success, retry 가능한 fetch failure와 상태 정보는 current context 안에서 전달한다.
 - Success가 결과 자체로 명확하면 불필요한 message를 추가하지 않는다. 결과가 offscreen이거나 canonical write, copy, import, external launch처럼 확인이 필요하면 짧고 persistent한 context feedback을 제공한다.
 - Error는 무엇이 실패했는지, 보존된 것은 무엇인지, 다음 valid action을 함께 말한다. 자동 dismiss toast를 error 또는 유일한 recovery 안내로 사용하지 않는다.
+- 여러 단계의 작업에서는 현재 단계와 미완료 이유를 함께 표시한다. 실패 항목마다 펼칠 수 있는 해결 안내와 해당 설정·문서로 이동하는 action을 제공한다. 내부 오류 문자열로 문서를 추측하지 말고 구조화된 원인과 stable ID로 대상을 찾으며, 안내를 여는 것만으로 수정·공개하지 않는다.
 - Action이 새 view, item 또는 dialog를 열면 focus와 selection을 새 context로 이동하고 돌아갈 위치를 보존한다. Screen reader에는 live region을 사용하되 같은 message를 여러 `role=alert`로 중복 발표하지 않는다.
 - 반복해서 사용하는 목록·section의 펼침 상태는 역할에 맞는 초기값과 사용자의 마지막 명시적 선택을 구분한다. 선택 이후에는 filter·tab 이동, 새 데이터 수신이나 일반 action이 이를 덮어쓰지 않도록 유지한다. 숨겨진 결과의 feedback·접근성 focus는 section trigger에서 제공할 수 있으며, 상태 복원과 초기값을 각각 재실행으로 검증한다. 기술 진단·위험한 세부정보의 기본 숨김 규칙은 유지한다.
 - Async action 중 관련 input, selection과 navigation이 결과와 충돌할 수 있으면 operation scope만 잠근다. App 전체를 이유 없이 막지 않고, stale response가 새 selection을 덮지 않도록 request identity/cancellation을 적용한다.
