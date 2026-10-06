@@ -16,6 +16,7 @@ Native·desktop·CLI·로컬 도구 개발에 적용한다. UI는 [ui-ux](ui-ux.
 - local-first data는 사용자가 명시적으로 선택하지 않는 한 외부로 보내지 않는다.
 - 여러 local repository가 고정된 parent 아래 함께 있는 개인용 app은 알려진 folder name과 구조를 검증해 자동 연결하고, 누락되거나 유효하지 않은 항목에만 manual setup을 요구한다.
 - 개발용 hot reload와 packaged bundle을 구분한다. Build output은 예측 가능한 Git-ignored 경로에 두고 사용자에게 전달할 때 stable installed bundle을 사용한다.
+- Owner가 특정 개인 기기에 변경본을 바로 설치하는 검수 workflow를 명시한 프로젝트는 검증된 변경 후 같은 작업에서 해당 기기의 업데이트 설치까지 수행한다. Source-only 요청이 없으면 매번 설치 지시를 다시 요구하거나 캡처 전달로 끝내지 않는다. 기존 데이터·서명·app identity를 유지하고 설치 성공을 확인한다. 연결·잠금·서명 또는 미저장 작업 때문에 진행할 수 없으면 미설치 상태와 필요한 조치를 알리며, 다른 기기나 공개 배포로 권한을 확대하지 않는다.
 - installer나 disk image처럼 느린 배포 산출물은 매 edit마다 만들지 않고 명시적인 release/bundle 명령에서만 생성한다.
 - external provider는 protocol/interface 뒤에 두고 mock과 real provider를 분리한다.
 - 다른 Gnaroshi application과 연결할 때는 [`app-integration.md`](app-integration.md)의 independent-app, manifest, typed-adapter와 degraded-mode contract를 적용한다.
