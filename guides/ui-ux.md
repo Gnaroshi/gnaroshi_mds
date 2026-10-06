@@ -91,7 +91,7 @@ Safety, accessibility와 data integrity를 훼손하지 않는 범위에서 다�
 - 여백 검수는 화면 전체의 빈 면적 비율이 아니라 관계별 budget으로 한다: header→첫 유효 content, row 내부, section 사이, fixed action→keyboard/safe area. 짧은 실제 목록 아래의 여유 공간은 오류가 아니며 filler나 큰 row로 채우지 않는다. 같은 fixture·viewport·text size의 전후 측정과 screenshot으로 누적 padding, 잘림, 겹침을 확인한다.
 - 같은 경계를 sticky/local navigation의 surface와 바로 뒤 full-width divider로 반복하지 않는다. Sequence connector는 실제 numbered step 사이를 이어 인과나 순서를 설명해야 하며, 내용 아래에 독립적으로 남는 선은 제거하거나 의미가 드러나는 grouping으로 바꾼다.
 - Font size만으로 hierarchy를 만들지 않는다. 역할·weight·alignment·grouping을 먼저 정하고 본문을 caption으로 축소하지 않는다. Web의 caption 12 CSS px, control 13–14 CSS px, 긴 authoring text 15–17 CSS px는 시작점이지 native 최소값이나 모든 제품의 고정값이 아니다. Native는 플랫폼 semantic text style과 확대 동작을 사용하고 실제 EN/KO·긴 content·큰 text에서 검증한다. 사용자 확대 설정을 무시하는 고정 작은 글자로 compactness를 만들지 않는다.
-- Typography, spacing, radius, divider와 control height는 semantic token으로 제한한다. Component마다 임의 값으로 밀도를 미세 조정하지 않는다.
+- Typography, spacing, radius, divider와 control height는 semantic token으로 제한한다. Component마다 임의 값으로 밀도를 미세 조정하지 않는다. 글자 크기를 바꾸면 line-height, cell padding·행 높이, 제목·보조 정보의 줄바꿈, 고정 열 폭, 배경 면적과 구분선도 함께 재조정한다. 같은 content·viewport에서 전후를 비교해 잘림뿐 아니라 시각적 밀도·정렬·위계가 자연스러운지 검토한다.
 - Color는 identity, action/selection, semantic status, neutral hierarchy로 역할을 나눈다. 사용자 지정 category 색이 error/success 상태를 대신하지 않으며 동일한 역할은 화면·widget·editor에서 이어진다. 전경/배경 조합을 light/dark 각각 검증하고 선택·완료·오류는 shape, label 또는 symbol로도 구분한다. 저장된 사용자 색과 접근성을 위한 display color 보정은 분리한다.
 - Minimum supported window에서 primary navigation label을 모두 숨겨 icon-only로 만들지 않는다. Reflow, narrower but readable label, disclosure 또는 secondary action 축소를 먼저 사용한다.
 
