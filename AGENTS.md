@@ -30,7 +30,6 @@
 ## GitHub Actions
 
 - Owner가 Actions 사용을 금지한 작업에서는 workflow 실행·재실행·취소·활성화·비활성화·수정과 run/check/log 조회·CI 진단을 하지 않는다. 재개는 owner가 명시한 범위에서만 한다.
-- 게시·배포 요청 자체를 Actions 재개 승인으로 해석하지 않는다. Git push나 PR 작업도 자동 workflow를 간접 실행할 수 있으므로 실행되지 않는 경로를 확인한 뒤 수행한다.
 - 이 제한은 local inspection/build/test/signed install과 일반 Git·branch·PR metadata 작업을 막지 않는다. PR check를 대신 조회하거나 CI 성공을 추정하지 않는다.
 - Build, test, lint, contract, packaging과 signature 검증을 local에서 먼저 수행한다. Actions를 반복 개발·디버깅 loop로 사용하지 않는다.
 - 허용된 workflow가 실패하면 원인을 한 번 분류한다. Code/configuration 문제는 local에서 재현·수정·검증한 뒤 새 commit을 한 번 push한다. Billing, quota, runner, secret/approval 또는 account 문제는 workflow나 제품 code로 우회하지 않고 blocker가 해소될 때까지 이를 해결하려는 추가 push·rerun을 중단한다.
