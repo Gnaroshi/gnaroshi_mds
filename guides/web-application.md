@@ -45,7 +45,7 @@
 
 ## Identity color
 
-- Existing website interaction palette가 검증되어 있으면 Gnaroshi identity를 보인다는 이유만으로 전체 palette를 교체하지 않는다. 사용자가 로고 기반 palette를 요청하면 실제 asset에서 색을 추출해 전경·배경 대비를 검증하고 역할별로 적용한다. 여러 로고 색을 사용하라는 요청은 한 색으로 축소하지 말고 action·section·결과 강조 등에 의미를 배정해 모든 route에서 같은 역할을 같은 색으로 표현한다. 논문 그림·차트의 의미 색은 brand 색으로 덮어쓰지 않는다.
+- Existing website interaction palette가 검증되어 있으면 Gnaroshi identity를 보인다는 이유만으로 전체 palette를 교체하지 않는다. 사용자가 로고 기반 palette를 요청하면 실제 asset에서 색을 추출해 전경·배경 대비를 검증하고 역할별로 적용한다. 여러 로고 색은 활용 가능한 palette이며 section마다 다른 색을 배정하라는 의미가 아니다. 제목·목차·선택 상태·동일한 control은 section과 route가 달라도 공통 색 체계를 유지하고, section별 색 구분은 명시적으로 요청된 경우에만 적용한다. 사용자가 지정한 결과 강조색 등 의미가 분명한 보조색은 필요한 역할에 제한해 일관되게 사용한다. 논문 그림·차트의 의미 색은 brand 색으로 덮어쓰지 않는다.
 - `identity-teal`과 `identity-orange`는 favicon, compact brand mark, ownership marker와 project evidence accent처럼 제한된 identity cue에 사용한다.
 - Status, focus, heatmap, chart와 semantic interaction color는 identity palette와 분리한다.
 - Website mascot mark는 approved raster base의 ears, eyes, face mass와 teal/orange contrast를 유지하고 16px/32px/64px에서 검증한다.
