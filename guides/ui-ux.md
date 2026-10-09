@@ -77,7 +77,7 @@ Safety, accessibility와 data integrity를 훼손하지 않는 범위에서 다�
 
 ## Information hierarchy and density
 
-- Navigation group과 screen heading은 implementation layer가 아니라 사용자 목표와 결과를 이름으로 사용한다. 한 item만 가진 group, 모호한 container label과 raw technical noun은 grouping 이득이 없으면 합치거나 이름을 바꾼다.
+- Navigation group과 screen heading은 implementation layer가 아니라 사용자 목표와 결과를 이름으로 사용한다. 한 item만 가진 group, 모호한 container label과 raw technical noun은 grouping 이득이 없으면 합치거나 이름을 바꾼다. 이름만으로 대상의 역할이 분명하지 않으면 처음 보는 사람이 구분할 수 있는 짧은 역할 label을 함께 표시하되, 주변 제목이나 선택 상태가 이미 역할을 알려주면 반복하지 않는다.
 - Current location, primary task와 next action은 secondary status, repository path, hash, schema/version detail보다 먼저 보여준다. Raw provenance와 diagnostic value는 사용자가 요청할 때 disclosure, Details 또는 inspector에서 보여준다.
 - Empty state의 primary action은 사용자가 방금 막힌 workflow의 다음 유효 단계로 이어져야 한다. 일반 adjacent page, broad research page, marketing page로 보내는 CTA는 그곳이 실제 다음 행동일 때만 primary로 둔다.
 - Master-detail에서 collection이 비어 있으면 왼쪽 `No items`와 오른쪽 `Select an item`을 동시에 렌더링하지 않는다. 하나의 empty state가 prerequisite와 다음 action을 소유하며 불필요한 빈 detail pane은 제거한다.
