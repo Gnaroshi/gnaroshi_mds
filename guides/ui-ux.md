@@ -167,8 +167,8 @@ Owner-selected pixel direction은 content를 retro-game interface로 바꾸는 t
 - 지원 최소 크기, 일반 크기, 넓은 크기에서 검증한다.
 - Flex column 안의 tab/segmented row는 content가 많아도 높이가 0으로 shrink되지 않게 `flex-shrink`, minimum block size와 scroll ownership을 검증한다. Horizontal overflow를 설정하면 암묵적인 vertical clipping이 생기지 않는지 실제 bounding box로 확인한다.
 - 긴 번역, Dynamic Type 또는 browser zoom, 실제 content 길이를 사용한다.
-- wrap과 reflow가 우선이며 data table/code처럼 필요한 경우에만 명시적 scroll을 사용한다.
-- screenshot 또는 실제 runtime으로 clipping, overlap, overflow를 확인한다.
+- wrap과 reflow가 우선이며 data table/code처럼 필요한 경우에만 명시적 scroll을 사용한다. 배치 전환은 usable content width와 실제 label·control·media의 읽을 수 있는 최소 폭으로 정한다. 넓은 mobile breakpoint 하나로 아직 함께 들어가는 요소를 모두 세로로 쌓지 않으며, 전환 직전·직후 폭에서 줄 수·전체 높이·비교 가능성을 확인한다.
+- screenshot과 실제 runtime 조작으로 clipping, overlap, overflow를 확인한다. Sticky/fixed control은 content 시작·중간·끝과 고정 진입·해제 위치를 실제로 scroll하여 본문·media·인접 control의 가림을 확인하고, 필요한 영역을 예약하거나 일반 흐름으로 되돌린다. 조작에 계속 닿는다는 사실만으로 검증을 통과시키지 않는다.
 - 순서가 중요한 flow diagram은 intermediate breakpoint에서도 읽는 순서와 causality가 유지되어야 한다. Connector를 숨긴 fallback을 2-column grid로 바꿀 때는 numbering, row order와 visual grouping이 단계 순서를 흐리지 않는지 검증한다.
 
 ## Resizable workspace surfaces
