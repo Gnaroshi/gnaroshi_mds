@@ -68,6 +68,7 @@ Safety, accessibility와 data integrity를 훼손하지 않는 범위에서 다�
 - State-transition test는 각 상태를 따로 확인하는 데서 끝내지 않는다. "A가 current일 때 B는 current가 아니다", "current item은 한 개다", "stale async result가 새 selection을 덮지 않는다" 같은 negative invariant를 포함한다.
 - Minimal interface를 정지 화면으로 해석하지 않는다. Owner가 contemporary interaction을 요구하면 navigation destination, reading/task progress, current/pressed/open state처럼 사용자가 이해할 수 있는 변화에 native progressive motion을 연결한다. 현재 단계는 색이나 진행선만으로 표시하지 않고 구별되는 형태와 명시적인 label을 함께 제공한다. 자동 loop, custom cursor, decorative parallax와 motion-only feedback은 사용하지 않고 reduced-motion에서는 같은 상태를 즉시 전달한다.
 - Motion acceptance는 animation 선언 유무가 아니라 정상 속도에서 변화가 인지되는지로 판단한다. 시작·중간·종료 frame 또는 실제 계산값을 비교하고, text contrast와 layout geometry는 모든 frame에서 유지하며, reduced-motion에서는 동일한 정보와 action state를 즉시 제공한다.
+- Owner가 창의적인 개인 identity interaction을 명시적으로 요청하면 작은 hover 효과만으로 요청을 충족했다고 보고하지 않는다. 승인된 identity를 보존한 opt-in 변형·입체·재질 반응을 실제 입력과 상태 전환으로 구현할 수 있다. 본문·근거 미디어와 분리하고 keyboard, reset, reduced-motion, 실패 시 원본 fallback을 제공하며, 무거운 engine은 요청 시에만 load하고 idle·offscreen·background에서는 render를 멈춘다.
 - Motion의 체감도를 높이려고 section 전체를 이동시켜 인접 content와의 거리를 벌리지 않는다. 같은 scroll 위치의 일반·reduced-motion 화면에서 관계별 간격을 비교하고, current state·방향·요청한 펼침에 움직임을 집중한다. 글자나 수치를 읽어야 하는 evidence media는 hover 확대·inset 장식으로 잘라내지 않으며, 강조와 확대 열기를 구분한다.
 - Experimental interaction API는 normal navigation, reload, locale switch, focus 또는 requestAnimationFrame lifecycle을 불안정하게 만들면 해당 경로에서 opt out하거나 안정된 fallback으로 되돌린다. 최신 기술 사용 자체를 acceptance criterion보다 우선하지 않는다.
 - Hidden accessibility instruction은 실제 interaction contract와 일치해야 하고 layout utility가 정의되지 않아 visible text로 새지 않도록 component test와 packaged runtime에서 확인한다. Keyboard 도움말이 routine task에 필요하지 않으면 toolbar의 Help/Guide처럼 요청 가능한 위치로 이동한다.
@@ -168,7 +169,7 @@ Owner-selected pixel direction은 content를 retro-game interface로 바꾸는 t
 - Flex column 안의 tab/segmented row는 content가 많아도 높이가 0으로 shrink되지 않게 `flex-shrink`, minimum block size와 scroll ownership을 검증한다. Horizontal overflow를 설정하면 암묵적인 vertical clipping이 생기지 않는지 실제 bounding box로 확인한다.
 - 긴 번역, Dynamic Type 또는 browser zoom, 실제 content 길이를 사용한다.
 - wrap과 reflow가 우선이며 data table/code처럼 필요한 경우에만 명시적 scroll을 사용한다. 배치 전환은 usable content width와 실제 label·control·media의 읽을 수 있는 최소 폭으로 정한다. 넓은 mobile breakpoint 하나로 아직 함께 들어가는 요소를 모두 세로로 쌓지 않으며, 전환 직전·직후 폭에서 줄 수·전체 높이·비교 가능성을 확인한다.
-- screenshot과 실제 runtime 조작으로 clipping, overlap, overflow를 확인한다. Sticky/fixed control은 content 시작·중간·끝과 고정 진입·해제 위치를 실제로 scroll하여 본문·media·인접 control의 가림을 확인하고, 필요한 영역을 예약하거나 일반 흐름으로 되돌린다. 조작에 계속 닿는다는 사실만으로 검증을 통과시키지 않는다.
+- screenshot과 실제 runtime 조작으로 clipping, overlap, overflow를 확인한다. Sticky/fixed control의 offset과 예약 영역은 실제 header/navigation 경계·control 높이·safe area로 정한다. Content 시작·중간·끝과 고정 진입·해제 위치를 실제로 scroll하여 본문·media·인접 control의 가림을 확인한다. 지속 접근이 요청된 control은 content를 가리지 않는 예약 영역에 유지하며, 가림을 해결한다는 이유로 고정을 제거하지 않는다. 지속 접근이 필요 없으면 일반 흐름으로 되돌릴 수 있다. 조작에 계속 닿는다는 사실만으로 검증을 통과시키지 않는다.
 - 순서가 중요한 flow diagram은 intermediate breakpoint에서도 읽는 순서와 causality가 유지되어야 한다. Connector를 숨긴 fallback을 2-column grid로 바꿀 때는 numbering, row order와 visual grouping이 단계 순서를 흐리지 않는지 검증한다.
 
 ## Resizable workspace surfaces
