@@ -111,7 +111,7 @@ Safety, accessibility와 data integrity를 훼손하지 않는 범위에서 다�
 
 - 시각 방향을 반복 탐색하는 단계에서는 기본 글자 크기의 핵심 동선·밀도·실제 조작부터 검증한다. Owner가 검수 시점을 지정하면 최대 Dynamic Type 등 확대 크기의 전체 검수는 최종 배포 gate로 미루고 현재 반복마다 다시 실행하지 않는다. 기존 글자 확대 지원·읽기 순서·터치 영역은 제거하거나 작은 고정 글씨로 대체하지 않는다.
 - Broad UI change는 screen 전체에 대한 vague approval 한 번으로 끝내지 않는다. Navigation, form, editor toolbar, dialog, list row, status/feedback, destructive action처럼 변경 component를 나눠 review한다.
-- 각 component review는 purpose, expected action/result, idle/pending/success/error, keyboard/focus, narrow window, dark/light, content length, layout stability와 regression을 pass/fail로 기록한다.
+- 각 component review는 purpose, expected action/result, idle/pending/success/error, keyboard/focus, narrow window, dark/light, content length, layout stability와 regression을 pass/fail로 기록한다. 글자·문구·component 변경은 실제 content의 상·우·하·좌 inset과 인접 component 간격을 측정하고, 같은 역할의 다른 instance에서도 짧은/긴 label·기본/선택 상태·숨겨진 panel을 연 상태를 비교한다. 검토한 instance·viewport·상태별 측정값과 screenshot 경로를 프로젝트 검증 기록에 남기며, font size 일치나 overflow 없음만으로 여백·디자인 검수를 통과시키지 않는다.
 - Reviewer가 `OK`를 주려면 blocker가 없다는 말뿐 아니라 acceptance criterion별 증거를 남겨야 한다. Fail 또는 ambiguous item은 같은 component를 수정하고 다시 review한다.
 - Source 문자열·정적 markup 검사는 실제 control 조작, mode 전환, 저장/되돌리기, resize와 focus 검증을 대신하지 않는다. 재현 가능한 browser/component harness는 제품 component를 직접 사용하고, 전시용으로 따로 만든 UI를 제품 동작의 증거로 쓰지 않는다.
 - Component들이 통과한 뒤 전체 workflow에서 hierarchy, state continuity와 cross-component feedback을 다시 검증한다. 같은 역할의 글자·조작·caption이 다른 section에서도 일관되는지 실제 화면으로 비교하고, 좁은·일반·넓은 폭과 선택 상태 전환에서도 관계별 간격을 확인한다. Component pass가 전체 product flow pass를 대신하지 않는다.
