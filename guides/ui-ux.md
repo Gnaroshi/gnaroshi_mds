@@ -68,6 +68,7 @@ Safety, accessibility와 data integrity를 훼손하지 않는 범위에서 다�
 - State-transition test는 각 상태를 따로 확인하는 데서 끝내지 않는다. "A가 current일 때 B는 current가 아니다", "current item은 한 개다", "stale async result가 새 selection을 덮지 않는다" 같은 negative invariant를 포함한다.
 - Minimal interface를 정지 화면으로 해석하지 않는다. Owner가 contemporary interaction을 요구하면 navigation destination, reading/task progress, current/pressed/open state처럼 사용자가 이해할 수 있는 변화에 native progressive motion을 연결한다. 현재 단계는 색이나 진행선만으로 표시하지 않고 구별되는 형태와 명시적인 label을 함께 제공한다. 자동 loop, custom cursor, decorative parallax와 motion-only feedback은 사용하지 않고 reduced-motion에서는 같은 상태를 즉시 전달한다.
 - Motion acceptance는 animation 선언 유무가 아니라 정상 속도에서 변화가 인지되는지로 판단한다. 시작·중간·종료 frame 또는 실제 계산값을 비교하고, text contrast와 layout geometry는 모든 frame에서 유지하며, reduced-motion에서는 동일한 정보와 action state를 즉시 제공한다.
+- Motion의 체감도를 높이려고 section 전체를 이동시켜 인접 content와의 거리를 벌리지 않는다. 같은 scroll 위치의 일반·reduced-motion 화면에서 관계별 간격을 비교하고, current state·방향·요청한 펼침에 움직임을 집중한다. 글자나 수치를 읽어야 하는 evidence media는 hover 확대·inset 장식으로 잘라내지 않으며, 강조와 확대 열기를 구분한다.
 - Experimental interaction API는 normal navigation, reload, locale switch, focus 또는 requestAnimationFrame lifecycle을 불안정하게 만들면 해당 경로에서 opt out하거나 안정된 fallback으로 되돌린다. 최신 기술 사용 자체를 acceptance criterion보다 우선하지 않는다.
 - Hidden accessibility instruction은 실제 interaction contract와 일치해야 하고 layout utility가 정의되지 않아 visible text로 새지 않도록 component test와 packaged runtime에서 확인한다. Keyboard 도움말이 routine task에 필요하지 않으면 toolbar의 Help/Guide처럼 요청 가능한 위치로 이동한다.
 
