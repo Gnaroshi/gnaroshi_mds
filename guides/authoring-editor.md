@@ -18,6 +18,7 @@ Markdown·수식·미디어 편집기 구현에 적용한다. 공통 상호작�
 - Structured Apply는 schema validation, exact target identity, duplicate/idempotency, expected-current-content와 stale selection을 확인한다. Pending/success/error를 같은 component에 유지하고 source record, target record와 Recovery 중 무엇이 보존됐는지 명시한다.
 - Translation처럼 두 document의 관계를 편집하는 surface는 source/target locale·title·availability, missing/stale/conflict와 양쪽 Preview/Edit action을 먼저 보여준다. Pair status update는 document content save 및 publish와 분리하고 raw pair source는 escape hatch로 둔다.
 - Published source를 authoring할 때 source Save, public projection Preview, private checkpoint와 Publish를 하나의 짧은 workflow boundary로 구분한다. `Save changes`가 자동 공개를 뜻하지 않게 current public/source state와 다음 publish action을 같은 맥락에 둔다.
+- 작성·게시 workflow는 다시 찾기·열기·수정·재게시까지 검증한다. 전체 작성 목록에서 draft와 게시용 원문을 함께 찾을 수 있게 하고 공개 완료 여부와 원문 위치를 혼동하지 않는다. 외부 editor·terminal 변경은 bounded local refresh로 감지하며 깨끗한 편집기는 갱신하고 미저장 편집은 비교·Recovery 뒤 명시적으로 전환한다. 목록 갱신이 선택·cursor·사용자 입력을 초기화하지 않아야 하며 이동된 문서는 stable ID로 찾되 중복 identity는 임의 선택하지 않는다.
 - Markdown canonical source와 renderer는 [CommonMark](https://spec.commonmark.org/spec) block/inline precedence를 기본으로 하고 필요한 GFM/math/approved MDX 확장만 명시적으로 추가한다. Source, Preview, public renderer가 서로 다른 비명시적 dialect를 사용하지 않게 fixture로 검증한다.
 
 ## 편집 상태와 toolbar

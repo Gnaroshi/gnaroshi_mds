@@ -31,6 +31,7 @@ Native·desktop·CLI·로컬 도구 개발에 적용한다. UI는 [ui-ux](ui-ux.
 - macOS의 floating intake/status window가 사용자의 현재 작업 옆에 계속 있어야 하는 제품이면 모든 Spaces 참여를 기본으로 하고 명시적인 opt-out을 제공한다. Space membership과 cursor/focused display placement는 별도 설정 축으로 취급하며, display 선택이 Desktop 전환 추적을 대신한다고 가정하지 않는다.
 - System-wide shortcut은 같은 app의 새 window와 별도 application instance/process 중 의도한 결과를 먼저 구분한다. Config 저장·구문 검사·hotkey 등록 성공만으로 완료 처리하지 않고 representative foreground app과 지원 input language/layout에서 실제 key input과 결과를 확인한다. 별도 instance는 새 PID로 검증하며, 실제 입력 검증이 막히면 미검증 범위를 명시하고 완료로 단정하지 않는다.
 - Repository terminal action이 있는 macOS application은 owner preference로 Ghostty를 우선할 수 있다. 이 경우 exact installed bundle identity를 검증하고 canonical working directory만 fixed argument로 전달하며, Settings에서 명시적인 system Terminal fallback/override를 제공한다. Terminal 선택을 arbitrary executable이나 shell command field로 만들지 않고 one-shot launcher process를 wait/reap한다.
+- 사용자가 내부 interactive terminal을 요구하면 fixed automation adapter와 별도 신뢰 경계로 설계한다. 명시적인 사용자 동작으로 configured workspace에서 지원 shell/CLI만 시작하고 자동 command·prompt 입력이나 approval 우회를 하지 않는다. Terminal engine을 실제 사용하는 경우에만 해당 engine 이름으로 표시한다. 세션·출력·입력 크기를 제한하고 숨기기와 종료를 구분하며 창 종료·취소·실패에서 소유 process와 자원을 회수한다. 출력은 기본적으로 메모리에만 유지한다. 외부 앱 열기와 task 실행은 별도 사용자 action이며 완료 이벤트는 목록만 갱신하고 현재 화면·focus를 바꾸지 않는다.
 
 ## Process and resource lifecycle
 
