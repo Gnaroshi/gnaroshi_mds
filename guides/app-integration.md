@@ -10,6 +10,7 @@ Gnaroshi Studio와 독립 application의 연동에 적용한다. 공통 UI는 [u
 - 각 application은 자기 domain data, credential, destructive confirmation, notification과 recovery를 계속 소유한다.
 - integration이 없어도 기존 standalone workflow와 data portability가 유지되어야 한다.
 - 각 workflow는 선택한 입력·출력의 계약에 필요한 의존성만 검사한다. 무관한 앱의 오류나 저장소 변경 때문에 독립적인 작성·저장·발행을 막지 않는다.
+- 같은 의존성 범위를 최초 발행뿐 아니라 재편집·공개 취소·복구·재시도에도 유지한다. 기존 공개 문서의 성공만으로 새 문서의 전체 흐름을 통과 처리하지 않고, 기본 생성 유형에서 작성 → 저장 → 공개 → 재편집 → 공개 취소까지 설치본으로 검증한다. 검증에는 별도 문서를 사용하고 원래 문서와 무관한 작업 상태를 보존한다.
 - 공유 출력은 선택한 범위만 갱신하고, 선택하지 않은 영역의 검증된 공개 데이터와 출처를 보존한다. 전체 schema·privacy·provenance 검증은 유지하되, 제외한 원본을 자동 수정하거나 발행에 포함하지 않는다.
 
 ## Application manifest
