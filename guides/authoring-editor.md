@@ -11,6 +11,7 @@ Markdown·수식·미디어 편집기 구현에 적용한다. 공통 상호작�
 - Formula validation은 raw dollar-sign regex가 아니라 실제 Markdown math syntax tree의 inline/display math node만 검사한다. Inline code, fenced code, escaped dollar와 일반 가격 표기를 수식 오류로 오인하지 않는다.
 - Frontmatter와 body를 함께 가진 source에서 body editor는 body 밖의 exact bytes를 보존한다. Body를 수정했다가 원래 text로 되돌리면 전체 canonical source도 byte-for-byte 원본이 되어 dirty와 Recovery state가 해제돼야 한다.
 - Source serializer는 routine body edit 때문에 frontmatter key order, quoting, whitespace 또는 line ending을 정규화하지 않는다. 구조 변경이 필요한 metadata action만 schema-aware serialization을 사용하고 preview/diff를 제공한다.
+- 수정 시간을 번역 상태·공개 자료의 최신 여부에 사용하는 문서는 실제 변경을 명시적으로 저장할 때 관측한 시간을 기록한다. 입력 중에는 원본과 정확히 비교하고, 변경 취소·동일 내용 저장·실패에는 시간을 갱신하지 않는다. 사용자가 Source에서 시간을 직접 수정한 경우 그 값을 보존하며, 저장 중 추가 입력과 복구본을 덮어쓰지 않는다. 과거 문서의 수정 시간을 일괄 추정해서 채우지 않는다.
 - Focus mode는 title, source/preview mode, saved state, Save, blocking error와 exit을 유지한다. 주변 workflow navigation은 숨길 수 있지만 canonical write boundary는 숨기지 않는다.
 - Editor 탈출, indentation과 other keyboard 도움은 실제 behavior와 일치해야 하며 persistent body copy로 공간을 차지하지 않는다. Help/Guide 또는 accessible description으로 제공하고 visually-hidden utility가 production CSS에서 실제로 숨겨지는지 검증한다.
 - Selectable document의 기본 surface는 읽을 수 있는 Preview 또는 사용자가 마지막으로 명시한 mode를 우선한다. Edit/Source는 명시적인 action이며 Preview parsing failure가 source edit, save 또는 Recovery를 막지 않는다.
