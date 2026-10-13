@@ -47,6 +47,7 @@ Native·desktop·CLI·로컬 도구 개발에 적용한다. UI는 [ui-ux](ui-ux.
 
 - 유지 중인 design/UX 문서 한 곳에 대상 사용자·주 작업, 승인된 시각 방향, semantic token의 code 위치, component의 기본/선택/진행/실패 상태와 의도적으로 제외한 표현을 연결한다. 새 design-md 형식이 있다는 이유로 token 값의 두 번째 원본이나 중복 문서를 만들지 않는다. Reference의 웹 스타일을 native control, safe area, text 확대와 lifecycle 위에 강제하지 않는다.
 - 의존 작업은 번호와 prerequisite를 보여주고 성공한 경우에만 다음 단계로 진행한다.
+- 명시적인 변경 작업이 끝나면 관련 local 목록과 변경 요약을 갱신한다. 부분 변경 후 실패한 경우도 실제 상태를 다시 읽되, 선택·화면·focus를 바꾸거나 unrelated remote 상태를 기다리지 않는다. 후속 요약 갱신 실패가 이미 저장·완료된 작업을 실패로 바꾸지 않게 하고 재조회는 중복 실행 없이 제한한다.
 - app identity와 functional/menu-bar icon에는 [`image-assets.md`](image-assets.md)와 [`app-icons.md`](app-icons.md)를 적용한다.
 
 ## 유지 문서
