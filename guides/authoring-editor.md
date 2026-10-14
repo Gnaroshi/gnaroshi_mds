@@ -5,6 +5,7 @@ Markdown·수식·미디어 편집기 구현에 적용한다. 공통 상호작�
 ## Writing surface
 
 - Long-form editor는 title/metadata form과 경쟁하지 않는 충분한 width를 확보한다.
+- 공부 정리·일반 문서는 논문 선택이나 연구용 metadata 없이 생성할 수 있게 한다. 목적별 시작 양식과 빈 문서를 제공하되 기존 본문을 양식에 맞춰 덮어쓰거나 학습 기록을 검증된 연구 결과로 분류하지 않는다.
 - Markdown source는 canonical text이고 preview는 derived view다. Preview failure가 source editing 또는 recovery를 막지 않는다.
 - Formatting action은 cursor/selection에 예측 가능한 Markdown을 삽입하고 focus를 editor로 돌려준다. Inline math와 display math를 서로 다른 action으로 제공한다.
 - LaTeX는 `$…$` inline과 `$$\n…\n$$` display form을 지원하고 malformed formula는 source를 보존한 채 해당 formula 가까이에 설명한다.
@@ -30,6 +31,9 @@ Markdown·수식·미디어 편집기 구현에 적용한다. 공통 상호작�
 
 ## Screenshots and images
 
+- 새 문서는 고유한 문서 폴더 안에 본문과 소유 이미지·참고 첨부를 함께 보관한다. 폴더 identity는 표시 제목·공개 주소와 분리하고 제목 변경·발행 준비가 첨부 연결을 깨뜨리지 않게 한다. 기존 평면 문서와 공용 asset은 계속 읽으며 일괄 이동은 별도 검토 없이 수행하지 않는다.
+- 첨부 목록은 현재 문서에 묶인 파일만 보여 주고 이미지 설명, 본문 삽입, 링크 제거와 공개 선택을 같은 맥락에서 제공한다. 링크 제거는 원본 파일 삭제가 아니며 미사용 파일과 복구에 필요한 파일은 보존한다. 일반 참고 파일의 비공개 보관과 발행용 이미지 승인은 별도 경계다.
+- 첨부는 지원 형식·실제 내용·크기·소유 경로를 검증하고 자동 실행하거나 원격으로 올리지 않는다. 미리보기·발행·보관·복구에서 같은 문서의 파일을 사용하며 동일 파일명이 다른 문서의 파일을 대신하지 않도록 소유 identity를 확인한다.
 - Image import는 native user selection, clipboard 또는 explicit drop처럼 user activation이 있는 경로에서만 시작한다. Broad filesystem permission이나 repository-wide external asset scan을 요구하지 않는다.
 - Canonical repository 안의 bounded asset directory로 copy하고 absolute local path를 Markdown, preview, log 또는 public content에 쓰지 않는다.
 - File extension만 믿지 않고 magic bytes, decoded dimensions와 size limit을 검증한다. 초기 지원 format은 PNG, JPEG와 WebP처럼 정적 raster allowlist를 우선한다.
