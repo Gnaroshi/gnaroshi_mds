@@ -25,6 +25,10 @@ Markdown·수식·미디어 편집기 구현에 적용한다. 공통 상호작�
 
 ## 편집 상태와 toolbar
 
+- 문서를 선택한 뒤 기본 작업면은 본문 중심으로 구성한다. 앱 이동, 문서 목록, metadata, 첨부 관리와 발행 준비는 명시적으로 열 수 있게 하고 각각을 본문 위의 상시 행으로 쌓지 않는다. 제목·보기 mode·저장 상태·Save는 한 compact command 영역에서 찾을 수 있어야 한다.
+- Focus는 앱 navigation뿐 아니라 발행 단계, 첨부 관리와 보조 workflow도 숨긴다. 본문 editor를 다시 만들지 않고 title·mode·save·blocking error·Exit를 유지하며, 닫은 보조면의 선택과 사용자가 직접 정한 pane 폭을 보존한다.
+- 첨부 삽입과 첨부 관리를 분리한다. 관리는 필요할 때 여는 보조면에서 선택한 파일 하나의 설명·공개 상태·link action을 보여 주며 본문 위에 모든 파일의 form을 나열하지 않는다.
+- 본문은 읽기 편한 글꼴과 제한된 줄 길이를 사용하고 Source·code는 monospace로 구분한다. Editor 내부 scroll/content 요소의 실제 computed font와 width를 확인한다. 부모 CSS 선언만으로 적용됐다고 판단하지 않는다.
 - 변경 감지는 별도 boolean을 독립적으로 관리하기보다 현재 draft와 canonical saved value의 비교에서 파생한다. 사용자가 편집을 정확히 되돌리면 dirty indicator, Save action과 Recovery snapshot도 원래 상태로 돌아가야 한다.
 - Editor toolbar는 content mode, primary formatting, secondary insertion과 workspace utility를 구분한다. 좁은 폭에서는 낮은 빈도의 formatting을 한 개의 labelled `More` disclosure로 reflow하고 서로 배타적인 Guide/Outline popover는 한 번에 하나만 연다.
 - 같은 document의 mode·layout·focus 전환은 cursor, selection, undo history와 scroll을 보존한다. 본문이 같아도 document identity가 바뀌면 이력을 분리한다. External hydration은 undo에 넣지 않고 document별 editor lifetime 또는 compartment를 사용한다.
