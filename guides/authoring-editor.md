@@ -47,7 +47,7 @@ Markdown·수식·미디어 편집기 구현에 적용한다. 공통 상호작�
 - Paste/drop 동안 사용자가 다른 control로 이동했으면 focus를 탈취하지 않는다. Modal picker를 명시적으로 완료한 경우에는 alt-text selection으로 editor focus를 돌려준다.
 - File read 이전부터 synchronous in-flight guard를 잡아 빠른 paste/drop이 React state update보다 먼저 중복 실행되지 않게 한다.
 - Local preview는 exact imported asset reference만 bounded read한다. Remote image를 authoring preview에서 자동 fetch하지 않는다.
-- Preview loading/success/decode-error state는 exact asset identity에 묶어 document 전환 중 이전 image가 새 alt text와 함께 보이지 않게 한다. Frame geometry와 feedback region은 pending/result/error 사이에 고정하고 긴 message는 bounded scroll/disclosure로 읽을 수 있게 한다.
+- Preview loading/success/decode-error state는 exact asset identity에 묶어 document 전환 중 이전 image가 새 alt text와 함께 보이지 않게 한다. 크기를 알면 원본 비율로 공간을 예약하고 작은 이미지를 임의의 큰 고정비율 frame에 확대하지 않는다. 크기를 모르는 동안은 bounded placeholder를 사용하되 feedback region은 상태 전환 중 안정적으로 유지하고 긴 message는 scroll/disclosure로 읽을 수 있게 한다.
 - Private asset, publication-approved asset과 missing asset을 구분한다. Public projection은 declared public asset만 copy/rewrite하고 undeclared, private 또는 missing reference를 fail closed한다.
 - Paper note screenshot과 private research attachment는 publication asset이 아니다. 별도 owner action 없이는 feed나 website로 복사하지 않는다.
 
