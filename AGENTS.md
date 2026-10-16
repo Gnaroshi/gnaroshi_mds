@@ -30,7 +30,8 @@
 
 ## GitHub Actions
 
-- Owner가 특정 작업에서 Actions 사용을 명시적으로 금지하면 그 범위의 실행·조회·수정을 하지 않는다. 현재 지시로 범위가 바뀌면 갱신하고, 일시적인 사용 불가·비용 절약 요청을 영구적인 제품 기능 금지나 별도 게시 허가 gate로 확대하지 않는다.
+- Owner가 명시적으로 허락하기 전까지 GitHub Actions를 실행·재실행하거나 자동 실행을 활성화하지 않는다. Git push·PR 생성·release 요청은 Actions 사용 허가가 아니다. 허용 범위가 바뀌면 현재 지시를 따른다.
+- Push 전에 로컬 workflow의 자동 trigger를 확인한다. 허가가 없으면 push·pull_request·schedule·tag 등으로 원격 실행이 발생하지 않도록 수동 전용 또는 비활성 상태를 먼저 반영한다. 실행 차단을 위한 로컬 설정 수정은 허용되며, 확인 목적으로 원격 run·log·check를 조회하지 않는다. 새 허가 없이는 trigger를 복원하지 않는다.
 - 이 제한은 local inspection/build/test/signed install과 일반 Git·branch·PR metadata 작업을 막지 않는다. PR check를 대신 조회하거나 CI 성공을 추정하지 않는다.
 - Build, test, lint, contract, packaging과 signature 검증을 local에서 먼저 수행한다. Actions를 반복 개발·디버깅 loop로 사용하지 않는다.
 - 허용된 workflow가 실패하면 원인을 한 번 분류한다. Code/configuration 문제는 local에서 재현·수정·검증한 뒤 새 commit을 한 번 push한다. Billing, quota, runner, secret/approval 또는 account 문제에는 무의미한 push·rerun을 반복하지 않는다. 같은 검증·배포 목적지·보안 경계를 보존하는 local 실행 방식이 있으면 [웹 배포 가이드](guides/web-application.md#security-and-release)의 fallback으로 제공한다. 사용량 문제를 근거 없이 다른 저장소·runner·호스팅 서비스에도 동일하게 적용하지 않는다.
