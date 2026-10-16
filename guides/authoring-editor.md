@@ -7,6 +7,7 @@ Markdown·수식·미디어 편집기 구현에 적용한다. 공통 상호작�
 - Long-form editor는 title/metadata form과 경쟁하지 않는 충분한 width를 확보한다.
 - 공부 정리·일반 문서는 논문 선택이나 연구용 metadata 없이 생성할 수 있게 한다. 목적별 시작 양식과 빈 문서를 제공하되 기존 본문을 양식에 맞춰 덮어쓰거나 학습 기록을 검증된 연구 결과로 분류하지 않는다.
 - Markdown source는 canonical text이고 preview는 derived view다. Preview failure가 source editing 또는 recovery를 막지 않는다.
+- 이미지·수식을 보며 쓰는 visual editing을 요청하면 별도 Preview/Split만으로 대체하지 않는다. 같은 편집 본문에서 렌더링하고, 해당 요소의 원문을 pointer·keyboard로 수정한 뒤 표시 상태로 돌아올 수 있게 한다. Source escape hatch와 정확한 Markdown·undo·selection은 보존하며 렌더링만으로 저장 상태를 바꾸지 않는다.
 - Formatting action은 cursor/selection에 예측 가능한 Markdown을 삽입하고 focus를 editor로 돌려준다. Inline math와 display math를 서로 다른 action으로 제공한다.
 - LaTeX는 `$…$` inline과 `$$\n…\n$$` display form을 지원하고 malformed formula는 source를 보존한 채 해당 formula 가까이에 설명한다.
 - Formula validation은 raw dollar-sign regex가 아니라 실제 Markdown math syntax tree의 inline/display math node만 검사한다. Inline code, fenced code, escaped dollar와 일반 가격 표기를 수식 오류로 오인하지 않는다.
@@ -57,3 +58,4 @@ Markdown·수식·미디어 편집기 구현에 적용한다. 공통 상호작�
 - Cursor insertion, alt-text selection, same-text document 전환 undo isolation, inline/display math, malformed math, code/fence false-positive 제외와 source/preview mode preservation
 - Private asset이 publish staging과 public output에 포함되지 않는 privacy test
 - Minimum window, dark/light theme, keyboard-only flow와 layout-stable pending/success/error feedback
+- Visual editing에서는 주변 문장 입력, 개별 이미지·수식 수정, 원문 복귀, 저장·재열기를 같은 작업면에서 검증한다. 미디어 렌더링의 지연·실패가 다른 문서의 이미지나 내용을 보여 주지 않게 하고, 실제 설치본에서 선택 전후의 scroll·canvas 이동도 확인한다.
