@@ -1,5 +1,6 @@
 __pycache__/
 *.py[cod]
 .DS_Store
+/codex/
 identity/review/*.png
 identity/review/candidates/
