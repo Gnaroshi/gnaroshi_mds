@@ -20,6 +20,7 @@
 - Project evidence media는 sighted user와 assistive technology 모두에게 같은 provenance boundary를 제공한다. Meaningful screenshot/diagram을 `aria-hidden` link 안에만 두지 말고, concise alt와 visible caption 또는 nearby evidence text를 함께 둔다.
 - Generated concept scene, diagram, screenshot, demo fixture는 public page에서 서로 다른 media type으로 드러나야 한다. Disclosure가 alt text에만 있거나 developer document에만 있으면 public disclosure로 보지 않는다.
 - 콘텐츠 언어와 고정 navigation label의 언어를 분리한다. Owner가 익숙한 영어 메뉴를 선택하면 번역된 본문에도 같은 메뉴명을 유지하고, breadcrumb·mobile·footer까지 일관되게 적용한다. 본문·날짜·실제 작업 안내는 해당 locale을 유지한다.
+- 글 목록에서 interface 언어 때문에 존재하는 글을 숨기지 않는다. 같은 글의 확인된 번역은 한 항목으로 묶어 현재 언어를 우선하고, 해당 언어가 없으면 실제 존재하는 원문 주소로 연결한다. 번역이 추가되면 같은 항목에서 선택할 수 있게 하되, 다른 언어의 본문을 잘못된 locale 주소에 조용히 복제하지 않는다.
 - Language switcher는 현재 locale을 selected/inert state로 표현한다. 번역이 없다는 설명은 언어 선택을 요청했을 때 keyboard와 touch로 접근 가능한 control 안에서 제공하며 header와 본문 위에 반복하지 않는다. 없는 번역을 있는 것처럼 연결하거나 계획이 확인되지 않은 `준비 중`을 표시하지 않는다. 다른 언어의 목록으로 보내면 해당 목적지를 명확히 이름 붙인다.
 - 공개 글의 제목 앞에 content type·언어 배지·추정 읽기 시간 같은 metadata를 관례적으로 쌓지 않는다. 읽기 결정에 실제 필요한 날짜·출처 등만 남기며, 추정 읽기 시간과 실제 기록된 읽기 활동을 구분한다. 제목과 본문에 폭 제한을 중첩하지 않고 넓은 화면에서도 읽기 면적과 첫 본문 진입 위치를 검수한다.
 - 실제 translation pair의 locale switch는 query뿐 아니라 양쪽 route에 존재하는 hash/location state도 보존한다. Translation unavailable fallback에는 존재하지 않는 detail hash를 전달하지 않는다.

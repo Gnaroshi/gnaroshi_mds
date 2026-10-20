@@ -6,6 +6,7 @@ Markdown·수식·미디어 편집기 구현에 적용한다. 공통 상호작�
 
 - Long-form editor는 title/metadata form과 경쟁하지 않는 충분한 width를 확보한다.
 - 공부 정리·일반 문서는 논문 선택이나 연구용 metadata 없이 생성할 수 있게 한다. 목적별 시작 양식과 빈 문서를 제공하되 기존 본문을 양식에 맞춰 덮어쓰거나 학습 기록을 검증된 연구 결과로 분류하지 않는다.
+- 일상적인 논문 메모와 상세 분석은 작성 분량·목적에 맞게 바로 시작할 수 있게 한다. 타이머, 읽기 단계, 연습·시험이나 정해진 항목 채우기를 작성·발행의 선행 조건으로 삼지 않는다. 교육용 안내는 별도로 요청된 workflow에만 두며, 사용하지 않는 안내를 제거할 때 기존 원문과 읽기·검토 기록은 보존한다.
 - Markdown source는 canonical text이고 preview는 derived view다. Preview failure가 source editing 또는 recovery를 막지 않는다.
 - 이미지·수식을 보며 쓰는 visual editing을 요청하면 별도 Preview/Split만으로 대체하지 않는다. 같은 편집 본문에서 렌더링하고, 해당 요소의 원문을 pointer·keyboard로 수정한 뒤 표시 상태로 돌아올 수 있게 한다. Source escape hatch와 정확한 Markdown·undo·selection은 보존하며 렌더링만으로 저장 상태를 바꾸지 않는다.
 - Formatting action은 cursor/selection에 예측 가능한 Markdown을 삽입하고 focus를 editor로 돌려준다. Inline math와 display math를 서로 다른 action으로 제공한다.
