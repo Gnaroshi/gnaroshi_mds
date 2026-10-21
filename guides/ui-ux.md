@@ -125,6 +125,8 @@ Safety, accessibility와 data integrity를 훼손하지 않는 범위에서 다�
 - Reviewer가 `OK`를 주려면 blocker가 없다는 말뿐 아니라 acceptance criterion별 증거를 남겨야 한다. Fail 또는 ambiguous item은 같은 component를 수정하고 다시 review한다.
 - Source 문자열·정적 markup 검사는 실제 control 조작, mode 전환, 저장/되돌리기, resize와 focus 검증을 대신하지 않는다. 재현 가능한 browser/component harness는 제품 component를 직접 사용하고, 전시용으로 따로 만든 UI를 제품 동작의 증거로 쓰지 않는다.
 - Component들이 통과한 뒤 전체 workflow에서 hierarchy, state continuity와 cross-component feedback을 다시 검증한다. 같은 역할의 글자·조작·caption이 다른 section에서도 일관되는지 실제 화면으로 비교하고, 좁은·일반·넓은 폭과 선택 상태 전환에서도 관계별 간격을 확인한다. Component pass가 전체 product flow pass를 대신하지 않는다.
+- 전면 검수를 요청받으면 실제 route·보조면·dialog·공통 control을 목록화하고 빠진 곳을 확인한다. 기능 test, 실제 입력, 화면 조합의 시각 검토와 설치본 검증을 구분해 기록하며 일부 대표 screenshot이나 source 문자열 검사로 전체 통과를 선언하지 않는다. 이전 완료 판단과 사용자 재현이 충돌하면 해당 acceptance를 다시 연다.
+- Packaged WebView 앱은 routine 우클릭에 Reload·개발자 도구 같은 browser chrome을 노출하지 않는다. 표준 text 편집·선택·복사 메뉴는 보존하고 실제 native context menu와 keyboard 경로를 검증한다. 오류 복구를 위한 재시작은 미저장 내용을 보존하는 명시적 제품 동작이어야 한다.
 - Desktop 검증 대상은 [app-distribution](app-distribution.md)의 signed stable install이다. Representative record로 navigation, edit/revert, mode, pending/result/error, destructive entry point와 minimum window를 검증한다. 창 실행은 [공통 작업 보존 규칙](../AGENTS.md#검증과-사용자-작업-보존)을 따른다.
 
 ## Avoid

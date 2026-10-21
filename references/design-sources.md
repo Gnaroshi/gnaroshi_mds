@@ -33,6 +33,8 @@
 
 ## Interaction source links
 
+2026-10-21 재확인: [Apple Keyboards](https://developer.apple.com/design/human-interface-guidelines/keyboards/)의 표준 단축키 보존·빈번한 앱 동작의 단축키, [WAI keyboard interface](https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/)의 기본 조작 우선 원칙과 [WCAG Status Messages](https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html)의 focus를 빼앗지 않는 상태 전달을 적용한다. 단축키는 불명확한 화면 구조의 대체물이 아니며, 상태 접근성은 성공 문장을 계속 화면에 추가하라는 요구가 아니다. 기존 MDS의 저장·발행 경계는 상시 반복 문장 대신 짧은 상태와 요청 시 열리는 정보로 정리하되 실제 공개·삭제 영향은 유지한다.
+
 - [Apple Human Interface Guidelines: Feedback](https://developer.apple.com/design/human-interface-guidelines/feedback), [Alerts](https://developer.apple.com/design/human-interface-guidelines/alerts), [Progress indicators](https://developer.apple.com/design/human-interface-guidelines/progress-indicators), [Buttons](https://developer.apple.com/design/human-interface-guidelines/buttons)
 - [Carbon Design System: Notifications](https://carbondesignsystem.com/patterns/notification-pattern/), [Spacing](https://carbondesignsystem.com/elements/spacing/overview/)
 - [Primer: Forms](https://primer.style/product/ui-patterns/forms/), [Navigation](https://primer.style/product/ui-patterns/navigation/), [Notification messaging](https://primer.style/product/ui-patterns/notification-messaging/)

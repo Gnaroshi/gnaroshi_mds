@@ -16,12 +16,14 @@ Markdown·수식·미디어 편집기 구현에 적용한다. 공통 상호작�
 - Source serializer는 routine body edit 때문에 frontmatter key order, quoting, whitespace 또는 line ending을 정규화하지 않는다. 구조 변경이 필요한 metadata action만 schema-aware serialization을 사용하고 preview/diff를 제공한다.
 - 수정 시간을 번역 상태·공개 자료의 최신 여부에 사용하는 문서는 실제 변경을 명시적으로 저장할 때 관측한 시간을 기록한다. 입력 중에는 원본과 정확히 비교하고, 변경 취소·동일 내용 저장·실패에는 시간을 갱신하지 않는다. 사용자가 Source에서 시간을 직접 수정한 경우 그 값을 보존하며, 저장 중 추가 입력과 복구본을 덮어쓰지 않는다. 과거 문서의 수정 시간을 일괄 추정해서 채우지 않는다.
 - Focus mode는 title, source/preview mode, saved state, Save, blocking error와 exit을 유지한다. 주변 workflow navigation은 숨길 수 있지만 canonical write boundary는 숨기지 않는다.
+- 자주 쓰는 Focus 진입·종료는 같은 단축키로 왕복하고 버튼의 hover 설명과 메뉴에서도 찾을 수 있게 한다. Editor·terminal·dialog의 단축키 scope를 구분하고 IME 조합 및 기존 modifier 조합을 가로채지 않는다.
 - Editor 탈출, indentation과 other keyboard 도움은 실제 behavior와 일치해야 하며 persistent body copy로 공간을 차지하지 않는다. Help/Guide 또는 accessible description으로 제공하고 visually-hidden utility가 production CSS에서 실제로 숨겨지는지 검증한다.
 - Selectable document의 기본 surface는 읽을 수 있는 Preview 또는 사용자가 마지막으로 명시한 mode를 우선한다. Edit/Source는 명시적인 action이며 Preview parsing failure가 source edit, save 또는 Recovery를 막지 않는다.
 - Structured record가 JSON/YAML source를 가질 때 routine workflow는 raw source editor가 아니라 사람이 읽는 field, state, relationship, current/proposed diff와 explicit Apply를 제공한다. Raw source는 `Source` 또는 `Technical details` escape hatch로 유지한다.
 - Structured Apply는 schema validation, exact target identity, duplicate/idempotency, expected-current-content와 stale selection을 확인한다. Pending/success/error를 같은 component에 유지하고 source record, target record와 Recovery 중 무엇이 보존됐는지 명시한다.
 - Translation처럼 두 document의 관계를 편집하는 surface는 source/target locale·title·availability, missing/stale/conflict와 양쪽 Preview/Edit action을 먼저 보여준다. Pair status update는 document content save 및 publish와 분리하고 raw pair source는 escape hatch로 둔다.
-- Published source를 authoring할 때 source Save, public projection Preview, private checkpoint와 Publish를 하나의 짧은 workflow boundary로 구분한다. `Save changes`가 자동 공개를 뜻하지 않게 current public/source state와 다음 publish action을 같은 맥락에 둔다.
+- Published source를 authoring할 때 source Save, public projection Preview, private checkpoint와 Publish를 구분한다. 현재 상태는 저장 동작 옆에 짧게 표시하고, 매번 같은 “저장은 발행이 아님” 설명을 상시 반복하지 않는다. 저장 범위와 발행 절차는 같은 맥락의 작은 정보 disclosure에서 keyboard·click으로 확인할 수 있게 하며 실제 공개 동작에서는 영향·안전 경계를 명시한다.
+- 사용자 분류와 고정 publication taxonomy를 혼동하지 않는다. 개인 문서의 분류는 추가·제거·다시 찾기가 가능해야 하며, list 입력을 매 키마다 정규화해 delimiter나 한글 조합이 사라지게 하지 않는다. 공개 schema의 고정 종류를 늘리는 일과 개인 label을 편집하는 일을 분리한다.
 - 작성·게시 workflow는 다시 찾기·열기·수정·재게시까지 검증한다. 전체 작성 목록에서 draft와 게시용 원문을 함께 찾을 수 있게 하고 공개 완료 여부와 원문 위치를 혼동하지 않는다. 외부 editor·terminal 변경은 bounded local refresh로 감지하며 깨끗한 편집기는 갱신하고 미저장 편집은 비교·Recovery 뒤 명시적으로 전환한다. 목록 갱신이 선택·cursor·사용자 입력을 초기화하지 않아야 하며 이동된 문서는 stable ID로 찾되 중복 identity는 임의 선택하지 않는다.
 - Markdown canonical source와 renderer는 [CommonMark](https://spec.commonmark.org/spec) block/inline precedence를 기본으로 하고 필요한 GFM/math/approved MDX 확장만 명시적으로 추가한다. Source, Preview, public renderer가 서로 다른 비명시적 dialect를 사용하지 않게 fixture로 검증한다.
 
@@ -60,3 +62,4 @@ Markdown·수식·미디어 편집기 구현에 적용한다. 공통 상호작�
 - Private asset이 publish staging과 public output에 포함되지 않는 privacy test
 - Minimum window, dark/light theme, keyboard-only flow와 layout-stable pending/success/error feedback
 - Visual editing에서는 주변 문장 입력, 개별 이미지·수식 수정, 원문 복귀, 저장·재열기를 같은 작업면에서 검증한다. 미디어 렌더링의 지연·실패가 다른 문서의 이미지나 내용을 보여 주지 않게 하고, 실제 설치본에서 선택 전후의 scroll·canvas 이동도 확인한다.
+- 붙여넣기 성공만으로 입력 검증을 통과시키지 않는다. 연속 key 입력, 한글 등 IME 조합·취소, 선택 치환·삭제·undo, 빠른 입력 중 저장·갱신과 mode 전환을 각각 검증한다. 자동화 도구가 일반 native input에서도 같은 오입력을 만들면 도구 한계를 제품 결함과 구분하고, 검증하지 않은 OS 입력 경로를 통과로 기록하지 않는다.
