@@ -46,9 +46,9 @@ Markdown·수식·미디어 편집기 구현에 적용한다. 공통 상호작�
 - Canonical repository 안의 bounded asset directory로 copy하고 absolute local path를 Markdown, preview, log 또는 public content에 쓰지 않는다.
 - File extension만 믿지 않고 magic bytes, decoded dimensions와 size limit을 검증한다. 초기 지원 format은 PNG, JPEG와 WebP처럼 정적 raster allowlist를 우선한다.
 - Filename은 sanitized name과 content hash를 사용하고 duplicate import는 idempotent하게 처리한다. Symlink와 canonical containment를 검증한다.
-- Insert action은 Markdown image destination과 편집 가능한 alt-text placeholder를 만들고 alt text selection으로 focus를 이동한다.
+- Insert action은 Markdown image destination과 편집 가능한 alt-text placeholder를 만든다. 처음 action이 여전히 focus와 selection을 소유할 때만 alt text를 선택하고 editor로 focus를 이동한다.
 - Async picker/paste/drop은 시작 document identity, revision text, selection과 focus policy를 함께 보존한다. 같은 본문을 가진 다른 document로 전환되었거나 원문이 변했으면 link insertion을 거부하고 saved asset과 recovery action을 설명한다.
-- Paste/drop 동안 사용자가 다른 control로 이동했으면 focus를 탈취하지 않는다. Modal picker를 명시적으로 완료한 경우에는 alt-text selection으로 editor focus를 돌려준다.
+- Picker/paste/drop 동안 사용자가 다른 control·창으로 이동하거나 selection을 바꿨다면 완료 후 focus·selection·scroll을 탈취하지 않는다. Modal picker 완료도 무조건적인 복귀 권한은 아니다. 가져온 파일과 유효한 삽입 결과는 보존하고, native picker 자체의 창 순서·focus 동작은 실제 플랫폼에서 별도로 검증한다.
 - File read 이전부터 synchronous in-flight guard를 잡아 빠른 paste/drop이 React state update보다 먼저 중복 실행되지 않게 한다.
 - Local preview는 exact imported asset reference만 bounded read한다. Remote image를 authoring preview에서 자동 fetch하지 않는다.
 - Preview loading/success/decode-error state는 exact asset identity에 묶어 document 전환 중 이전 image가 새 alt text와 함께 보이지 않게 한다. 크기를 알면 원본 비율로 공간을 예약하고 작은 이미지를 임의의 큰 고정비율 frame에 확대하지 않는다. 크기를 모르는 동안은 bounded placeholder를 사용하되 feedback region은 상태 전환 중 안정적으로 유지하고 긴 message는 scroll/disclosure로 읽을 수 있게 한다.
