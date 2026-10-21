@@ -65,6 +65,7 @@ Safety, accessibility와 data integrity를 훼손하지 않는 범위에서 다�
 - 여러 단계의 작업에서는 현재 단계와 미완료 이유를 함께 표시한다. 실패 항목마다 펼칠 수 있는 해결 안내와 해당 설정·문서로 이동하는 action을 제공한다. 내부 오류 문자열로 문서를 추측하지 말고 구조화된 원인과 stable ID로 대상을 찾으며, 안내를 여는 것만으로 수정·공개하지 않는다.
 - Action이 새 view, item 또는 dialog를 열면 focus와 selection을 새 context로 이동하고 돌아갈 위치를 보존한다. Screen reader에는 live region을 사용하되 같은 message를 여러 `role=alert`로 중복 발표하지 않는다.
 - 비동기 action의 완료 후 focus 이동은 그 action이 아직 사용자 의도를 소유할 때만 한다. 대기 중 다른 control·단계를 선택하거나 keyboard navigation·창 전환을 하면 예약된 focus를 취소한다. 완료로 trigger가 사라지면 새 작업면의 heading 같은 명확한 위치를 제공하되 background refresh·polling은 focus를 가져가지 않는다.
+- 이 의도는 결과를 받은 뒤가 아니라 action을 시작할 때 기록한다. 대기 중 창을 떠났다가 돌아왔거나 다른 작업을 선택했다면, 완료 시점에 같은 control이 보인다는 이유로 취소된 focus 요청을 되살리지 않는다. 준비 지연·이탈 후 복귀·취소·실패·unmount에서 listener 정리와 focus 비이동을 검증한다.
 - 반복해서 사용하는 목록·section의 펼침 상태는 역할에 맞는 초기값과 사용자의 마지막 명시적 선택을 구분한다. 선택 이후에는 filter·tab 이동, 새 데이터 수신이나 일반 action이 이를 덮어쓰지 않도록 유지한다. 숨겨진 결과의 feedback·접근성 focus는 section trigger에서 제공할 수 있으며, 상태 복원과 초기값을 각각 재실행으로 검증한다. 기술 진단·위험한 세부정보의 기본 숨김 규칙은 유지한다.
 - Async action 중 관련 input, selection과 navigation이 결과와 충돌할 수 있으면 operation scope만 잠근다. App 전체를 이유 없이 막지 않고, stale response가 새 selection을 덮지 않도록 request identity/cancellation을 적용한다.
 - `Continue`, `Resume`, `Retry`처럼 이전 상태를 이어가는 동사는 대상과 복원 지점을 증명할 수 있을 때만 사용한다. 사용자가 무엇을 이어가는지 알 수 있도록 document/item, 단계 또는 pass, 마지막 상태와 필요하면 elapsed time을 같은 맥락에 표시한다. 단순히 과거 기록이 있다는 이유로 `Continue`라고 부르지 않는다.
