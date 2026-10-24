@@ -25,6 +25,7 @@
 ## 검증과 사용자 작업 보존
 
 - 정확성, 데이터 보존과 실제 위험에 필요한 검증만 수행한다. 이미 승인된 작업에 반복 승인이나 동일 조건의 재검증을 추가하지 않는다.
+- 공유 서버에서는 사용자 소유가 확인된 파일·컨테이너·이미지·프로세스만 변경한다. 관리자 계정 사용 권한은 다른 연구자의 자원 변경 허가가 아니며, 새 자원에는 소유자를 표시하고 정리는 정확한 ID나 경로로 한정한다. 전체 prune, 공용 daemon·driver·계정 설정 변경은 별도 요청 없이 수행하지 않는다.
 - Agent가 검증용으로 시작한 앱·서버·provider는 evidence 수집 직후 정상 종료한다. 종료 시 자식·분리 process와 listening port가 남지 않았는지 확인한다. 사용자가 실행한 앱이나 미저장 상태가 의심되는 process는 강제 종료하지 않는다.
 - 사용자 작업 중 focus를 빼앗거나 주 모니터에 검증 창을 열지 않는다. Headless·CLI·비활성 background 검증을 우선한다. 실제 창이 필요하면 보조 display와 focus 보존을 보장하고, 보장할 수 없으면 해당 visual 검증의 미완료 범위를 보고한다.
 - Packaged desktop 변경은 source-only 요청이 없으면 [배포 가이드](guides/app-distribution.md)의 signed stable install과 launcher 검증까지 수행한다.
