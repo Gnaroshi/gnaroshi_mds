@@ -1,6 +1,6 @@
 # Application guidance
 
-Native·desktop·CLI·로컬 도구 개발에 적용한다. UI는 [ui-ux](ui-ux.md), signed build·설치·launcher·업데이트는 [app-distribution](app-distribution.md)를 따른다.
+Native·desktop·CLI·로컬 도구 개발과 앱·브라우저 데이터 이전에 적용한다. UI는 [ui-ux](ui-ux.md), signed build·설치·launcher·업데이트는 [app-distribution](app-distribution.md)를 따른다.
 
 ## Product order
 
@@ -23,6 +23,10 @@ Native·desktop·CLI·로컬 도구 개발에 적용한다. UI는 [ui-ux](ui-ux.
 - Release에서 fake data로 조용히 fallback하지 않는다.
 - credential은 client code나 repository에 넣지 않는다.
 - 개인 Mac 재설치 도구는 Git의 설치 목록·이식 가능한 설정과 외부 저장소의 원본 파일·앱 상태·대화 백업을 분리한다. 일반 자료는 폴더로 직접 탐색할 수 있게 보관하고, Mac 메타데이터가 필요한 복원본은 별도 Mac 파일시스템 보관함을 사용한다.
+- 앱·브라우저 데이터 이전은 원본과 기존 대상 데이터를 보존한다. 종료 전에 메모리에만 있는 탭·시크릿 세션 등 사라질 수 있는 상태를 확인하고, 소실 범위와 보존 방법을 설명해 승인받은 뒤 정상 종료한다.
+- 민감한 데이터는 사용자가 안전한 시스템 화면에서 직접 암호를 설정한 암호화 저장소에 원본 백업부터 만든다. 파일 쓰기가 멈춘 상태에서 복사하고, 상대경로·개수·크기·해시 Manifest와 사본 읽기로 무결성을 확인한 뒤 이전한다. JSON 파싱·DB 무결성 검사는 안전한 사본에서 수행한다.
+- 공식 Export·Import를 우선 사용한다. 비밀번호·쿠키·인증 토큰의 값을 출력하거나 외부로 보내지 않고, 평문 비밀번호 Export, 직접 DB 삽입과 보호 기능 우회를 사용하지 않는다.
+- 이전 결과는 개수뿐 아니라 위치·순서·계층·이름과 계정·프로필의 데이터 공유·분리 관계를 비교한다. 항목별로 동등성 확인은 PASS, 일부 이전·구조 차이는 PARTIAL, 확인된 누락·실패는 FAIL, 검증 불가는 UNVERIFIED로 기록하고 가능한 복구 후 다시 검증한다.
 - 큰 화면이나 manager 하나에 책임을 몰지 말고 feature boundary로 나눈다.
 - UI를 줄일 때 사라진 container의 style, helper와 전시용 구현도 함께 정리한다. 검증 fixture는 production dependency graph에서 제외하고, lazy feature의 큰 parser·renderer가 shared chunk를 통해 시작 화면에 다시 포함되지 않는지 실제 build output으로 확인한다. 코드량 감소만으로 성능 개선을 주장하지 않는다.
 
