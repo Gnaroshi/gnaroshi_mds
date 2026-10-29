@@ -11,6 +11,7 @@ Packaged desktop의 로컬 전달과 macOS 서명·권한 연속성·업데이�
 - Debug host, raw interpreter, `tauri dev`, `electron .`, `swift run`은 packaged app과 다른 code identity다. Privacy-sensitive workflow 검증은 signed installed development bundle로 수행한다.
 - Certificate, private key, notary credential, App Store Connect key와 updater private key는 Keychain 또는 GitHub Actions secret에만 둔다. Repository, manifest, log, CLI argument와 artifact에 넣지 않는다.
 - Signing identity 탐색은 exact class와 team을 검증한다. 같은 bundle ID를 다른 team으로 서명하면 permission continuity가 보장되지 않으므로, local permission build와 release는 같은 team을 사용하거나 전환 시 한 번의 system approval 가능성을 명시한다.
+- `No Account for Team`처럼 특정 서명팀에 대한 오류는 프로젝트의 team, 연결된 계정의 team, 사용 가능한 인증서·프로파일을 먼저 대조한다. 특정 팀의 계정 누락을 모든 계정의 미등록으로 단정해 재로그인을 요청하지 않는다. 계정 설정 확인에는 필요한 식별 메타데이터만 사용하며 credential을 출력하지 않는다.
 
 Signing은 이미 승인된 permission을 안정된 application identity에 연결하는 수단이지 새 permission을 대신 승인하는 수단이 아니다.
 
