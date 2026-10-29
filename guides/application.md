@@ -33,6 +33,12 @@ Native·desktop·CLI·로컬 도구 개발과 앱·브라우저 데이터 이전
 - 큰 화면이나 manager 하나에 책임을 몰지 말고 feature boundary로 나눈다.
 - UI를 줄일 때 사라진 container의 style, helper와 전시용 구현도 함께 정리한다. 검증 fixture는 production dependency graph에서 제외하고, lazy feature의 큰 parser·renderer가 shared chunk를 통해 시작 화면에 다시 포함되지 않는지 실제 build output으로 확인한다. 코드량 감소만으로 성능 개선을 주장하지 않는다.
 
+## Performance acceptance
+
+- 최적화는 주 사용 경로의 병목까지 확인한다. Local AI 앱은 실제 provider 추론과 모델 상주, 큰 입력의 진행 저장, 긴 세션의 편집·선택, 유휴 자원을 해당 작업에 맞게 분리 측정한다. 보조 함수의 microbenchmark만으로 앱 전체의 최적화 완료나 최선의 성능을 주장하지 않는다.
+- 같은 입력·배포용 최적화 설정·저장 보장을 기준으로 비교하고, cold/warm·최초 준비·반복 작업·복구 단계와 CPU·대기·peak 메모리·쓰기량의 범위를 구분한다. 큰 벤치마크는 서로 겹치지 않게 실행하며, loop timeout을 기기 전체 wakeup이나 배터리 절감량으로 확대하지 않는다.
+- 번역 품질·정밀도·보호·완료된 작업의 저장 보장은 유지한다. 메모리 반납과 다음 작업의 재준비 시간처럼 함께 바뀌는 비용은 실측 결과에 포함하고, 사용자 선택이 필요한 실제 tradeoff는 간단한 설정으로 제공한다.
+
 ## Native integration
 
 - macOS의 floating intake/status window가 사용자의 현재 작업 옆에 계속 있어야 하는 제품이면 모든 Spaces 참여를 기본으로 하고 명시적인 opt-out을 제공한다. Space membership과 cursor/focused display placement는 별도 설정 축으로 취급하며, display 선택이 Desktop 전환 추적을 대신한다고 가정하지 않는다.
