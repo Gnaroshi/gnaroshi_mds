@@ -8,6 +8,7 @@
 - public site가 private research source를 직접 import하지 않게 한다.
 - generated feed는 편집 surface가 아니며 publisher와 validator를 통해 갱신한다.
 - API availability가 선택적이면 no-API fallback을 보존한다.
+- 반복되는 여행·학회 안내는 재사용 가능한 빈 양식과 여행별 공개 데이터를 분리한다. 누구나 접근하는 페이지에는 개인 항공·숙박 동선, 예약·결제·연락처와 원본 첨부를 포함하지 않으며, 개인 체크 상태와 예산 입력은 방문자 기기에만 저장한다.
 
 ## UI and content
 
