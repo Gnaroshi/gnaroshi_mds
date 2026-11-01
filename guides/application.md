@@ -51,6 +51,7 @@ Native·desktop·CLI·로컬 도구 개발과 앱·브라우저 데이터 이전
 ## Process and resource lifecycle
 
 - 모든 subprocess, timer, polling task, observer, local server, socket과 file handle에는 명시적인 owner와 시작·취소·종료 경계가 있어야 한다. View 재생성이나 refresh가 같은 background work를 중복 시작하지 않게 idempotent start를 사용한다.
+- 장치 연결처럼 시스템이 변경 알림을 제공하는 상태는 알림을 우선 사용한다. 연속 알림을 묶되 처리가 무한히 늦춰지지 않게 하고, 불안정한 상태의 재확인은 횟수와 기간을 제한한다. 복구 동작이 다시 알림을 발생시켜도 같은 상태의 변경 시도나 유휴 조회가 끝없이 반복되지 않도록 검증한다.
 - 일반 CLI, health/status command와 one-shot adapter는 종료 뒤 child process나 listening port를 남기지 않는다. 지속 실행이 필요한 daemon/service는 optional background service로 명시하고 lifecycle, PID/port ownership, stop command와 recovery를 문서화한다.
 - Subprocess는 shell string이 아니라 typed argument로 시작하고 timeout, cancellation, stdout/stderr drain과 exit wait를 처리한다. Parent가 종료되거나 task가 취소될 때 child와 필요한 process group을 정상 종료하고 reap한다. 의도하지 않은 detached/background child를 만들지 않는다.
 - SSH multiplexing 같은 reusable connection은 host별 stable ownership과 bounded lifetime을 사용한다. Poll마다 detached master를 새로 만들지 않고, application shutdown과 configuration removal에서 해당 app이 소유한 connection만 명시적으로 닫는다. 사용자의 unrelated SSH session과 socket은 건드리지 않는다.
