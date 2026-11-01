@@ -38,6 +38,7 @@ Safety, accessibility와 data integrity를 훼손하지 않는 범위에서 다�
 
 - 화면마다 하나의 명확한 목적과 primary action을 둔다.
 - prerequisite, blocker, progress, result, next action을 같은 workflow 안에서 연결한다.
+- 앱에서 지원하는 핵심 조작은 앱 안에 직접 제공한다. 운영체제나 외부 앱에서만 가능한 조작은 제약과 이동 결과를 명확히 표시한 보조 경로로 분리한다.
 - 중요한 정보는 한 번에 scan 가능하게 하고 세부사항만 progressive disclosure한다.
 - empty, loading, error, success, disabled, permission-denied state를 설계한다.
 - 버튼은 결과를 예측할 수 있는 동사를 사용한다.
