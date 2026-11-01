@@ -200,6 +200,7 @@ Owner-selected pixel direction은 content를 retro-game interface로 바꾸는 t
 
 ## Settings and form alignment
 
+- macOS 앱의 환경설정과 사용자가 바꾸는 동작 단축키는 표준 설정 창(⌘,)에 모으고, 앱을 종료했다 다시 실행해도 유지한다. 앱 동작 단축키가 텍스트 입력·편집과 IME 조합을 가로채지 않게 한다.
 - 설정 화면은 label/detail 영역과 control 영역의 공통 column을 정의하고 모든 row가 같은 축을 사용한다.
 - picker, text field, slider, stepper처럼 값을 편집하는 control은 같은 너비와 시작 위치를 공유한다.
 - boolean 값은 임의 위치의 labelled checkbox로 두지 않고 공통 control column의 같은 축에 switch로 정렬한다.
