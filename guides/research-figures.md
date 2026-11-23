@@ -33,7 +33,7 @@
 
 - Observation, benchmark frame, screenshot과 qualitative result는 공식 공개 자료, 재현 가능한 dataset sample 또는 실제 실행 결과를 사용한다. Generated scene나 임의 수치를 evidence 자리에 넣지 않는다.
 - Source URL/revision, dataset version, task/scene, frame index, 사용·재배포 범위를 기록한다. 편집용 원본과 crop을 분리한다.
-- 장비 사진의 표기를 고칠 때는 사용자가 선호한 강조 상자와 라벨 스타일을 보존한다. 이름표는 빈 공간에 두고, 대비가 필요한 경우 글자에 맞춘 작은 불투명 배경과 선명한 채움 글자를 사용한다. 글자 외곽선 처리와 배경 제거로 가독성을 낮추거나 큰 라벨이 장비·작업 영역을 가리지 않도록 실제 사용 크기에서 확인한다.
+- 장비 사진의 표기를 고칠 때는 사용자가 선호한 강조 상자와 라벨 스타일을 보존한다. 이름표는 빈 공간에 두고, 대비가 필요한 경우 글자에 맞춘 작은 불투명 배경과 선명한 채움 글자를 사용한다. 이름표의 글자는 실제 글리프의 위·아래 경계를 기준으로 세로 중앙에 맞춘다. 글자 외곽선 처리와 배경 제거로 가독성을 낮추거나 큰 라벨이 장비·작업 영역을 가리지 않도록 실제 사용 크기에서 확인한다.
 - 실제 asset을 구하지 못했으면 의미가 명확한 text placeholder와 미완료 범위를 표시한다. Fake thumbnail을 만들지 않는다.
 - 공개 전 private data와 재배포 조건을 확인한다. Figure-specific spec, 원문, 결과와 evidence map은 대상 프로젝트에 둔다.
 
