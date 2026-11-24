@@ -13,6 +13,7 @@
 
 ## UI and content
 
+- 영상·task 선택처럼 화면 안에서 바뀌는 상태는 기본적으로 URL에 fragment나 query를 붙이지 않는다. 공유·북마크 목적이나 사용자 요청이 확인된 경우에만 주소에 반영한다.
 - 첫 viewport에서 정체성, 목적, 핵심 경로와 다음 행동이 보여야 한다.
 - long-form content는 읽기 폭과 heading hierarchy를 우선한다.
 - data가 없을 때 zero-filled dashboard를 보여주지 말고 첫 유효 행동 하나를 안내한다.
